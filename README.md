@@ -4,9 +4,11 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
-[![Dataset: Filters](https://img.shields.io/badge/Dataset-Korea%20100%20Filters-orange.svg)](韩国/滤镜/README.md)
-[![Dataset: Poses](https://img.shields.io/badge/Dataset-Korea%20100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
-[![Aesthetics](https://img.shields.io/badge/Styles-KR%20%7C%20JP%20%7C%20CN%20%7C%20US%20%7C%20FR-green.svg)](#三-五国全矩阵视觉数据库)
+[![Dataset: Korea](https://img.shields.io/badge/Korea%20Matrix-400%20Prompts%20Complete-success.svg)](韩国/README.md)
+[![Korea: Filters](https://img.shields.io/badge/Korea-100%20Filters-blue.svg)](韩国/滤镜/README.md)
+[![Korea: Poses](https://img.shields.io/badge/Korea-100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
+[![Korea: Outfits](https://img.shields.io/badge/Korea-100%20Outfits-orange.svg)](韩国/穿搭/README.md)
+[![Korea: Styles](https://img.shields.io/badge/Korea-100%20Styles-green.svg)](韩国/风格/README.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#七-参与贡献与路线图)
 
 **专为 AI 虚拟人（Digital Humans）打造的工业级跨模型摄影全矩阵控制系统。**  
