@@ -1690,23 +1690,48 @@
       const sTxt = getCleanDetail(s, ['环境与光影细节', '地标空间与光影质感'], '圣水洞工业极简水泥空间');
       const fTxt = getCleanDetail(f, ['色温/光影', '相机/介质'], '机顶硬闪光直射，局部高光溢出，暗部带细密数码噪点');
 
+      // 智能空间与肢体解耦防冲突引擎 (Decouple Space & Limbs)
+      let cleanScene = (s ? s.title : '首尔空间').replace(/(席地而坐|翻看旧相册|盘腿发呆|平躺听黑胶|抱抱枕入眠|伏案写作|迎风轻啜|漫步|骑车|挑选饮品|看雨丝滑落)[^，,]*$/g, '').trim() || (s ? s.title : '首尔空间');
+      let cleanPose = pTxt;
+      let cleanStyleDetail = sTxt;
+
+      const isHomeScene = /(地暖|卧室|木地板|被窝|床榻|私密居家|浴缸)/.test(cleanScene + ' ' + sTxt);
+      const isOutdoorScene = /(公园|汉江|芦苇|大桥|街头|林荫道|斑马线)/.test(cleanScene + ' ' + sTxt);
+
+      if (isHomeScene) {
+        // 场景为居家私密时，自动剥离姿态中冲突的街头外景前缀，保留纯粹的人体工学动态
+        cleanPose = cleanPose.replace(/^站在(饮料机|贩卖机|便利店|货架|地铁|大桥|斑马线|街角|车厢)前?[，,]\s*/g, '');
+        cleanPose = cleanPose.replace(/^(在|倚靠在|走在)(地铁车厢|斑马线|货架|街角|天桥)[^，,]*[，,]\s*/g, '');
+        cleanPose = cleanPose.replace(/在亮灯按钮前半厘米处/g, '在身前半空微悬');
+        cleanStyleDetail = cleanStyleDetail.replace(/^(穿着棉袜席地坐在[^，,]+[，,]\s*|整个人完全放松平躺在[^，,]+[，,]\s*|盘腿坐在[^，,]+[，,]\s*)/g, '');
+      } else if (isOutdoorScene) {
+        cleanPose = cleanPose.replace(/^(席地坐在|躺在|趴在|窝在)(地暖|木地板|被窝|床上|沙发上)[^，,]*[，,]\s*/g, '');
+      }
+
+      // 道具以自然伴随语法衔接，避免与手势发生多肢体冲突
+      let actionAndPropTxt = cleanPose;
+      if (prTxt && prTxt.length > 2) {
+        actionAndPropTxt += `；身侧随性搭配${prTxt}`;
+      }
+
       let prompt = "";
 
       if (currentModel === 'chatgpt') {
-        prompt = `真实日常生活抓拍照片，一位20岁出头的年轻东亚女性，清冷淡颜，冷白皮，头小脸小骨相优越，身形纤细修长。发型与妆容：留着${hmTxt}，耳侧随性散落细碎贴面胎毛，搭配清透伪素颜底妆与原生水润淡唇。神态与视线：${eTxt}，神色疏离克制，不迎合镜头。动作体态与道具：${pTxt}，${prTxt}。穿搭造型：身穿${o ? o.title : '韩系极简服饰'}，${oTxt}；腿部搭配${h ? h.title : '超薄透肤丝袜'}，${hTxt}。身处${s ? s.title : '首尔街头'}，${sTxt}。成像与光影：模拟${f ? f.title : '真实相机'}，${fTxt}。真实手机原相机抓拍质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、真实皮肤毛孔与自然血色，轻微生活感动态微模糊与暗部噪点，严格禁止二次元、卡通、手绘、动漫画风与3D渲染塑料感，3:4`;
+        prompt = `真实日常生活抓拍照片，一位20岁出头的年轻东亚女性，清冷淡颜，冷白皮，头小脸小骨相优越，身形纤细修长。发型与妆容：留着${hmTxt}，耳侧随性散落细碎贴面胎毛，搭配清透伪素颜底妆与原生水润淡唇。神态与视线：${eTxt}，神色疏离克制，不迎合镜头。动作体态与道具：${actionAndPropTxt}。穿搭造型：身穿${o ? o.title : '韩系极简服饰'}，${oTxt}；腿部搭配${h ? h.title : '超薄透肤丝袜'}，${hTxt}。身处${cleanScene}，${cleanStyleDetail}。成像与光影：模拟${f ? f.title : '真实相机'}，${fTxt}。真实手机原相机抓拍质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、真实皮肤毛孔与自然血色，轻微生活感动态微模糊与暗部噪点，严格禁止二次元、卡通、手绘、动漫画风与3D渲染塑料感，3:4`;
       } else if (currentModel === 'seedream') {
-        prompt = `以参考图中的成年女性为唯一人物身份，生成一张极致写实的生活抓拍照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形、冷白肤色与20岁出头年轻感，人物高度一致，不换脸、不美颜、不网红化。自然写实7.5～8头身，身形纤细修长，禁止大头、短腿、关节畸形与超比例。\n发型与面部：留着${hmTxt}，耳侧碎发自然飘拂，清透伪素颜底妆；${eTxt}。\n穿搭与腿饰：身穿${o ? o.title : '韩系服饰'}，${oTxt}；腿部搭配${h ? h.title : '超薄丝袜'}，${hTxt}。\n体态动作与手部道具：${pTxt}，${prTxt}。\n场景与环境光学：身处${s ? s.title : '首尔空间'}，${sTxt}；模拟${f ? f.title : '真实相机'}，${fTxt}。\n全画幅真实镜头自然透视，真实手机原相机抓拍质感，保留真实皮肤毛孔、面料纤维纹理与衣料重力垂坠折痕，暗部带真实细腻颗粒感。严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，无文字无水印，3:4`;
+        prompt = `以参考图中的成年女性为唯一人物身份，生成一张极致写实的生活抓拍照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形、冷白肤色与20岁出头年轻感，人物高度一致，不换脸、不美颜、不网红化。自然写实7.5～8头身，身形纤细修长，禁止大头、短腿、关节畸形与超比例。\n发型与面部：留着${hmTxt}，耳侧碎发自然飘拂，清透伪素颜底妆；${eTxt}。\n穿搭与腿饰：身穿${o ? o.title : '韩系服饰'}，${oTxt}；腿部搭配${h ? h.title : '超薄丝袜'}，${hTxt}。\n体态动作与手部道具：${actionAndPropTxt}。\n场景与环境光学：身处${cleanScene}，${cleanStyleDetail}；模拟${f ? f.title : '真实相机'}，${fTxt}。\n全画幅真实镜头自然透视，真实手机原相机抓拍质感，保留真实皮肤毛孔、面料纤维纹理与衣料重力垂坠折痕，暗部带真实细腻颗粒感。严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，无文字无水印，3:4`;
       } else {
         const hmGenre = hm && hm.fields && hm.fields['时尚/爱豆圈流派'] ? hm.fields['时尚/爱豆圈流派'] : (hm ? hm.title : 'Sleek Straight Hair');
         const oGenre = o && o.fields && o.fields['时尚/流行流派'] ? o.fields['时尚/流行流派'] : (o ? o.title : 'Korean Preppy Tailored Outfit');
         const hGenre = h && h.fields && h.fields['时尚/流行流派'] ? h.fields['时尚/流行流派'] : (h ? h.title : 'Ultra-Sheer Hosiery');
-        const sGenre = s && s.fields && s.fields['视觉风格流派'] ? s.fields['视觉风格流派'] : (s ? s.title : 'Modern Minimalist Architecture');
+        const sGenre = s && s.fields && s.fields['视觉风格流派'] ? s.fields['视觉风格流派'] : (s ? cleanScene : 'Modern Minimalist Architecture');
         const fCam = f && f.fields && f.fields['相机/介质'] ? f.fields['相机/介质'] : (f ? f.title : 'Compact CCD Camera');
         const fLight = f && f.fields && f.fields['色温/光影'] ? f.fields['色温/光影'] : 'direct on-axis flash with crisp fall-off shadow';
 
-        prompt = `A candid, photorealistic 35mm street snapshot of a 22-year-old East Asian woman with porcelain cool-white skin, refined bone structure, and a slender frame. Her hair is styled in ${hmGenre}, with delicate flyaway baby hair brushing against her temples, paired with clean dewy skin, natural brushed eyebrows, and softly tinted lips. She has a detached, calm expression, looking slightly away from the camera. She is wearing ${oGenre}, paired with ${hGenre} and matching footwear. Captured in motion: ${p ? p.title : 'holding smartphone casually'}, interacting with ${pr ? pr.title : 'beverage container'}. Taken in ${sGenre}, illuminated with optics inspired by ${fCam} with ${fLight}. Authentic unposed raw photography, organic fabric drapery, visible micro-creases, authentic skin pores, lifelike flush, subtle sensor grain in deep shadows, shallow depth of field. Strictly prohibited: CGI, 3D rendering, airbrushed plastic skin, cartoon illustration, anime features. 3:4 aspect ratio.`;
+        prompt = `A candid, photorealistic 35mm street snapshot of a 22-year-old East Asian woman with porcelain cool-white skin, refined bone structure, and a slender frame. Her hair is styled in ${hmGenre}, with delicate flyaway baby hair brushing against her temples, paired with clean dewy skin, natural brushed eyebrows, and softly tinted lips. She has a detached, calm expression, looking slightly away from the camera. She is wearing ${oGenre}, paired with ${hGenre} and matching footwear. Captured in motion: ${cleanPose}, paired with ${pr ? pr.title : 'ambient lifestyle prop'}. Taken in ${sGenre}, illuminated with optics inspired by ${fCam} with ${fLight}. Authentic unposed raw photography, organic fabric drapery, visible micro-creases, authentic skin pores, lifelike flush, subtle sensor grain in deep shadows, shallow depth of field. Strictly prohibited: CGI, 3D rendering, airbrushed plastic skin, cartoon illustration, anime features. 3:4 aspect ratio.`;
       }
 
+      prompt = prompt.replace(/；+/g, '；').replace(/，+/g, '，').replace(/。+/g, '。').replace(/；[，,]/g, '；').replace(/，[；;]/g, '；');
       document.getElementById('live-prompt-text').textContent = prompt;
     }
 
@@ -1717,16 +1742,101 @@
       compileLivePrompt();
     }
 
-    function randomMix() {
-      trackKeys.forEach(key => {
-        const select = document.getElementById(`select-${key}`);
-        if (!select) return;
-        const count = select.options.length;
-        const randomIdx = Math.floor(Math.random() * count);
-        select.selectedIndex = randomIdx;
+    // 智能情境空间库 (解决随机灵感多轨地点/动作冲突)
+    const SCENARIO_CLUSTERS = [
+      {
+        name: '首尔高街潮流与便利店日常',
+        styleRange: [1, 20],
+        altStyleRange: [41, 60],
+        poseRange: [21, 40],
+        altPoseRange: [76, 90],
+        propRange: [1, 20],
+        altPropRange: [41, 45]
+      },
+      {
+        name: '小资咖啡馆与独立艺术书店',
+        styleRange: [21, 40],
+        altStyleRange: [1, 10],
+        poseRange: [41, 60],
+        altPoseRange: [61, 75],
+        propRange: [1, 15],
+        altPropRange: [21, 35]
+      },
+      {
+        name: '私密居家与地暖慢生活',
+        styleRange: [91, 100],
+        altStyleRange: [91, 100],
+        poseRange: [91, 100],
+        altPoseRange: [1, 20],
+        propRange: [41, 50],
+        altPropRange: [21, 35]
+      },
+      {
+        name: '汉江自然漫游与落叶微风',
+        styleRange: [61, 80],
+        altStyleRange: [61, 80],
+        poseRange: [21, 40],
+        altPoseRange: [61, 75],
+        propRange: [1, 15],
+        altPropRange: [21, 30]
+      },
+      {
+        name: '千禧先锋舞台与名媛夜景',
+        styleRange: [81, 90],
+        altStyleRange: [1, 10],
+        poseRange: [76, 90],
+        altPoseRange: [1, 20],
+        propRange: [16, 25],
+        altPropRange: [31, 40]
+      }
+    ];
+
+    function pickRandomTrackIndex(select, ranges) {
+      if (!select || !select.options.length) return;
+      const validIndices = [];
+      ranges.forEach(r => {
+        if (!r) return;
+        const [minNum, maxNum] = r;
+        for (let i = 0; i < select.options.length; i++) {
+          const opt = select.options[i];
+          const m = opt.textContent.match(/#(\d+)/);
+          if (m) {
+            const num = parseInt(m[1], 10);
+            if (num >= minNum && num <= maxNum) {
+              validIndices.push(i);
+            }
+          }
+        }
       });
+      if (validIndices.length > 0) {
+        select.selectedIndex = validIndices[Math.floor(Math.random() * validIndices.length)];
+      } else {
+        select.selectedIndex = Math.floor(Math.random() * select.options.length);
+      }
+    }
+
+    function randomMix() {
+      // 1. 优先随机抽取场景流派，确保物理空间与肢体姿态 100% 协调共融
+      const scenario = SCENARIO_CLUSTERS[Math.floor(Math.random() * SCENARIO_CLUSTERS.length)];
+
+      const sSelect = document.getElementById('select-styles');
+      const pSelect = document.getElementById('select-poses');
+      const prSelect = document.getElementById('select-props');
+
+      pickRandomTrackIndex(sSelect, [scenario.styleRange, scenario.altStyleRange]);
+      pickRandomTrackIndex(pSelect, [scenario.poseRange, scenario.altPoseRange]);
+      pickRandomTrackIndex(prSelect, [scenario.propRange, scenario.altPropRange]);
+
+      // 2. 自由维度正交全域随机 (滤镜、穿搭、丝袜、妆发、微表情)
+      ['filters', 'outfits', 'hosiery', 'hair_makeup', 'expressions'].forEach(key => {
+        const select = document.getElementById(`select-${key}`);
+        if (select && select.options.length) {
+          select.selectedIndex = Math.floor(Math.random() * select.options.length);
+        }
+      });
+
       compileLivePrompt();
-      showToast('🎲 已随机混音生成全新配方');
+      showToast(`🎲 灵感调音：【${scenario.name}】配方已就绪（零冲突）`);
     }
 
     function resetMixer() {
