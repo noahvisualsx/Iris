@@ -1387,7 +1387,7 @@
           <button class="pill-btn" id="filter-img-none" onclick="filterImageStatus('none')">全待配 (<span id="none-img-count">660</span>)</button>
           <button class="pill-btn" onclick="exportDataJs()" style="background:var(--ink); color:var(--bg);">💾 导出 data.js</button>
           <button class="pill-btn" onclick="exportAllImages()">📦 导出所有图片</button>
-          <button class="pill-btn" onclick="clearAllCustomImages()" style="color:#e02424;">清空本地</button>
+          <button class="pill-btn" onclick="clearAllCustomImages()" style="color:#e02424;" title="仅清空当前浏览器的临时缓存配图，不影响线上网站与他人">清空本地缓存</button>
         </div>
       </div>
 
@@ -2482,8 +2482,8 @@
     }
 
     async function clearAllCustomImages() {
-      if (!confirm('⚠️ 警告：确定要清空所有自定义参考图吗？此操作无法撤销！')) return;
-      await clearDB();
+      if (!confirm('⚠️ 确定要清空您当前浏览器保存的本地配图缓存吗？\n（仅影响当前浏览器，不会影响线上网站与他人，此操作不可撤销）')) return;
+      await clearAllFromDB();
       allData.forEach(d => {
         d.image = null;
         d.fit_image = null;
@@ -2491,7 +2491,7 @@
       });
       renderCards();
       updateImageStats();
-      showToast('✓ 已清空本地所有参考图数据');
+      showToast('✓ 已清空当前浏览器本地配图缓存');
     }
 
     // ==========================================
