@@ -1,11 +1,12 @@
-# Awesome Virtual Human Lens (全球虚拟人摄影全矩阵开源手册)
+# PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册
 
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%204o%20%7C%20Gemini%20Imagen%203-blue.svg)](#三大模型编译器规范)
-[![Aesthetics](https://img.shields.io/badge/Styles-KR%20%7C%20JP%20%7C%20CN%20%7C%20US%20%7C%20FR-green.svg)](#五国全矩阵视觉数据库)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#参与贡献)
+[![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%204o%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
+[![Dataset](https://img.shields.io/badge/Dataset-Korea%20100%20Filters-orange.svg)](韩国/滤镜/README.md)
+[![Aesthetics](https://img.shields.io/badge/Styles-KR%20%7C%20JP%20%7C%20CN%20%7C%20US%20%7C%20FR-green.svg)](#三-五国全矩阵视觉数据库)
+[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#七-参与贡献与路线图)
 
 **专为 AI 虚拟人（Digital Humans）打造的工业级跨模型摄影全矩阵控制系统。**  
 解决虚拟人生成中「换滤镜就换脸、换姿态就崩坏、跨模型表现分裂」的终极工程难题。
@@ -395,7 +396,7 @@ Styling: Striped cotton sailor top, vintage faded denim, minimal gold medallion 
 
 ```bash
 # 进入工作目录
-cd 仓库/awesome-virtual-human-lens
+cd 仓库/PersonaLens
 
 # 使用标准母图 + 韩国冷白皮滤镜批量测试
 python3 ../../bin/gen_image.py \
