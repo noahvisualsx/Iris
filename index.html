@@ -618,6 +618,54 @@
       box-shadow: 0 0 0 2px var(--accent), var(--shadow-2) !important;
     }
 
+    /* Dual Reference Slot Navigation (Apple Segmented Pill Switcher) */
+    .card-slot-tabs {
+      display: flex;
+      align-items: center;
+      background: var(--bg-sunk);
+      padding: 5px 6px;
+      gap: 4px;
+      border-bottom: 1px solid var(--line);
+      z-index: 2;
+    }
+    .slot-tab-btn {
+      flex: 1;
+      height: 28px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+      cursor: pointer;
+    }
+    .slot-tab-btn:hover {
+      color: var(--ink);
+    }
+    .slot-tab-btn.active {
+      background: var(--bg-elev);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 0 0 1px var(--line);
+    }
+    .tab-status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--ink-3);
+      opacity: 0.35;
+      display: inline-block;
+      transition: background 0.2s ease, opacity 0.2s ease;
+    }
+    .tab-status-dot.filled {
+      background: var(--success-fill);
+      opacity: 1;
+    }
+
     /* Image Preview Slot (极简 Apple 质感插槽) */
     .card-img-slot {
       aspect-ratio: 3 / 4;
@@ -812,6 +860,19 @@
     .card-copy-btn.done {
       background: var(--success-fill);
       color: var(--on-fill);
+    }
+    .card-copy-btn.secondary {
+      background: var(--bg-sunk);
+      color: var(--ink);
+      box-shadow: inset 0 0 0 1px var(--line);
+    }
+    .card-copy-btn.secondary:hover {
+      background: var(--line);
+    }
+    .card-copy-btn.secondary.done {
+      background: var(--success-fill);
+      color: #ffffff;
+      box-shadow: none;
     }
     .card-mixer-btn {
       height: 34px;
@@ -1089,8 +1150,8 @@
       <div class="image-studio-bar">
         <div class="studio-stat-group">
           <div class="studio-progress-pill">
-            <span>参考图配齐:</span>
-            <span id="filled-count-badge" style="color:var(--ink); font-weight:700;">0</span> / <span id="total-count-badge">610</span>
+            <span>双图总覆盖:</span>
+            <span id="filled-count-badge" style="color:var(--ink); font-weight:700;">0</span> / <span id="total-count-badge">1220</span>
             <div class="progress-bar-wrap">
               <div class="progress-bar-fill" id="progress-bar-fill"></div>
             </div>
@@ -1098,14 +1159,17 @@
           </div>
 
           <div class="studio-hint-badge">
-            <span>⚡ 复制图片后，鼠标悬停或点击卡片直接按 <strong>⌘V / Ctrl+V</strong> 粘贴</span>
+            <span>⚡ 切换卡片上方【💃 上身效果 / 📦 单品形态】后按 <strong>⌘V / Ctrl+V</strong> 对应粘贴</span>
           </div>
         </div>
 
         <div class="studio-actions">
-          <button class="pill-btn" id="filter-img-all" onclick="filterImageStatus('all')">全部</button>
-          <button class="pill-btn" id="filter-img-has" onclick="filterImageStatus('has')">已配图 (<span id="has-img-count">0</span>)</button>
-          <button class="pill-btn" id="filter-img-none" onclick="filterImageStatus('none')">待配图 (<span id="none-img-count">610</span>)</button>
+          <button class="pill-btn" id="filter-img-all" onclick="filterImageStatus('all')">全部 (610)</button>
+          <button class="pill-btn" id="filter-img-both" onclick="filterImageStatus('both')">双图全齐 (<span id="both-img-count">0</span>)</button>
+          <button class="pill-btn" id="filter-img-has" onclick="filterImageStatus('has')">有配图 (<span id="has-img-count">0</span>)</button>
+          <button class="pill-btn" id="filter-img-fit" onclick="filterImageStatus('fit')">已配上身 (<span id="fit-img-count">0</span>)</button>
+          <button class="pill-btn" id="filter-img-product" onclick="filterImageStatus('product')">已配单品 (<span id="prod-img-count">0</span>)</button>
+          <button class="pill-btn" id="filter-img-none" onclick="filterImageStatus('none')">全待配 (<span id="none-img-count">610</span>)</button>
           <button class="pill-btn" onclick="exportDataJs()" style="background:var(--ink); color:var(--bg);">💾 导出 data.js</button>
           <button class="pill-btn" onclick="exportAllImages()">📦 导出所有图片</button>
           <button class="pill-btn" onclick="clearAllCustomImages()" style="color:#e02424;">清空本地</button>
@@ -1280,12 +1344,32 @@
       initMixerDropdowns();
       compileLivePrompt();
 
+      allData.forEach(d => {
+        if (d.image && !d.fit_image) d.fit_image = d.image;
+        if (!d.product_image) d.product_image = null;
+        if (!d.fit_image) d.fit_image = null;
+      });
+
       try {
         const saved = await getAllImagesFromDB();
         saved.forEach(rec => {
-          const item = allData.find(d => d.id === rec.id);
-          if (item) {
-            item.image = rec.dataUrl;
+          if (rec.id.endsWith('_product')) {
+            const baseId = rec.id.slice(0, -8);
+            const item = allData.find(d => d.id === baseId);
+            if (item) item.product_image = rec.dataUrl;
+          } else if (rec.id.endsWith('_fit')) {
+            const baseId = rec.id.slice(0, -4);
+            const item = allData.find(d => d.id === baseId);
+            if (item) {
+              item.fit_image = rec.dataUrl;
+              item.image = rec.dataUrl;
+            }
+          } else {
+            const item = allData.find(d => d.id === rec.id);
+            if (item) {
+              item.fit_image = rec.dataUrl;
+              item.image = rec.dataUrl;
+            }
           }
         });
       } catch (e) {
@@ -1444,9 +1528,38 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       renderCards();
     }
 
+    const cardActiveTabs = {};
+    function getCardActiveTab(itemId) {
+      return cardActiveTabs[itemId] || 'fit';
+    }
+
+    function switchCardTab(event, itemId, tab) {
+      if (event) event.stopPropagation();
+      cardActiveTabs[itemId] = tab;
+      const card = document.getElementById(`card-${itemId}`);
+      if (card) {
+        card.querySelectorAll('.slot-tab-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.tab === tab);
+        });
+      }
+      const item = allData.find(d => d.id === itemId);
+      if (item) updateCardSlotDOM(item);
+    }
+
+    function updateCardTabsDOM(item) {
+      const card = document.getElementById(`card-${item.id}`);
+      if (!card) return;
+      const fitDot = document.getElementById(`dot-fit-${item.id}`);
+      const prodDot = document.getElementById(`dot-product-${item.id}`);
+      const hasFit = !!(item.fit_image || (item.image && !item.product_image));
+      const hasProd = !!item.product_image;
+      if (fitDot) fitDot.classList.toggle('filled', hasFit);
+      if (prodDot) prodDot.classList.toggle('filled', hasProd);
+    }
+
     function filterImageStatus(status) {
       currentImageFilter = status;
-      ['all', 'has', 'none'].forEach(k => {
+      ['all', 'both', 'has', 'fit', 'product', 'none'].forEach(k => {
         const btn = document.getElementById(`filter-img-${k}`);
         if (btn) {
           if (k === status) {
@@ -1474,27 +1587,53 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       if (currentCategory !== 'all') {
         filtered = filtered.filter(d => d.category_id === currentCategory);
       }
-      if (currentImageFilter === 'has') {
-        filtered = filtered.filter(d => !!d.image);
+
+      if (currentImageFilter === 'both') {
+        filtered = filtered.filter(d => (!!d.fit_image || !!d.image) && !!d.product_image);
+      } else if (currentImageFilter === 'has') {
+        filtered = filtered.filter(d => !!d.fit_image || !!d.image || !!d.product_image);
+      } else if (currentImageFilter === 'fit') {
+        filtered = filtered.filter(d => !!d.fit_image || !!d.image);
+      } else if (currentImageFilter === 'product') {
+        filtered = filtered.filter(d => !!d.product_image);
       } else if (currentImageFilter === 'none') {
-        filtered = filtered.filter(d => !d.image);
+        filtered = filtered.filter(d => !d.fit_image && !d.image && !d.product_image);
       }
 
       if (currentSearch) {
         filtered = filtered.filter(d => 
           d.title.toLowerCase().includes(currentSearch) ||
           d.id.toLowerCase().includes(currentSearch) ||
-          d.prompt.toLowerCase().includes(currentSearch) ||
+          (d.prompt && d.prompt.toLowerCase().includes(currentSearch)) ||
+          (d.product_prompt && d.product_prompt.toLowerCase().includes(currentSearch)) ||
           Object.values(d.fields).some(v => v.toLowerCase().includes(currentSearch))
         );
       }
 
-      container.innerHTML = filtered.map(item => `
+      container.innerHTML = filtered.map(item => {
+        const activeTab = getCardActiveTab(item.id);
+        const fitImg = item.fit_image || (item.image && !item.product_image ? item.image : null);
+        const prodImg = item.product_image || null;
+        const currentImg = activeTab === 'fit' ? fitImg : prodImg;
+
+        return `
         <article class="prompt-card ${selectedActiveCardId === item.id ? 'focused-target' : ''}" 
                  id="card-${item.id}"
                  onmouseenter="onCardMouseEnter('${item.id}')"
                  onmouseleave="onCardMouseLeave('${item.id}')"
                  onclick="selectCardForPaste('${item.id}')">
+
+          <!-- Dual Tab Navigation -->
+          <div class="card-slot-tabs">
+            <button class="slot-tab-btn ${activeTab === 'fit' ? 'active' : ''}" data-tab="fit" onclick="switchCardTab(event, '${item.id}', 'fit')">
+              <span>💃 真人上身</span>
+              <span class="tab-status-dot ${fitImg ? 'filled' : ''}" id="dot-fit-${item.id}"></span>
+            </button>
+            <button class="slot-tab-btn ${activeTab === 'product' ? 'active' : ''}" data-tab="product" onclick="switchCardTab(event, '${item.id}', 'product')">
+              <span>📦 单品形态</span>
+              <span class="tab-status-dot ${prodImg ? 'filled' : ''}" id="dot-product-${item.id}"></span>
+            </button>
+          </div>
 
           <!-- Reference Image Slot -->
           <div class="card-img-slot" id="slot-${item.id}"
@@ -1502,22 +1641,22 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
                ondragleave="handleSlotDragLeave(event, '${item.id}')"
                ondrop="handleSlotDrop(event, '${item.id}')">
 
-            ${item.image ? `
-              <img src="${item.image}" alt="${item.title}" loading="lazy">
+            ${currentImg ? `
+              <img src="${currentImg}" alt="${item.title} (${activeTab === 'fit' ? '真人上身' : '单品形态'})" loading="lazy">
               <div class="card-img-overlay">
-                <button class="overlay-pill-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
+                <button class="overlay-pill-btn" onclick="openLightbox(event, '${item.id}', '${activeTab}')">🔍 查看全屏大图</button>
                 <button class="overlay-pill-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
                 <button class="overlay-pill-btn danger" onclick="removeCardImage(event, '${item.id}')">移除</button>
               </div>
-              <div class="card-img-badge active-filled">✓ 已配图</div>
+              <div class="card-img-badge active-filled">✓ ${activeTab === 'fit' ? '上身已配' : '单品已配'}</div>
             ` : `
               <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
-                <div class="card-img-icon">📷</div>
-                <div style="font-size:14px; font-weight:600; color:var(--ink);">待配参考图</div>
+                <div class="card-img-icon">${activeTab === 'fit' ? '💃' : '📦'}</div>
+                <div style="font-size:14px; font-weight:600; color:var(--ink);">待配${activeTab === 'fit' ? '真人上身效果图' : '单品形态/平铺图'}</div>
                 <div class="card-paste-guide">按 ⌘V / Ctrl+V 粘贴</div>
                 <div class="card-img-hint">点击可上传或拖拽图片进入</div>
               </div>
-              <div class="card-img-badge">3:4 · #${item.num}</div>
+              <div class="card-img-badge">3:4 · ${activeTab === 'fit' ? '上身' : '单品'}</div>
             `}
           </div>
 
@@ -1539,16 +1678,20 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
             </div>
 
             <div class="card-foot">
-              <button class="card-copy-btn" id="copy-btn-${item.id}" onclick="copyCardPrompt('${item.id}')">
-                <span>📋 复制提示词</span>
+              <button class="card-copy-btn" id="copy-fit-${item.id}" onclick="copyCardPrompt('${item.id}', 'fit')" title="复制真人上身实穿提示词">
+                <span>💃 复制上身词</span>
               </button>
-              <button class="card-mixer-btn" onclick="useInMixer('${item.category_id}', '${item.id}')">
-                <span>🎛️ 调音</span>
+              <button class="card-copy-btn secondary" id="copy-prod-${item.id}" onclick="copyCardPrompt('${item.id}', 'product')" title="复制单品形态/平铺提示词">
+                <span>📦 复制单品词</span>
+              </button>
+              <button class="card-mixer-btn" onclick="useInMixer('${item.category_id}', '${item.id}')" title="载入调音台">
+                <span>🎛️</span>
               </button>
             </div>
           </div>
         </article>
-      `).join('');
+        `;
+      }).join('');
     }
 
     // ==========================================
@@ -1597,7 +1740,8 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       if (targetCard) targetCard.classList.add('focused-target');
       const item = allData.find(d => d.id === id);
       if (item) {
-        showToast(`已选中 #${item.num} · 现在按 ⌘V / Ctrl+V 直接粘贴`);
+        const tab = getCardActiveTab(id);
+        showToast(`已选中 #${item.num}【${tab === 'fit' ? '真人上身' : '单品形态'}】· 按 ⌘V 粘贴`);
       }
     }
 
@@ -1632,15 +1776,25 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       const item = allData.find(d => d.id === itemId);
       if (!item) return;
 
-      showToast(`正在保存至 #${item.num}...`);
+      const activeTab = getCardActiveTab(itemId);
+      const tabName = activeTab === 'fit' ? '真人上身实穿图' : '单品静物形态图';
+      showToast(`正在保存【${tabName}】至 #${item.num}...`);
       try {
         const dataUrl = await fileToDataUrl(file);
-        item.image = dataUrl;
-        await saveImageToDB(itemId, dataUrl);
+        if (activeTab === 'product') {
+          item.product_image = dataUrl;
+          await saveImageToDB(`${itemId}_product`, dataUrl);
+        } else {
+          item.fit_image = dataUrl;
+          item.image = dataUrl;
+          await saveImageToDB(`${itemId}_fit`, dataUrl);
+          await saveImageToDB(itemId, dataUrl); // legacy compatibility
+        }
 
         updateCardSlotDOM(item);
+        updateCardTabsDOM(item);
         updateImageStats();
-        showToast(`✓ 已成功保存参考图至 #${item.num}`);
+        showToast(`✓ 已成功保存【${tabName}】至 #${item.num}`);
       } catch (err) {
         console.error(err);
         showToast('保存图片失败，请重试');
@@ -1650,15 +1804,32 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
     function updateCardSlotDOM(item) {
       const slot = document.getElementById(`slot-${item.id}`);
       if (!slot) return;
-      slot.innerHTML = `
-        <img src="${item.image}" alt="${item.title}" loading="lazy">
-        <div class="card-img-overlay">
-          <button class="overlay-pill-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
-          <button class="overlay-pill-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
-          <button class="overlay-pill-btn danger" onclick="removeCardImage(event, '${item.id}')">移除</button>
-        </div>
-        <div class="card-img-badge active-filled">✓ 已配图</div>
-      `;
+      const activeTab = getCardActiveTab(item.id);
+      const fitImg = item.fit_image || (item.image && !item.product_image ? item.image : null);
+      const prodImg = item.product_image || null;
+      const currentImg = activeTab === 'fit' ? fitImg : prodImg;
+
+      if (currentImg) {
+        slot.innerHTML = `
+          <img src="${currentImg}" alt="${item.title} (${activeTab === 'fit' ? '真人上身' : '单品形态'})" loading="lazy">
+          <div class="card-img-overlay">
+            <button class="overlay-pill-btn" onclick="openLightbox(event, '${item.id}', '${activeTab}')">🔍 查看全屏大图</button>
+            <button class="overlay-pill-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
+            <button class="overlay-pill-btn danger" onclick="removeCardImage(event, '${item.id}')">移除</button>
+          </div>
+          <div class="card-img-badge active-filled">✓ ${activeTab === 'fit' ? '上身已配' : '单品已配'}</div>
+        `;
+      } else {
+        slot.innerHTML = `
+          <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
+            <div class="card-img-icon">${activeTab === 'fit' ? '💃' : '📦'}</div>
+            <div style="font-size:14px; font-weight:600; color:var(--ink);">待配${activeTab === 'fit' ? '真人上身效果图' : '单品形态/平铺图'}</div>
+            <div class="card-paste-guide">按 ⌘V / Ctrl+V 粘贴</div>
+            <div class="card-img-hint">点击可上传或拖拽图片进入</div>
+          </div>
+          <div class="card-img-badge">3:4 · ${activeTab === 'fit' ? '上身' : '单品'}</div>
+        `;
+      }
     }
 
     async function removeCardImage(event, itemId) {
@@ -1666,25 +1837,24 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       const item = allData.find(d => d.id === itemId);
       if (!item) return;
 
-      if (!confirm(`确定要移除 #${item.num} 【${item.title}】的参考图吗？`)) return;
+      const activeTab = getCardActiveTab(itemId);
+      const tabName = activeTab === 'fit' ? '真人上身效果图' : '单品形态图';
+      if (!confirm(`确定要移除 #${item.num} 【${item.title}】的【${tabName}】吗？`)) return;
 
-      item.image = null;
-      await removeImageFromDB(itemId);
-
-      const slot = document.getElementById(`slot-${itemId}`);
-      if (slot) {
-        slot.innerHTML = `
-          <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
-            <div class="card-img-icon">📷</div>
-            <div style="font-size:14px; font-weight:600; color:var(--ink);">待配参考图</div>
-            <div class="card-paste-guide">按 ⌘V / Ctrl+V 粘贴</div>
-            <div class="card-img-hint">点击可上传或拖拽图片进入</div>
-          </div>
-          <div class="card-img-badge">3:4 · #${item.num}</div>
-        `;
+      if (activeTab === 'product') {
+        item.product_image = null;
+        await removeImageFromDB(`${itemId}_product`);
+      } else {
+        item.fit_image = null;
+        item.image = null;
+        await removeImageFromDB(`${itemId}_fit`);
+        await removeImageFromDB(itemId);
       }
+
+      updateCardSlotDOM(item);
+      updateCardTabsDOM(item);
       updateImageStats();
-      showToast(`已移除 #${item.num} 的参考图`);
+      showToast(`已移除 #${item.num} 的【${tabName}】`);
     }
 
     function handleSlotDragOver(event, itemId) {
@@ -1733,24 +1903,41 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
     // 5. 进度统计与数据导出
     // ==========================================
     function updateImageStats() {
-      const total = allData.length;
-      const filled = allData.filter(d => !!d.image).length;
-      const none = total - filled;
-      const percent = Math.round((filled / total) * 100);
+      const totalItems = allData.length;
+      const totalSlots = totalItems * 2;
+      const fitCount = allData.filter(d => !!d.fit_image || (!!d.image && !d.product_image)).length;
+      const prodCount = allData.filter(d => !!d.product_image).length;
+      const bothCount = allData.filter(d => (!!d.fit_image || !!d.image) && !!d.product_image).length;
+      const hasAnyCount = allData.filter(d => !!d.fit_image || !!d.image || !!d.product_image).length;
+      const noneCount = totalItems - hasAnyCount;
+      const totalFilled = fitCount + prodCount;
+      const percent = Math.round((totalFilled / totalSlots) * 100);
 
-      document.getElementById('filled-count-badge').textContent = filled;
-      document.getElementById('total-count-badge').textContent = total;
-      document.getElementById('filled-percent-badge').textContent = `${percent}%`;
-      document.getElementById('progress-bar-fill').style.width = `${(filled / total) * 100}%`;
+      const filledBadge = document.getElementById('filled-count-badge');
+      if (filledBadge) filledBadge.textContent = totalFilled;
+      const totalBadge = document.getElementById('total-count-badge');
+      if (totalBadge) totalBadge.textContent = totalSlots;
+      const percentBadge = document.getElementById('filled-percent-badge');
+      if (percentBadge) percentBadge.textContent = `${percent}%`;
+      const fillBar = document.getElementById('progress-bar-fill');
+      if (fillBar) fillBar.style.width = `${percent}%`;
 
-      document.getElementById('has-img-count').textContent = filled;
-      document.getElementById('none-img-count').textContent = none;
+      const elBoth = document.getElementById('both-img-count');
+      if (elBoth) elBoth.textContent = bothCount;
+      const elHas = document.getElementById('has-img-count');
+      if (elHas) elHas.textContent = hasAnyCount;
+      const elFit = document.getElementById('fit-img-count');
+      if (elFit) elFit.textContent = fitCount;
+      const elProd = document.getElementById('prod-img-count');
+      if (elProd) elProd.textContent = prodCount;
+      const elNone = document.getElementById('none-img-count');
+      if (elNone) elNone.textContent = noneCount;
     }
 
     function exportDataJs() {
       const content = `// Iris (虹镜) Global Dataset
 // Total Presets: ${allData.length}
-// Exported with reference images
+// Exported with dual reference images (Product & Worn Look)
 window.IRIS_DATA = window.PERSONA_DATA = ${JSON.stringify(allData, null, 2)};
 `;
       const blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
@@ -1764,27 +1951,37 @@ window.IRIS_DATA = window.PERSONA_DATA = ${JSON.stringify(allData, null, 2)};
     }
 
     function exportAllImages() {
-      const itemsWithImg = allData.filter(d => d.image);
-      if (itemsWithImg.length === 0) {
+      const exportList = [];
+      allData.forEach(item => {
+        const fitImg = item.fit_image || (item.image && !item.product_image ? item.image : null);
+        if (fitImg) exportList.push({ name: `${item.id}_fit.jpg`, url: fitImg });
+        if (item.product_image) exportList.push({ name: `${item.id}_product.jpg`, url: item.product_image });
+      });
+
+      if (exportList.length === 0) {
         showToast('当前还没有已配图的卡片');
         return;
       }
-      showToast(`正在批量下载 ${itemsWithImg.length} 张参考图...`);
-      itemsWithImg.forEach((item, idx) => {
+      showToast(`正在批量下载 ${exportList.length} 张双图参考...`);
+      exportList.forEach((file, idx) => {
         setTimeout(() => {
           const a = document.createElement('a');
-          a.href = item.image;
-          a.download = `${item.id}.jpg`;
+          a.href = file.url;
+          a.download = file.name;
           a.click();
-        }, idx * 180);
+        }, idx * 160);
       });
     }
 
     async function clearAllCustomImages() {
-      if (!confirm('确定要清空本地所有已配参考图吗？')) return;
+      if (!confirm('确定要清空本地所有已配双图参考吗？')) return;
       await clearAllFromDB();
       allData.forEach(d => {
-        if (d.id !== 'KR-outfits-001') d.image = null;
+        if (d.id !== 'KR-outfits-001') {
+          d.image = null;
+          d.fit_image = null;
+          d.product_image = null;
+        }
       });
       renderCards();
       updateImageStats();
@@ -1792,16 +1989,23 @@ window.IRIS_DATA = window.PERSONA_DATA = ${JSON.stringify(allData, null, 2)};
     }
 
     // ==========================================
-    // 6. Lightbox 大图全屏预览
+    // 6. Lightbox 大图全屏预览与提示词复制
     // ==========================================
-    function openLightbox(event, itemId) {
+    let currentLightboxTab = 'fit';
+    function openLightbox(event, itemId, tab = 'fit') {
       if (event) event.stopPropagation();
       const item = allData.find(d => d.id === itemId);
-      if (!item || !item.image) return;
+      if (!item) return;
+
+      currentLightboxTab = tab;
+      const fitImg = item.fit_image || (item.image && !item.product_image ? item.image : null);
+      const prodImg = item.product_image || null;
+      const imgToShow = tab === 'fit' ? fitImg : prodImg;
+      if (!imgToShow) return;
 
       currentLightboxItem = item;
-      document.getElementById('lightbox-img').src = item.image;
-      document.getElementById('lightbox-id').textContent = item.id;
+      document.getElementById('lightbox-img').src = imgToShow;
+      document.getElementById('lightbox-id').textContent = `${item.id} · ${tab === 'fit' ? '💃 真人上身' : '📦 单品形态'}`;
       document.getElementById('lightbox-cat').textContent = `${item.icon} ${item.category_name}`;
       document.getElementById('lightbox-title').textContent = `#${item.num} 【${item.title}】`;
 
@@ -1823,8 +2027,10 @@ window.IRIS_DATA = window.PERSONA_DATA = ${JSON.stringify(allData, null, 2)};
 
     function copyLightboxPrompt() {
       if (!currentLightboxItem) return;
-      navigator.clipboard.writeText(currentLightboxItem.prompt).then(() => {
-        showToast(`✓ #${currentLightboxItem.num} 提示词已复制`);
+      const mode = currentLightboxTab;
+      let promptToCopy = mode === 'product' ? (currentLightboxItem.product_prompt || generateFallbackProductPrompt(currentLightboxItem)) : currentLightboxItem.prompt;
+      navigator.clipboard.writeText(promptToCopy).then(() => {
+        showToast(`✓ #${currentLightboxItem.num} 【${mode === 'product' ? '单品形态' : '真人上身'}】提示词已复制`);
       });
     }
 
@@ -1835,21 +2041,47 @@ window.IRIS_DATA = window.PERSONA_DATA = ${JSON.stringify(allData, null, 2)};
       selectCardForPaste(itemId);
     }
 
-    function copyCardPrompt(id) {
+    function generateFallbackProductPrompt(item) {
+      if (item.category_id === 'hosiery') {
+        return `商业时尚静物摄影，极简纯白无影棚柔光箱环境，无模特。整条未穿着的 ${item.title} 优雅平铺展发展台（Flat lay），展示未拉伸状态下精致织物密度、10D~80D细腻透度、脚尖加固暗线与高腰无痕弹力带细节，顶部柔光漫射，微距镜头F8，8k商业画册质感，3:4`;
+      }
+      if (item.category_id === 'outfits') {
+        return `商业时尚服装单品摄影，极简影棚柔光箱环境，纯白亚麻底布。OOTD 单品精细解构平铺排列（Knolling Flat Lay）：完整展示 ${item.title} 的版型剪裁、布料纤维织物纹理、五金纽扣拉链与平整折痕，搭配同风格鞋履与极简随身配饰平整陈列，柔和顶部漫射光，无模特，画册级商业摄影，3:4`;
+      }
+      if (item.category_id === 'hair_makeup') {
+        return `发型与美妆设计形态标本，极简纯白沙龙高定假人模特头展示 ${item.title} 剪裁三视图（3-angle blueprint），发丝走向层次分明。展台前平铺陈列美妆色盘与水光质感膏体解构特写，摄影棚柔和光线，商业设计图，3:4`;
+      }
+      if (item.category_id === 'props') {
+        return `顶级商业静物广告摄影，极简影棚柔光箱，浅灰大理石展台。孤立特写展示 ${item.title} 的精工材质、微距质感、真实反光与阴影坠落，8k画册质感，3:4`;
+      }
+      return `极简商业摄影，影棚柔光箱，单品解构静物特写展示 ${item.title}，高纯净度与材质微距，3:4`;
+    }
+
+    async function copyCardPrompt(id, mode = 'fit') {
       const item = allData.find(d => d.id === id);
       if (!item) return;
-      const btn = document.getElementById(`copy-btn-${id}`);
-      navigator.clipboard.writeText(item.prompt).then(() => {
-        if (btn) {
-          btn.classList.add('done');
-          btn.innerHTML = '<span>✓ 已复制</span>';
-          setTimeout(() => {
-            btn.classList.remove('done');
-            btn.innerHTML = '<span>📋 复制提示词</span>';
-          }, 1600);
-        }
-        showToast(`✓ #${item.num} 提示词已复制`);
-      });
+
+      let promptToCopy = '';
+      if (mode === 'product') {
+        promptToCopy = item.product_prompt || generateFallbackProductPrompt(item);
+      } else {
+        promptToCopy = item.prompt || item.fit_prompt;
+      }
+
+      await navigator.clipboard.writeText(promptToCopy);
+
+      const btnId = mode === 'product' ? `copy-prod-${id}` : `copy-fit-${id}`;
+      const btn = document.getElementById(btnId);
+      if (btn) {
+        btn.classList.add('done');
+        const origText = btn.innerHTML;
+        btn.innerHTML = `<span>✓ 已复制${mode === 'product' ? '单品词' : '上身词'}</span>`;
+        setTimeout(() => {
+          btn.classList.remove('done');
+          btn.innerHTML = origText;
+        }, 1500);
+      }
+      showToast(`✓ 已复制 #${item.num} 【${item.title}】${mode === 'product' ? '单品形态' : '真人上身'}提示词`);
     }
 
     function useInMixer(catId, itemId) {
