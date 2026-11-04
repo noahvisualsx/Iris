@@ -1,3 +1,11 @@
+<p align="right">
+  <strong>Language:</strong>
+  <a href="README.md"><b>简体中文</b></a> |
+  <a href="README.en.md"><b>English</b></a> |
+  <a href="README.ko.md"><b>한국어</b></a> |
+  <a href="README.ja.md"><b>日本語</b></a>
+</p>
+
 # Iris (虹镜) · 全球虚拟人摄影全矩阵开源手册
 
 > **The Aperture of Optics, The Soul in the Iris.**  
