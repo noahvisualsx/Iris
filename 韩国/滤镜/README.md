@@ -2,7 +2,7 @@
 
 专为 AI 虚拟人打造的 **100 套韩国爆款摄影滤镜与光影色彩控制库**。涵盖千禧 CCD、冷白瓷肌、咖啡馆漫射、iPhone 原生自拍、胶片拍立得与首尔夜景全矩阵。
 
-每条均已适配 **Seedream 5.0 Pro (豆包)**、**ChatGPT (GPT-4o / DALL-E 3)** 与 **Gemini (Imagen 3)**。
+每条均已适配 **Seedream 5.0 Pro (豆包)**、**ChatGPT (Image 2.5)** 与 **Gemini (Imagen 3)**。
 
 ---
 

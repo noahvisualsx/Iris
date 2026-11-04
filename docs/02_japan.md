@@ -58,7 +58,7 @@
 （参考垫图：上传标准母图），1位22岁日本年轻女性，日系空气感，清澈眼神，黑色齐肩短发配微乱空气刘海。姿势：下蹲在暮色中亮着暖白光的自动饮料贩卖机旁，双手捧着热饮罐，仰头看向镜头，微风吹乱发丝。服装：宽版复古卡其色风衣，内叠穿墨绿粗针毛线马甲与牛津纺浅蓝衬衫，炭黑百褶裙，白袜配深棕乐福鞋。环境与光线：东京街头黄昏，富士Classic Neg胶片质感，青绿阴影与温润中性肤色，柔和胶片颗粒，生活抓拍真实生动，3:4
 ```
 
-### 2. ChatGPT (GPT-4o / DALL-E 3)
+### 2. ChatGPT (Image 2.5)
 ```text
 A genuine snapshot in Japanese City Girl lifestyle aesthetic. A 22-year-old Japanese woman with shoulder-length tousled raven hair and airy wispy bangs. She is crouching down compactly next to a glowing retro street vending machine in Tokyo at dusk, warming both hands around a hot canned coffee and looking up at the camera with wide, curious eyes. Outfit: oversized beige trench coat over a forest-green cable-knit vest, light blue collared shirt, dark pleated midi skirt, white crew socks with dark loafers. Fujifilm 35mm film simulation with rich greens and muted warm tones, soft halation around artificial neon lights, unposed everyday authenticity, 3:4.
 ```

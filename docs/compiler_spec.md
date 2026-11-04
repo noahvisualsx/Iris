@@ -1,6 +1,6 @@
 # 跨模型提示词编译器底层工程规范 (Cross-Model Compiler Specifications)
 
-本项目覆盖的三大主流模型（**Seedream 5.0 Pro**、**ChatGPT 4o / DALL-E 3**、**Gemini Imagen 3**）在注意力机制、文本编码器与概念绑定逻辑上存在显著差异。本文档定义了统一的转译中间格式（IR: Intermediate Representation）与编译规则。
+本项目覆盖的三大主流模型（**Seedream 5.0 Pro**、**ChatGPT Image 2.5**、**Gemini Imagen 3**）在注意力机制、文本编码器与概念绑定逻辑上存在显著差异。本文档定义了统一的转译中间格式（IR: Intermediate Representation）与编译规则。
 
 ---
 
@@ -52,7 +52,7 @@
   4. 注入正向真实感锚定词：`细腻皮肤毛孔, 自然微小噪点, 无美颜滤镜, 真实生动`。
   5. 负向提示词注入（API 参数或 Prompt 过滤）：`塑料感, 过度磨皮, 假睫毛, 3D渲染感, 多余手指`。
 
-### 2. ChatGPT (GPT-4o / DALL-E 3)
+### 2. ChatGPT (Image 2.5)
 * **编码器特征**：T5 / GPT 连贯自然语言理解能力极强，但会忽略机械堆砌的标签词（Tag Soup）。
 * **编译规则**：
   1. 必须将所有 IR 节点整合成一段具有「电影导演分镜视角」的长句子。

@@ -58,7 +58,7 @@
 （参考垫图：上传标准母图），1位22岁年轻女性，健康水光小麦肤色，蓬松微卷深棕色长发，自信开朗露齿大笑。姿势：手持手机高角度0.5x广角俯拍自拍，身体微后仰，另一手拿着大杯冰拿铁。服装：做旧深棕牛皮机车夹克，短款白色紧身背心，宽松水洗低腰牛仔裤，佩戴粗金圈大耳环。环境与光线：加州洛杉矶午后落日黄金时刻，强烈的逆光金色光晕透过发丝，Kodak Portra 400胶片色彩，温暖高饱和，鲜活生动，3:4
 ```
 
-### 2. ChatGPT (GPT-4o / DALL-E 3)
+### 2. ChatGPT (Image 2.5)
 ```text
 An energetic, spontaneous golden-hour street photograph in sunny Los Angeles. A 22-year-old woman with sun-kissed, naturally glowing skin and voluminous wavy brunette hair. Captured mid-laugh with an open joyful smile, holding an iced matcha latte while taking a high-angle selfie. Outfit: oversized distressed vintage brown leather bomber jacket over a cropped white ribbed camisole, low-rise baggy faded denim jeans, chunky polished gold hoop earrings. Bathed in brilliant California sunset backlight flares, Kodak Portra 400 film tones with lively organic grain. 3:4.
 ```

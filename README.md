@@ -3,8 +3,9 @@
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%204o%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
-[![Dataset](https://img.shields.io/badge/Dataset-Korea%20100%20Filters-orange.svg)](韩国/滤镜/README.md)
+[![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
+[![Dataset: Filters](https://img.shields.io/badge/Dataset-Korea%20100%20Filters-orange.svg)](韩国/滤镜/README.md)
+[![Dataset: Poses](https://img.shields.io/badge/Dataset-Korea%20100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
 [![Aesthetics](https://img.shields.io/badge/Styles-KR%20%7C%20JP%20%7C%20CN%20%7C%20US%20%7C%20FR-green.svg)](#三-五国全矩阵视觉数据库)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#七-参与贡献与路线图)
 
@@ -29,7 +30,7 @@
   - [5. 法国篇 (France) —— 毫不费力的慵懒、巴黎灰调、新浪潮电影](#5-法国篇-france--毫不费力的慵懒巴黎灰调新浪潮电影)
 - [四、 三大模型编译器规范 (Cross-Model Compilers)](#四-三大模型编译器规范)
   - [1. Seedream 5.0 Pro (火山方舟/豆包)](#1-seedream-50-pro-火山方舟豆包)
-  - [2. ChatGPT (GPT-4o / DALL-E 3)](#2-chatgpt-gpt-4o--dall-e-3)
+  - [2. ChatGPT (Image 2.5)](#2-chatgpt-gpt-4o--dall-e-3)
   - [3. Gemini (Imagen 3 / Nano Banana)](#3-gemini-imagen-3--nano-banana)
 - [五、 调音台全矩阵速查表 (The Mixing Matrix)](#五-调音台全矩阵速查表)
 - [六、 自动化批量跑图脚本 (Tooling)](#六-自动化批量跑图脚本)
@@ -129,7 +130,7 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 （参考垫图：上传标准母图），1位22岁韩国年轻女性，极简清冷感，冷白皮，细腻皮肤毛孔与微小自然油光。发型：黑色柔顺长直发自然垂落，耳边微乱碎发。姿势：双手轻举智能手机半遮下半脸对镜自拍，眼神微垂慵懒，头部微倾10度。服装：深灰色落肩Oversized西装外套，内搭纯白紧身圆领罗纹T恤，佩戴极简细银色耳圈。环境与灯光：首尔极简清水混凝土咖啡馆，机顶小型CCD闪光灯直射，背景自然压暗并带有柔和硬阴影，整体色调低饱和偏冷蓝灰，千禧复古数码质感，无美颜滤镜，真实生动，3:4
 ```
 
-##### ChatGPT (GPT-4o / DALL-E 3)
+##### ChatGPT (Image 2.5)
 ```text
 A raw, candid mirror selfie capturing a 22-year-old Korean woman with a minimalist and effortless aesthetic. She has smooth, straight raven-black hair falling naturally over her shoulders and luminous porcelain-cool skin tone. She holds her smartphone with both hands to obscure the lower half of her face, with only her delicate almond eyes looking sleepy yet calm above the camera lens. She wears an oversized tailored charcoal-wool blazer over a fitted white ribbed cotton tank top, accessorized with subtle silver hoop earrings. The setting is a minimalist indoor space with raw concrete walls. Direct harsh mini-flash illumination creates crisp back shadows and specular micro-highlights on her forehead and nose bridge, accompanied by authentic fine digital sensor noise from an early 2000s compact camera. 3:4 vertical orientation.
 ```
@@ -182,7 +183,7 @@ Wardrobe: Heavyweight charcoal-melange oversized jacket, crisp white ribbed unde
 （参考垫图：上传标准母图），1位22岁日本年轻女性，日系透明感与清澈眼神，微乱空气刘海与齐肩黑色短发。动作：正蜷缩下蹲在傍晚东京街头的复古饮料自动贩卖机旁，双手捧着一罐热咖啡，微仰头清澈看向镜头，嘴角微扬。服装：复古卡其色大版型风衣，内叠穿墨绿色毛线马甲与浅蓝牛津纺衬衫，下身炭黑百褶裙，白色棉袜配棕色乐福鞋。环境与光线：多云暮色，贩卖机散发温暖白光勾勒轮廓，富士Classic Neg胶片色彩，青绿暗部与温润肤色，空气感，微弱胶片噪点与发丝微风动态，3:4
 ```
 
-##### ChatGPT (GPT-4o / DALL-E 3)
+##### ChatGPT (Image 2.5)
 ```text
 A genuine lifestyle photograph in the signature Japanese Fudge magazine aesthetic. A 22-year-old Japanese woman with shoulder-length tousled raven hair and airy wispy bangs. She is crouching down comfortably next to a glowing retro street vending machine in Tokyo at dusk, warming both hands around a hot canned beverage and looking up at the camera with wide, curious, innocent eyes. She wears an oversized beige trench coat over a forest-green cable-knit vest, a soft blue collared shirt, dark accordion-pleated midi skirt, and vintage brown leather loafers with white crew socks. Retro over-ear metallic headphones rest around her neck. Fujifilm 35mm film simulation with characteristic rich greens and muted warm yellows, gentle halation around the machine's neon lights, unposed everyday authenticity, 3:4.
 ```
@@ -237,7 +238,7 @@ Wardrobe: Layered classic menswear-inspired garments: loose khaki mac coat, knit
 （参考垫图：上传标准母图），1位22岁中国年轻女性，骨相优越的清冷高级脸，平直精致眉骨，冷白瓷肌，正红哑光唇膏。动作：身体侧立，微仰下巴3/4侧脸回眸凝视镜头，神态从容清冷疏离，单手优雅轻抚领口盘扣。服装：现代改良黑色重磅真丝立领对襟马甲，精致手工翡翠盘扣，搭配垂坠缎面阔腿长裤，佩戴单只极简异形珍珠耳坠。环境与光线：夜晚深色中式竹影庭院，机顶强硬闪光灯直射，背景自然压暗至深墨绿色，面部立体骨骼高光与深邃阴影，电影级高反差，精致奢华质感，3:4
 ```
 
-##### ChatGPT (GPT-4o / DALL-E 3)
+##### ChatGPT (Image 2.5)
 ```text
 A striking, high-fashion portrait capturing a 22-year-old Chinese woman with an aristocratic, sculptural facial bone structure. She has flawless porcelain-white skin with a velvet matte finish, defined jawline, and bold classic crimson lipstick. She turns her head 3/4 towards the viewer with a regal, aloof gaze, chin slightly elevated to showcase her elegant neck contour, with one manicured hand gracefully touching a traditional jade frog button on her collar. Outfit: modernized black mulberry silk sleeveless mandarin-collar tunic with understated floral jacquard weaving, fluid wide-leg silk trousers, accented by a single baroque freshwater pearl earring. Setting: nocturnal minimalist courtyard beside slender bamboo silhouettes. Harsh on-camera fashion flash casts crisp shadows behind her, highlighting cheekbone structure and creating a high-contrast luxury editorial look. 3:4.
 ```
@@ -291,7 +292,7 @@ Wardrobe & Textures: 30-momme heavy black silk faille jacket with handcrafted ja
 （参考垫图：上传标准母图），1位22岁年轻女性，健康阳光小麦色肌肤，自然金色水光高光，开朗自信露齿大笑，微卷蓬松棕色长发。动作：手持手机从高角度0.5x超广角自拍，身体微后仰，另一手拿着一杯大号冰美式，展现充满能量的加州女孩日常。服装：复古水洗做旧棕色皮夹克，内搭短款白色罗纹工字背心，水洗低腰牛仔裤，佩戴夸张粗金圈耳环。环境与光线：洛杉矶阳光棕榈树街道，下午落日黄金时刻，强烈的逆光金色光晕穿透发丝，Kodak Portra 400胶片色彩，温暖高饱和，鲜活生动，3:4
 ```
 
-##### ChatGPT (GPT-4o / DALL-E 3)
+##### ChatGPT (Image 2.5)
 ```text
 An energetic, spontaneous golden-hour street photograph captured in sunny Los Angeles. A 22-year-old woman with sun-kissed, naturally glowing skin and voluminous wind-blown wavy brunette hair. She is captured mid-laugh with an infectious open smile, holding an oversized iced latte in one hand while snapping a top-down wide-angle selfie. She is dressed in an effortless California cool outfit: an oversized distressed vintage brown leather bomber jacket over a cropped white ribbed camisole, low-rise baggy faded denim jeans, accessorized with chunky polished gold hoop earrings and layered dainty gold necklaces. Bathed in brilliant California golden hour sunlight, creating radiant amber backlight flares through her curls, shot on Kodak Portra 400 film stock with rich warm hues and lively organic grain. 3:4.
 ```
@@ -344,7 +345,7 @@ Wardrobe: Heavyweight worn-in leather flight jacket, cropped white cotton tank, 
 （参考垫图：上传标准母图），1位22岁法国年轻女性，法式慵懒松弛感，自然纯素颜带微弱细小雀斑，微乱蓬松的深棕色长发配空气八字刘海。动作：正闲散地坐在巴黎街头咖啡馆户外的绿色藤编椅上，单手托腮，另一手轻搭在一本打开的法文平装书上，神态慵懒从容，若有所思望向远方。服装：经典蓝白粗条纹海魂针织衫，高腰九分微喇复古牛仔裤，脚穿红色真皮芭蕾平底鞋，身旁放着一只手工草编菜篮包。环境与光线：巴黎奥斯曼建筑鹅卵石街道，午后柔和低反差灰调漫射天光，法国新浪潮16mm电影胶片质感，细腻有机胶片颗粒，温润油画色调，优雅生活气息，3:4
 ```
 
-##### ChatGPT (GPT-4o / DALL-E 3)
+##### ChatGPT (Image 2.5)
 ```text
 A poetic, effortless 35mm film photograph radiating quintessential Parisian chic. A 22-year-old woman with delightfully tousled brunette bedhead hair and delicate wispy curtain bangs, embracing a makeup-free look with faint natural freckles across her nose. She sits nonchalantly at a small round bistro table outside a vintage Parisian cafe, cheek resting on one hand, looking daydreamy and serene into the distance. Outfit: classic navy-and-white Breton striped knit sweater, vintage high-waisted flared jeans, cherry-red ballet flats, with a traditional wicker basket bag resting on the cobblestones beside her. Atmospheric lighting: soft, overcast Parisian grey daylight filtering through Haussmannian balconies, rendered with the grainy, poetic warmth of a 16mm French New Wave film reel. Unposed, nostalgic, effortlessly elegant, 3:4.
 ```
@@ -364,7 +365,7 @@ Styling: Striped cotton sailor top, vintage faded denim, minimal gold medallion 
 
 不同大模型底层对提示词的解析原理有着本质区别，在实际调用时必须进行语法转译：
 
-| 维度 | Seedream 5.0 Pro (火山/豆包) | ChatGPT (GPT-4o / DALL-E 3) | Gemini (Imagen 3) |
+| 维度 | Seedream 5.0 Pro (火山/豆包) | ChatGPT (Image 2.5) | Gemini (Imagen 3) |
 |---|---|---|---|
 | **核心机制** | 模块化逗号标签链 + 参考垫图锁定 | 连贯叙事流 + 具象物理交互描写 | 光学几何学 + 摄影传感器参数 |
 | **锁脸手段** | 上传标准母图作为 `--ref` 垫图 | 固化人物基底长句 + 固定种子 | 提供参考图上下文 + 严格五官描摹 |

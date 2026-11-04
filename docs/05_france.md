@@ -58,7 +58,7 @@
 （参考垫图：上传标准母图），1位22岁法国年轻女性，法式松弛慵懒感，纯净微瑕裸妆，鼻梁有极淡自然雀斑，微乱深棕色法式八字刘海卷发。姿势：闲散坐在巴黎街头咖啡馆室外藤编椅上，单手托腮，另一手放在翻开的书页上，神态慵懒从容。服装：蓝白粗条纹针织海魂衫，九分复古微喇牛仔裤，红色芭蕾平底鞋，桌边一只手工编织草编篮。环境与光线：巴黎奥斯曼街道鹅卵石路面，柔和低反差阴天灰调漫射光，法国新浪潮16mm电影胶片质感，细腻胶片颗粒，温润油画色调，优雅随性，3:4
 ```
 
-### 2. ChatGPT (GPT-4o / DALL-E 3)
+### 2. ChatGPT (Image 2.5)
 ```text
 A poetic 35mm film photograph radiating effortless Parisian chic. A 22-year-old French woman with delightfully tousled brunette bedhead hair and wispy curtain bangs, natural makeup-free face with faint natural freckles across her nose bridge. She sits nonchalantly at an outdoor bistro table in Paris, cheek resting on her hand, looking daydreamy into the distance. Outfit: classic navy-and-white Breton striped sweater, vintage high-waisted flared jeans, cherry-red ballet flats, traditional wicker basket bag beside her chair. Soft overcast Parisian grey daylight, warm tones of 16mm French New Wave film reel, nostalgic unposed elegance, 3:4.
 ```

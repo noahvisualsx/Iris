@@ -58,7 +58,7 @@
 （参考垫图：上传标准母图），1位22岁中国年轻女性，清冷骨相大女主，平直剑眉，冷白瓷肌，哑光正红唇色。姿势：身体微侧，微扬下颌3/4侧脸回眸注视镜头，单手轻抚领口盘扣，眼神从容疏离。服装：黑色重磅真丝立领改良马甲，手工温润翡翠盘扣，垂感缎面黑色阔腿裤，单只异形珍珠耳环。环境与光线：夜间现代中式庭院竹影下，机顶强力硬闪光灯直射，背景深黑幽邃，面部骨骼高光与雕塑感阴影，电影级高反差奢华质感，3:4
 ```
 
-### 2. ChatGPT (GPT-4o / DALL-E 3)
+### 2. ChatGPT (Image 2.5)
 ```text
 A striking, editorial portrait capturing a 22-year-old Chinese woman with an aristocratic, sculptural facial bone structure. She has flawless porcelain-white skin with a velvet matte finish, defined jawline, and bold classic crimson lipstick. She turns her head 3/4 towards the viewer with a calm, aloof gaze, chin slightly elevated to showcase her elegant neck contour, one hand gracefully touching a traditional jade toggle button on her collar. Outfit: modernized black mulberry silk sleeveless mandarin-collar tunic, fluid wide-leg silk trousers, accented by a single baroque freshwater pearl earring. Setting: nocturnal minimalist courtyard beside slender bamboo silhouettes. Harsh on-camera fashion flash casts crisp shadows behind her, highlighting cheekbones with high-contrast luxury appeal. 3:4.
 ```

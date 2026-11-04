@@ -62,7 +62,7 @@
 （参考垫图：上传标准母图），1位22岁韩国年轻女性，冷白皮，清冷厌世脸，微乱黑色长直发。右手握手机遮挡嘴唇对镜自拍，眼神微垂慵懒。身穿落肩炭灰色精纺羊毛西装外套，内搭纯白罗纹背心，佩戴极简细银耳环。首尔极简混凝土室内，机顶小型CCD闪光灯直射，柔和硬阴影，冷蓝灰调，千禧复古数码质感，无美颜滤镜，真实生动，3:4
 ```
 
-### 2. ChatGPT (GPT-4o / DALL-E 3)
+### 2. ChatGPT (Image 2.5)
 ```text
 A candid mirror selfie capturing a 22-year-old Korean woman with porcelain-cool skin and effortless straight black hair. She holds her smartphone with both hands to cover her lower face, her almond eyes gazing calmly at the reflection. Dressed in an oversized tailored charcoal-wool blazer over a white ribbed cotton tank top, with tiny silver hoop earrings. Setting: minimal raw concrete studio. Lit by a harsh pop-up CCD camera flash, creating sharp drop shadows and glossy specular highlights on skin, with subtle digital sensor noise. 3:4 aspect ratio.
 ```
