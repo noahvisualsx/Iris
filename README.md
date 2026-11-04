@@ -8,6 +8,7 @@
 [![Korea: Filters](https://img.shields.io/badge/Korea-100%20Filters-blue.svg)](韩国/滤镜/README.md)
 [![Korea: Poses](https://img.shields.io/badge/Korea-100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
 [![Korea: Outfits](https://img.shields.io/badge/Korea-100%20Outfits-orange.svg)](韩国/穿搭/README.md)
+[![Korea: Hosiery](https://img.shields.io/badge/Korea-50%20Hosiery-pink.svg)](韩国/丝袜/README.md)
 [![Korea: Styles](https://img.shields.io/badge/Korea-100%20Styles-green.svg)](韩国/风格/README.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#七-参与贡献与路线图)
 
