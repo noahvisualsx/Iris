@@ -1643,6 +1643,25 @@
       document.getElementById('view-matrix').scrollIntoView({ behavior: 'smooth' });
     }
 
+    function getCleanDetail(item, fieldCandidates, defaultText) {
+      if (!item) return defaultText;
+      if (item.fields) {
+        for (const f of fieldCandidates) {
+          if (item.fields[f]) {
+            let t = item.fields[f];
+            t = t.replace(/\*+/g, '').replace(/^[-•]\s*/gm, '').replace(/\n+/g, '，');
+            t = t.replace(/(外套与上装|下装与剪裁|适用场合|搭配鞋包|视觉特征与材质|发型剪裁与碎发细节|底妆、眼妆与唇部质感|双眸与视线物理特征|唇角与肌肉微动细节|人体工学细节|动作体态与四肢线条|道具外观与材质物理细节|手部动作与手指互动表现|环境与光影细节|色温\/光影|相机\/介质)[：:]\s*/g, '');
+            t = t.replace(/[（\(][^）\)]*[\)）]/g, '');
+            t = t.replace(/\s*\+\s*/g, '搭配');
+            t = t.replace(/\s+/g, ' ').replace(/，+/g, '，').replace(/；+/g, '；').replace(/。+/g, '。').trim();
+            t = t.replace(/^[,，;；]+|[,，;；]+$/g, '');
+            if (t.length > 4) return t;
+          }
+        }
+      }
+      return item.title || defaultText;
+    }
+
     function compileLivePrompt() {
       const selected = {};
       trackKeys.forEach(key => {
@@ -1662,30 +1681,30 @@
       const e = selected.expressions;
       const pr = selected.props;
 
+      const hmTxt = getCleanDetail(hm, ['发型剪裁与碎发细节', '底妆、眼妆与唇部质感'], '一刀切齐发尾直发');
+      const eTxt = getCleanDetail(e, ['双眸与视线物理特征', '唇角与肌肉微动细节'], '双眸视线自然偏离镜头15度，眼神空灵平静');
+      const pTxt = getCleanDetail(p, ['人体工学细节', '动作体态与四肢线条'], '双手握持手机平齐鼻梁半遮面');
+      const prTxt = getCleanDetail(pr, ['道具外观与材质物理细节', '手部动作与手指互动表现'], '手持冰美式透明塑料杯配冷凝水珠');
+      const oTxt = getCleanDetail(o, ['单品构成与面料工艺细节'], '高腰百褶短裙与精梳针织开衫');
+      const hTxt = getCleanDetail(h, ['视觉特征与材质工艺'], '10D超薄极透蝉翼黑丝，质地薄如蝉翼均匀透光');
+      const sTxt = getCleanDetail(s, ['环境与光影细节', '地标空间与光影质感'], '圣水洞工业极简水泥空间');
+      const fTxt = getCleanDetail(f, ['色温/光影', '相机/介质'], '机顶硬闪光直射，局部高光溢出，暗部带细密数码噪点');
+
       let prompt = "";
 
       if (currentModel === 'chatgpt') {
-        prompt = `A candid photographic masterpiece of a 22-year-old East Asian female with porcelain cool-white skin. 
-Hair & Makeup: ${hm ? hm.title : 'sleek black hair with wispy see-through bangs, dewy glass skin with soft peach blush and glossy glaze lips'}. 
-Expression & Gaze: ${e ? e.title : 'aloof and calm micro-expression with eyes looking 15 degrees off-camera, pinpoint catchlight reflection in pupils'}.
-Outfit & Garments: ${o ? o.title : 'Korean minimalist tailored blazer layered over a clean ribbed top'}. 
-Legwear: ${h ? h.title : '10D ultra-sheer black hosiery with subtle skin translucency at knees and ankles'}.
-Pose & Dynamics: ${p ? p.title : 'holding smartphone with both hands casually covering lower face for a mirror selfie'}.
-Hand Props & Details: ${pr ? pr.title : 'holding an iced americano plastic cup with condensed water droplets'}.
-Setting & Lighting: ${s ? s.title : 'Seongsu-dong raw concrete minimalist cafe'}. 
-Optical & Camera: ${f ? f.title : 'vintage compact CCD camera with on-axis harsh direct flash, crisp fall-off drop shadows'}. 
-Authentic raw skin pores, fine flyaway baby hairs, natural nylon stocking tension, unposed lifestyle candid realism, vertical 3:4 portrait.`;
+        prompt = `真实日常生活抓拍照片，一位20岁出头的年轻东亚女性，清冷淡颜，冷白皮，头小脸小骨相优越，身形纤细修长。发型与妆容：留着${hmTxt}，耳侧随性散落细碎贴面胎毛，搭配清透伪素颜底妆与原生水润淡唇。神态与视线：${eTxt}，神色疏离克制，不迎合镜头。动作体态与道具：${pTxt}，${prTxt}。穿搭造型：身穿${o ? o.title : '韩系极简服饰'}，${oTxt}；腿部搭配${h ? h.title : '超薄透肤丝袜'}，${hTxt}。身处${s ? s.title : '首尔街头'}，${sTxt}。成像与光影：模拟${f ? f.title : '真实相机'}，${fTxt}。真实手机原相机抓拍质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、真实皮肤毛孔与自然血色，轻微生活感动态微模糊与暗部噪点，严格禁止二次元、卡通、手绘、动漫画风与3D渲染塑料感，3:4`;
       } else if (currentModel === 'seedream') {
-        prompt = `（参考垫图：上传标准母图），1位22岁年轻女性，冷白皮清冷脸。发型妆容：${hm ? hm.title : '空气八字刘海，饱满珠光卧蚕，水润玻璃唇'}。神态：${e ? e.title : '视线偏离镜头15度，眼神空灵平静'}。穿搭造型：${o ? o.title : '韩系极简风格'}，腿部搭配：${h ? h.title : '10D超薄极透蝉翼黑丝'}。动作与姿态：${p ? p.title : '对镜自拍'}，手部道具细节：${pr ? pr.title : '手里拿冰美式塑料杯'}。场景与光线：${s ? s.title : '首尔极简室内'}，光学质感：${f ? f.title : '千禧CCD机顶直闪'}。真实皮肤毛孔与微小质感，无美颜滤镜，真实生动，3:4`;
+        prompt = `以参考图中的成年女性为唯一人物身份，生成一张极致写实的生活抓拍照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形、冷白肤色与20岁出头年轻感，人物高度一致，不换脸、不美颜、不网红化。自然写实7.5～8头身，身形纤细修长，禁止大头、短腿、关节畸形与超比例。\n发型与面部：留着${hmTxt}，耳侧碎发自然飘拂，清透伪素颜底妆；${eTxt}。\n穿搭与腿饰：身穿${o ? o.title : '韩系服饰'}，${oTxt}；腿部搭配${h ? h.title : '超薄丝袜'}，${hTxt}。\n体态动作与手部道具：${pTxt}，${prTxt}。\n场景与环境光学：身处${s ? s.title : '首尔空间'}，${sTxt}；模拟${f ? f.title : '真实相机'}，${fTxt}。\n全画幅真实镜头自然透视，真实手机原相机抓拍质感，保留真实皮肤毛孔、面料纤维纹理与衣料重力垂坠折痕，暗部带真实细腻颗粒感。严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，无文字无水印，3:4`;
       } else {
-        prompt = `Photorealistic 35mm candid portrait of a 22-year-old East Asian female.
-Features & Face: ${hm ? hm.title : 'Porcelain cool-white complexion, natural flyaway baby hair, subtle dewy glow, glossy glazed lips'}.
-Eye Dynamics: ${e ? e.title : 'Calm, detached expression, subtle catchlight reflections in dark iris'}.
-Wardrobe & Textiles: ${o ? o.title : 'Structured Korean tailored garments'}, legwear: ${h ? h.title : '10D sheer stockings'}.
-Pose & Spatial: ${p ? p.title : 'Casual unposed mirror selfie framing'}.
-Props: ${pr ? pr.title : 'Holding iced beverage with condensation droplets'}.
-Atmosphere: ${s ? s.title : 'Modern Seoul architectural environment'}.
-Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authentic sensor noise, 3:4 aspect ratio'}.`;
+        const hmGenre = hm && hm.fields && hm.fields['时尚/爱豆圈流派'] ? hm.fields['时尚/爱豆圈流派'] : (hm ? hm.title : 'Sleek Straight Hair');
+        const oGenre = o && o.fields && o.fields['时尚/流行流派'] ? o.fields['时尚/流行流派'] : (o ? o.title : 'Korean Preppy Tailored Outfit');
+        const hGenre = h && h.fields && h.fields['时尚/流行流派'] ? h.fields['时尚/流行流派'] : (h ? h.title : 'Ultra-Sheer Hosiery');
+        const sGenre = s && s.fields && s.fields['视觉风格流派'] ? s.fields['视觉风格流派'] : (s ? s.title : 'Modern Minimalist Architecture');
+        const fCam = f && f.fields && f.fields['相机/介质'] ? f.fields['相机/介质'] : (f ? f.title : 'Compact CCD Camera');
+        const fLight = f && f.fields && f.fields['色温/光影'] ? f.fields['色温/光影'] : 'direct on-axis flash with crisp fall-off shadow';
+
+        prompt = `A candid, photorealistic 35mm street snapshot of a 22-year-old East Asian woman with porcelain cool-white skin, refined bone structure, and a slender frame. Her hair is styled in ${hmGenre}, with delicate flyaway baby hair brushing against her temples, paired with clean dewy skin, natural brushed eyebrows, and softly tinted lips. She has a detached, calm expression, looking slightly away from the camera. She is wearing ${oGenre}, paired with ${hGenre} and matching footwear. Captured in motion: ${p ? p.title : 'holding smartphone casually'}, interacting with ${pr ? pr.title : 'beverage container'}. Taken in ${sGenre}, illuminated with optics inspired by ${fCam} with ${fLight}. Authentic unposed raw photography, organic fabric drapery, visible micro-creases, authentic skin pores, lifelike flush, subtle sensor grain in deep shadows, shallow depth of field. Strictly prohibited: CGI, 3D rendering, airbrushed plastic skin, cartoon illustration, anime features. 3:4 aspect ratio.`;
       }
 
       document.getElementById('live-prompt-text').textContent = prompt;
