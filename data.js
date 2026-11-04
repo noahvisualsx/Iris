@@ -1,4 +1,4 @@
-window.PERSONA_DATA = [
+window.IRIS_DATA = window.PERSONA_DATA = [
   {
     "id": "KR-filters-001",
     "country": "韩国",

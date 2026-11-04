@@ -11,7 +11,7 @@
 [![Expressions](https://img.shields.io/badge/Expressions-50%20Presets-yellow.svg)](神态与微表情/README.md)
 [![Props & Nails](https://img.shields.io/badge/Props%20%26%20Nails-50%20Presets-teal.svg)](道具与美甲/README.md)
 
-**PersonaLens · 韩国视觉全要素工业级控制库（八大支柱共计 600 条完整提示词）**
+**Iris (虹镜) · 韩国视觉全要素工业级控制库（八大支柱共计 600 条完整提示词）**
 
 </div>
 

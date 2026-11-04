@@ -1,8 +1,12 @@
-# PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册
+# Iris (虹镜) · 全球虚拟人摄影全矩阵开源手册
+
+> **The Aperture of Optics, The Soul in the Iris.**  
+> 镜摄万象，眼眸有光。专为 AI 虚拟人打造的工业级跨模型（ChatGPT Image 2.5 / Seedream 5.0 Pro / Gemini）摄影与视觉全矩阵控制系统。
 
 <div align="center">
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
 [![Dataset: Korea](https://img.shields.io/badge/Korea%20Matrix-600%20Prompts%20Airtight%20Complete-success.svg)](韩国/README.md)
 [![Korea: Filters](https://img.shields.io/badge/Korea-100%20Filters-blue.svg)](韩国/滤镜/README.md)
@@ -403,7 +407,7 @@ Styling: Striped cotton sailor top, vintage faded denim, minimal gold medallion 
 
 ```bash
 # 进入工作目录
-cd 仓库/PersonaLens
+cd 仓库/Iris
 
 # 使用标准母图 + 韩国冷白皮滤镜批量测试
 python3 ../../bin/gen_image.py \
