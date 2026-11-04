@@ -1784,12 +1784,22 @@
       return parts.slice(0, 2).join(' · ');
     }
 
+    function sanitizeSpecVal(str) {
+      if (!str || typeof str !== 'string') return '';
+      return str
+        .replace(/\*{1,3}/g, '')
+        .replace(/^\s*[\-\*•]\s*/gm, '')
+        .replace(/\s*\+\s*/g, '、')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
     function getCleanSpecs(item) {
       const f = item.fields || {};
       const clean = [];
       for (const [k, v] of Object.entries(f)) {
         if (!v || k.includes('提示词')) continue;
-        clean.push([k, v]);
+        clean.push([k, sanitizeSpecVal(v)]);
       }
       return clean;
     }
