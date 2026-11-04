@@ -2,633 +2,713 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册</title>
   <meta name="description" content="专为 AI 虚拟人打造的工业级跨模型（ChatGPT Image 2.5 / Seedream 5.0 Pro / Gemini）摄影与视觉全矩阵控制系统。支持一键直接复制粘贴参考图。">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230a0d14' stroke='%2338bdf8' stroke-width='6'/><circle cx='50' cy='50' r='24' fill='none' stroke='%23818cf8' stroke-width='4'/><circle cx='50' cy='50' r='8' fill='%2338bdf8'/></svg>">
+  <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%231d1d1f'/><circle cx='50' cy='50' r='24' fill='none' stroke='%230071e3' stroke-width='6'/><circle cx='50' cy='50' r='8' fill='%230071e3'/></svg>">
   <script src="data.js"></script>
   <style>
+    /* 严格对齐 noahvisuals-blog 的 Apple Human Interface Guidelines 极简克制设计体系 */
     :root {
-      --bg: #090b10;
-      --card-bg: rgba(20, 24, 35, 0.75);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(30, 36, 52, 0.9);
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      --accent: #38bdf8;
-      --accent-glow: rgba(56, 189, 248, 0.25);
-      --purple: #a855f7;
-      --pink: #ec4899;
-      --emerald: #10b981;
-      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      --bg: #fbfbf9;
+      --bg-elev: #ffffff;
+      --bg-sunk: #f2f2ef;
+      --seg-thumb: #ffffff;
+      --ink: #1d1d1f;
+      --ink-body: #2c2c2e;
+      --ink-2: #6e6e73;
+      --ink-3: #737378;
+      --line: rgba(0, 0, 0, 0.08);
+      --hover: rgba(0, 0, 0, 0.04);
+      --accent: #0071e3;
+      --accent-fill: #0071e3;
+      --accent-soft: rgba(0, 113, 227, 0.08);
+      --accent-text: #0062c4;
+      --success-fill: #167c3e;
+      --on-fill: #ffffff;
+      --nav-bg: rgba(251, 251, 249, 0.82);
+      --card-ring: rgba(0, 0, 0, 0.06);
+      --card-ring-hover: rgba(0, 0, 0, 0.12);
+      --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04), 0 12px 28px rgba(0, 0, 0, 0.04);
+      --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.04), 0 12px 24px rgba(0, 0, 0, 0.06), 0 24px 48px rgba(0, 0, 0, 0.09);
+      --radius: 20px;
+      --spring: cubic-bezier(0.32, 1.25, 0.5, 1);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", sans-serif;
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+      --fs-large: clamp(34px, 5.8vw, 56px);
+      --fs-title-1: clamp(28px, 4.4vw, 42px);
+      --fs-title-2: 24px;
+      --fs-title-3: 18px;
+      --fs-lede: 17px;
+      --fs-body: 15px;
+      --fs-subhead: 14px;
+      --fs-footnote: 13px;
+      --fs-caption: 12px;
+      --max: 1200px;
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #000000;
+        --bg-elev: #1c1c1e;
+        --bg-sunk: #2c2c2e;
+        --seg-thumb: #636366;
+        --ink: #f5f5f7;
+        --ink-body: #e5e5ea;
+        --ink-2: #a1a1a6;
+        --ink-3: #8e8e93;
+        --line: rgba(255, 255, 255, 0.12);
+        --hover: rgba(255, 255, 255, 0.08);
+        --accent: #2997ff;
+        --accent-text: #2997ff;
+        --accent-soft: rgba(41, 151, 255, 0.14);
+        --nav-bg: rgba(10, 10, 12, 0.82);
+        --card-ring: rgba(255, 255, 255, 0.08);
+        --card-ring-hover: rgba(255, 255, 255, 0.18);
+        --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.38);
+        --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.55), 0 24px 56px rgba(0, 0, 0, 0.65);
+      }
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
     body {
       background-color: var(--bg);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      line-height: 1.5;
+      color: var(--ink);
+      font-family: var(--font);
+      font-size: var(--fs-body);
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
       overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 50%);
-      background-attachment: fixed;
     }
 
-    /* Header */
-    header {
+    a { color: inherit; text-decoration: none; }
+    button {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.25s var(--spring), background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    button:active { transform: scale(0.96); }
+
+    .wrap {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation Bar (对齐 noahvisuals-blog) */
+    .nav {
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(9, 11, 16, 0.75);
-      border-bottom: 1px solid var(--card-border);
-      padding: 0.85rem 1.5rem;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--line);
+      height: 56px;
+      display: flex;
+      align-items: center;
     }
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
+    .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 16px;
     }
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: inherit;
+      gap: 10px;
     }
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #0ea5e9, #a855f7);
-      border-radius: 10px;
+    .brand-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px var(--accent-glow);
-    }
-    .brand-title {
+      font-size: 11px;
       font-weight: 700;
-      font-size: 1.15rem;
       letter-spacing: -0.02em;
+    }
+    .brand-text {
       display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
+      flex-direction: column;
+      line-height: 1.15;
     }
-    .brand-title span {
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.1rem 0.4rem;
-      border-radius: 6px;
-      background: rgba(56, 189, 248, 0.08);
-    }
-
-    .nav-actions {
+    .brand-name-row {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 4px;
     }
-    .nav-btn {
+    .brand-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .verified-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 0.9rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
     }
-    .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    .nav-btn.primary {
-      background: linear-gradient(135deg, #0284c7, #7c3aed);
-      border-color: transparent;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
-    }
-    .nav-btn.primary:hover {
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    .brand-handle {
+      font-size: 11px;
+      color: var(--ink-2);
     }
 
-    /* Hero */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-link {
+      font-size: var(--fs-subhead);
+      font-weight: 500;
+      color: var(--ink-2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-link:hover {
+      color: var(--ink);
+      background: var(--hover);
+    }
+    .nav-link.active {
+      color: var(--ink);
+      background: var(--bg-sunk);
+      font-weight: 600;
+    }
+
+    .nav-github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 13px;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-github-btn:hover { opacity: 0.88; }
+
+    /* Hero Section (极简克制 Apple 编排) */
     .hero {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 2rem;
+      padding: 64px 0 28px;
       text-align: center;
     }
-    .hero-badge {
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 0.3rem 0.8rem;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      color: var(--accent);
-      margin-bottom: 1.25rem;
+      gap: 6px;
+      font-size: var(--fs-footnote);
+      font-weight: 600;
+      color: var(--ink-2);
+      margin-bottom: 12px;
     }
     .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      font-size: var(--fs-large);
+      font-weight: 700;
+      letter-spacing: -0.02em;
       line-height: 1.15;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--ink);
+      margin-bottom: 14px;
+      text-wrap: balance;
     }
     .hero p {
-      max-width: 780px;
-      margin: 0 auto 1.75rem;
-      font-size: 1.05rem;
-      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 28px;
+      font-size: var(--fs-lede);
+      color: var(--ink-2);
       line-height: 1.6;
+      text-wrap: pretty;
     }
 
-    /* Mode Tab Switcher */
-    .tab-switcher {
-      display: inline-flex;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid var(--card-border);
-      padding: 0.3rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-    }
-    .tab-btn {
-      padding: 0.6rem 1.4rem;
-      border-radius: 9px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      cursor: pointer;
+    /* Apple HIG Segmented Control (分段控制器，完全参考 CreationSegment.astro) */
+    .seg-wrap {
       display: flex;
+      justify-content: center;
+      margin: 0 0 36px;
+    }
+    .seg-control {
+      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      transition: all 0.2s ease;
+      gap: 3px;
+      padding: 3px;
+      background: var(--bg-sunk);
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px var(--line);
     }
-    .tab-btn.active {
-      background: #1e293b;
-      color: var(--text-main);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    .seg-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-size: var(--fs-subhead);
+      font-weight: 600;
+      color: var(--ink-2);
+      text-decoration: none;
+      background: transparent;
+      transition: color 0.2s, background 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+      white-space: nowrap;
+    }
+    .seg-item:hover { color: var(--ink); }
+    .seg-item.active {
+      background: var(--seg-thumb);
+      color: var(--ink);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+    }
+    .seg-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 20px;
+      padding: 0 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      background: rgba(0, 0, 0, 0.06);
+      color: var(--ink-2);
+      transition: background 0.2s, color 0.2s;
+    }
+    @media (prefers-color-scheme: dark) {
+      .seg-badge {
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--ink);
+      }
+    }
+    .seg-item.active .seg-badge {
+      background: var(--ink);
+      color: var(--bg);
     }
 
-    /* Container */
-    .main-wrap {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 1.5rem 5rem;
+    /* Cards & Containers (HIG Card System) */
+    .card {
+      background: var(--bg-elev);
+      border-radius: var(--radius);
+      box-shadow: 0 0 0 1px var(--card-ring), var(--shadow-1);
+      transition: transform 0.4s var(--ease-out), box-shadow 0.35s var(--ease-out);
     }
 
-    /* Section: Mixer Studio */
+    /* Mixer Studio Section */
     .mixer-studio {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 2rem;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      margin-bottom: 3rem;
+      padding: 32px;
+      margin-bottom: 48px;
     }
     .mixer-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--card-border);
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
     }
     .mixer-title {
-      font-size: 1.25rem;
+      font-size: var(--fs-title-2);
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+      color: var(--ink);
     }
     .mixer-desc {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      margin-top: 0.3rem;
+      font-size: var(--fs-subhead);
+      color: var(--ink-2);
+      margin-top: 4px;
     }
-    .mixer-tools {
+    .mixer-actions {
       display: flex;
-      gap: 0.5rem;
+      gap: 8px;
+    }
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: var(--bg-sunk);
+      color: var(--ink);
+      font-size: var(--fs-footnote);
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .pill-btn:hover {
+      background: var(--hover);
+      color: var(--ink);
     }
 
-    /* 8 Track Selectors */
     .tracks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
     }
     .track-col {
-      background: rgba(15, 23, 42, 0.5);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1rem;
-      transition: all 0.2s ease;
-    }
-    .track-col:hover {
-      border-color: rgba(56, 189, 248, 0.3);
-      background: rgba(15, 23, 42, 0.7);
+      background: var(--bg-sunk);
+      border-radius: 14px;
+      padding: 14px;
     }
     .track-label {
-      font-size: 0.8rem;
+      font-size: var(--fs-caption);
       font-weight: 600;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
+      color: var(--ink-2);
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
     .track-select {
       width: 100%;
-      background: #0b0f19;
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      padding: 0.55rem 0.75rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-size: var(--fs-footnote);
+      font-weight: 500;
       outline: none;
       cursor: pointer;
-      transition: border-color 0.2s ease;
+      font-family: inherit;
     }
     .track-select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 10px var(--accent-glow);
     }
 
-    /* Console Box */
+    /* Console Box (HIG Terminal/Output) */
     .console-box {
-      background: #06080e;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      border-radius: 14px;
-      padding: 1.25rem;
-      position: relative;
+      background: var(--bg-sunk);
+      border-radius: 16px;
+      padding: 20px;
     }
     .console-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    .console-title {
+      font-size: var(--fs-caption);
+      font-weight: 700;
+      color: var(--ink-2);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
     .model-pills {
-      display: flex;
-      gap: 0.4rem;
+      display: inline-flex;
+      gap: 3px;
+      padding: 3px;
+      background: var(--bg-elev);
+      border-radius: 999px;
+      box-shadow: inset 0 0 0 1px var(--line);
     }
     .model-pill {
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 6px;
-      border: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-muted);
+      font-size: var(--fs-caption);
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-2);
       cursor: pointer;
-      transition: all 0.2s;
     }
     .model-pill.active {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: var(--accent);
-      color: var(--accent);
+      background: var(--ink);
+      color: var(--bg);
     }
     .console-content {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.85rem;
-      color: #e2e8f0;
-      line-height: 1.6;
+      font-family: var(--font);
+      font-size: var(--fs-subhead);
+      color: var(--ink-body);
+      line-height: 1.7;
       white-space: pre-wrap;
-      word-break: break-all;
-      min-height: 120px;
-      max-height: 240px;
+      word-break: break-word;
+      min-height: 100px;
+      max-height: 220px;
       overflow-y: auto;
-      padding: 0.5rem;
-      background: rgba(0, 0, 0, 0.4);
-      border-radius: 8px;
+      padding: 14px 16px;
+      background: var(--bg-elev);
+      border-radius: 12px;
+      box-shadow: inset 0 0 0 1px var(--line);
     }
     .console-foot {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 1rem;
+      margin-top: 14px;
+      gap: 12px;
     }
-    .copy-btn {
+    .copy-main-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
-      color: #030712;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.65rem 1.5rem;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
-      transition: all 0.2s ease;
+      gap: 6px;
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 600;
+      font-size: var(--fs-subhead);
+      height: 38px;
+      padding: 0 20px;
+      border-radius: 999px;
+      transition: all 0.2s;
     }
-    .copy-btn:hover {
-      box-shadow: 0 4px 22px rgba(14, 165, 233, 0.6);
-      transform: translateY(-1px);
+    .copy-main-btn.done {
+      background: var(--success-fill);
+      color: var(--on-fill);
     }
 
-    /* Section: Matrix Explorer */
+    /* Matrix Explorer Section */
     /* Reference Image Progress Studio Bar */
     .image-studio-bar {
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 14px;
-      padding: 1rem 1.25rem;
-      margin-bottom: 1.5rem;
+      background: var(--bg-elev);
+      border-radius: var(--radius);
+      box-shadow: 0 0 0 1px var(--card-ring), var(--shadow-1);
+      padding: 16px 20px;
+      margin-bottom: 24px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      backdrop-filter: blur(12px);
+      gap: 14px;
     }
     .studio-stat-group {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 16px;
+      flex-wrap: wrap;
     }
     .studio-progress-pill {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
+      gap: 8px;
+      font-size: var(--fs-footnote);
       font-weight: 600;
-      color: var(--text-main);
+      color: var(--ink);
     }
     .progress-bar-wrap {
-      width: 140px;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 120px;
+      height: 6px;
+      background: var(--bg-sunk);
       border-radius: 9999px;
       overflow: hidden;
       display: inline-block;
     }
     .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #0ea5e9, #10b981);
+      background: var(--ink);
       width: 0%;
       transition: width 0.3s ease;
     }
     .studio-hint-badge {
-      font-size: 0.75rem;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: var(--accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 6px;
+      font-size: var(--fs-caption);
+      color: var(--ink-2);
+      background: var(--bg-sunk);
+      padding: 4px 10px;
+      border-radius: 999px;
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 4px;
+    }
+    .studio-hint-badge strong {
+      color: var(--ink);
     }
     .studio-actions {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 6px;
       flex-wrap: wrap;
     }
-    .studio-btn {
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.45rem 0.85rem;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s ease;
-    }
-    .studio-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .studio-btn.primary {
-      background: linear-gradient(135deg, #0ea5e9, #10b981);
-      border-color: transparent;
-      color: #030712;
-      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
-    }
 
+    /* Filter Bar (SortBar/Tag Style) */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      gap: 16px;
+      margin-bottom: 28px;
     }
     .category-pills {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 6px;
     }
     .cat-btn {
-      font-size: 0.85rem;
+      font-size: var(--fs-footnote);
       font-weight: 500;
-      padding: 0.45rem 0.9rem;
-      border-radius: 9999px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+      height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--bg-sunk);
+      color: var(--ink-2);
       transition: all 0.2s ease;
     }
-    .cat-btn.active, .cat-btn:hover {
-      background: rgba(56, 189, 248, 0.12);
-      border-color: var(--accent);
-      color: var(--text-main);
+    .cat-btn:hover { color: var(--ink); }
+    .cat-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 600;
     }
+
     .search-box {
       position: relative;
-      min-width: 260px;
+      min-width: 240px;
     }
     .search-input {
       width: 100%;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid var(--card-border);
-      padding: 0.5rem 1rem 0.5rem 2.2rem;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      padding: 6px 14px 6px 34px;
       border-radius: 9999px;
-      color: var(--text-main);
-      font-size: 0.85rem;
+      color: var(--ink);
+      font-size: var(--fs-footnote);
       outline: none;
+      font-family: inherit;
     }
     .search-input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-glow);
     }
     .search-icon {
       position: absolute;
-      left: 0.8rem;
+      left: 12px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-dim);
-      font-size: 0.85rem;
+      color: var(--ink-3);
+      font-size: 13px;
     }
 
-    /* Grid of Cards */
+    /* Grid of Cards (对齐 noahvisuals PromptCard) */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
+      gap: 20px;
     }
     .prompt-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
+      background: var(--bg-elev);
+      border-radius: var(--radius);
+      box-shadow: 0 0 0 1px var(--card-ring), var(--shadow-1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: all 0.25s ease;
-      backdrop-filter: blur(10px);
+      transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
       position: relative;
     }
-    .prompt-card:hover {
-      border-color: rgba(56, 189, 248, 0.3);
-      transform: translateY(-3px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    @media (hover: hover) {
+      .prompt-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0 0 1px var(--card-ring-hover), var(--shadow-2);
+      }
     }
     .prompt-card.focused-target {
-      border: 2px solid var(--accent) !important;
-      box-shadow: 0 0 25px var(--accent-glow) !important;
+      box-shadow: 0 0 0 2px var(--accent), var(--shadow-2) !important;
     }
 
-    /* Image Preview Slot (支持后面每个提示词带参考图 + 直接复制粘贴) */
+    /* Image Preview Slot (极简 Apple 质感插槽) */
     .card-img-slot {
       aspect-ratio: 3 / 4;
-      background: #0b0f19;
+      background: var(--bg-sunk);
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid var(--card-border);
-      color: var(--text-dim);
       cursor: pointer;
       user-select: none;
-      transition: all 0.2s ease;
+      transition: background 0.2s ease;
     }
     .card-img-slot.drag-over {
-      border: 2px dashed var(--accent) !important;
-      background: rgba(56, 189, 248, 0.12) !important;
+      background: var(--accent-soft) !important;
+      outline: 2px dashed var(--accent);
+      outline-offset: -4px;
     }
     .card-img-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
       display: block;
+      transition: transform 0.4s var(--ease-out);
     }
     .card-img-slot:hover img {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
     .card-img-placeholder {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      padding: 1.5rem;
+      gap: 8px;
+      padding: 24px;
       text-align: center;
       width: 100%;
     }
     .card-img-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px dashed rgba(255, 255, 255, 0.15);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-elev);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 0 0 1px var(--line);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
-      color: var(--accent);
-      transition: all 0.2s ease;
-    }
-    .card-img-slot:hover .card-img-icon {
-      border-color: var(--accent);
-      background: rgba(56, 189, 248, 0.1);
-      transform: scale(1.08);
+      font-size: 1.15rem;
+      color: var(--ink-2);
     }
     .card-paste-guide {
-      font-size: 0.72rem;
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 0.25rem 0.55rem;
-      border-radius: 6px;
-      margin-top: 0.35rem;
+      font-size: 12px;
+      color: var(--accent-text);
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
       font-weight: 600;
     }
     .card-img-hint {
-      font-size: 0.72rem;
-      color: var(--text-dim);
+      font-size: 11px;
+      color: var(--ink-3);
     }
     .card-img-badge {
       position: absolute;
-      top: 0.75rem;
-      right: 0.75rem;
+      top: 12px;
+      right: 12px;
       background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(8px);
-      font-size: 0.7rem;
+      font-size: 11px;
       font-weight: 600;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      color: var(--text-muted);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 999px;
+      color: #ffffff;
       z-index: 2;
     }
     .card-img-badge.active-filled {
-      background: rgba(16, 185, 129, 0.25);
-      border-color: rgba(16, 185, 129, 0.5);
-      color: #34d399;
+      background: var(--success-fill);
+      color: #ffffff;
     }
 
     /* Hover Overlay on Filled Card */
     .card-img-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.68);
-      backdrop-filter: blur(4px);
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(6px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: 8px;
       opacity: 0;
       transition: opacity 0.2s ease;
       z-index: 3;
@@ -636,33 +716,27 @@
     .card-img-slot:hover .card-img-overlay {
       opacity: 1;
     }
-    .overlay-btn {
-      font-size: 0.75rem;
+    .overlay-pill-btn {
+      font-size: 12px;
       font-weight: 600;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      cursor: pointer;
-      display: flex;
+      height: 32px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #1d1d1f;
+      display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      transition: all 0.2s ease;
+      gap: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     }
-    .overlay-btn:hover {
-      background: rgba(56, 189, 248, 0.3);
-      border-color: var(--accent);
+    .overlay-pill-btn.danger {
+      background: #ff3b30;
       color: #ffffff;
-    }
-    .overlay-btn.danger:hover {
-      background: rgba(239, 68, 68, 0.4);
-      border-color: #ef4444;
     }
 
     /* Card Body */
     .card-body {
-      padding: 1.25rem;
+      padding: 20px 22px 18px;
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -670,104 +744,113 @@
     .card-meta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.6rem;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
     }
-    .card-id-tag {
-      font-size: 0.75rem;
-      font-family: ui-monospace, monospace;
-      color: var(--accent);
-      background: rgba(56, 189, 248, 0.1);
-      padding: 0.15rem 0.45rem;
-      border-radius: 4px;
-    }
-    .card-cat-tag {
-      font-size: 0.75rem;
-      color: var(--text-dim);
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: var(--bg-sunk);
+      box-shadow: inset 0 0 0 1px var(--line);
+      color: var(--ink-2);
+      font-size: var(--fs-caption);
+      font-weight: 500;
+      white-space: nowrap;
     }
     .card-title {
-      font-size: 1.05rem;
+      font-size: var(--fs-title-3);
       font-weight: 700;
-      margin-bottom: 0.6rem;
-      color: var(--text-main);
+      margin-bottom: 12px;
+      color: var(--ink);
       line-height: 1.35;
     }
     .card-fields {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
+      font-size: 13px;
+      color: var(--ink-body);
+      margin-bottom: 16px;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
-      background: rgba(0, 0, 0, 0.25);
-      padding: 0.6rem 0.75rem;
-      border-radius: 8px;
+      gap: 4px;
+      background: var(--bg-sunk);
+      padding: 12px 14px;
+      border-radius: 14px;
     }
     .card-field-row {
       display: flex;
       align-items: baseline;
-      gap: 0.4rem;
+      gap: 6px;
     }
     .card-field-label {
-      color: var(--text-dim);
+      color: var(--ink-3);
       flex-shrink: 0;
     }
 
     .card-foot {
       margin-top: auto;
-      padding-top: 0.75rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
       display: flex;
-      gap: 0.5rem;
+      gap: 8px;
     }
-    .card-btn {
+    .card-copy-btn {
       flex: 1;
-      padding: 0.5rem;
-      font-size: 0.8rem;
+      height: 34px;
+      font-size: var(--fs-footnote);
       font-weight: 600;
-      border-radius: 7px;
-      border: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-      cursor: pointer;
-      display: flex;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--bg);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.35rem;
-      transition: all 0.2s ease;
+      gap: 4px;
     }
-    .card-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: var(--accent);
-      color: var(--accent);
+    .card-copy-btn.done {
+      background: var(--success-fill);
+      color: var(--on-fill);
+    }
+    .card-mixer-btn {
+      height: 34px;
+      padding: 0 14px;
+      font-size: var(--fs-footnote);
+      font-weight: 500;
+      border-radius: 999px;
+      background: var(--bg-sunk);
+      color: var(--ink-2);
+    }
+    .card-mixer-btn:hover {
+      color: var(--ink);
     }
 
-    /* Lightbox Modal */
+    /* Lightbox Modal (Apple HIG Sheet) */
     .lightbox-modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(16px);
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
       z-index: 100;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 24px;
     }
-    .lightbox-modal.show {
-      display: flex;
-    }
+    .lightbox-modal.show { display: flex; }
     .lightbox-inner {
       max-width: 900px;
-      max-height: 90vh;
-      background: #0f172a;
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
+      width: 100%;
+      max-height: 88vh;
+      background: var(--bg-elev);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-2);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
     }
     .lightbox-body {
       display: grid;
@@ -778,11 +861,11 @@
       .lightbox-body { grid-template-columns: 1fr; }
     }
     .lightbox-img-wrap {
-      background: #06080e;
+      background: var(--bg-sunk);
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 400px;
+      min-height: 380px;
     }
     .lightbox-img-wrap img {
       max-width: 100%;
@@ -790,18 +873,17 @@
       object-fit: contain;
     }
     .lightbox-info {
-      padding: 1.5rem;
+      padding: 24px;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 12px;
     }
     .lightbox-close {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: rgba(0,0,0,0.6);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
+      top: 16px;
+      right: 16px;
+      background: var(--bg-sunk);
+      color: var(--ink);
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -809,27 +891,26 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 16px;
       z-index: 10;
     }
 
-    /* Toast Notification */
+    /* Toast Notification (对齐 Apple Dynamic Island / Capsule) */
     .toast {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid var(--accent);
-      color: #ffffff;
-      padding: 0.75rem 1.25rem;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      bottom: 24px;
+      right: 24px;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: var(--shadow-2);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      transform: translateY(100px);
+      gap: 6px;
+      transform: translateY(80px);
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 99;
@@ -840,24 +921,24 @@
       opacity: 1;
     }
 
-    /* Hidden File Input */
-    #global-file-input {
-      display: none;
-    }
+    #global-file-input { display: none; }
 
-    /* Footer */
+    /* Footer (对齐 noahvisuals-blog) */
     footer {
-      border-top: 1px solid var(--card-border);
-      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--line);
+      padding: 48px 0;
       text-align: center;
-      color: var(--text-dim);
-      font-size: 0.85rem;
+      color: var(--ink-3);
+      font-size: var(--fs-footnote);
+      margin-top: 72px;
     }
+    footer a { color: var(--ink-2); text-decoration: underline; text-underline-offset: 4px; }
+    footer a:hover { color: var(--accent); }
 
     @media (max-width: 768px) {
-      .header-inner { flex-direction: column; gap: 0.75rem; }
-      .tracks-grid { grid-template-columns: repeat(2, 1fr); }
-      .console-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .mixer-header { flex-direction: column; }
+      .tracks-grid { grid-template-columns: 1fr; }
+      .console-head { flex-direction: column; align-items: flex-start; }
       .image-studio-bar { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -866,67 +947,76 @@
 
   <input type="file" id="global-file-input" accept="image/*" onchange="handleFileChosen(event)">
 
-  <!-- Top Header -->
-  <header>
-    <div class="header-inner">
+  <!-- Top Navigation (Apple HIG Frosted Glass) -->
+  <header class="nav">
+    <div class="wrap nav-inner">
       <a href="#" class="brand">
-        <div class="brand-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="m4.93 4.93 4.24 4.24"></path>
-            <path d="m14.83 9.17 4.24-4.24"></path>
-            <path d="m14.83 14.83 4.24 4.24"></path>
-            <path d="m9.17 14.83-4.24 4.24"></path>
-            <circle cx="12" cy="12" r="4"></circle>
-          </svg>
-        </div>
-        <div class="brand-title">
-          PersonaLens <span>拟像之镜</span>
+        <div class="brand-avatar">PL</div>
+        <div class="brand-text">
+          <span class="brand-name-row">
+            <span class="brand-name">PersonaLens</span>
+            <span class="verified-badge" aria-label="Verified" title="Verified">
+              <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                <path d="m8.6 22.5-1.9-3.2-3.6-.8.4-3.7-2.5-2.7L2.9 9 2.5 5.3l3.6-.8 1.9-3.2L11.5 3l3.5-1.7 1.9 3.2 3.6.8-.4 3.7 2.5 2.7-1.9 3.1.4 3.7-3.6.8-1.9 3.2-3.5-1.7z" fill="#0071e3"></path>
+                <path d="m9.7 16.3-3.7-3.7 1.4-1.4 2.3 2.3 6.9-6.9 1.4 1.4z" fill="#fff"></path>
+              </svg>
+            </span>
+          </span>
+          <span class="brand-handle">@noahvisualsx · 拟像之镜</span>
         </div>
       </a>
 
-      <div class="nav-actions">
-        <button class="nav-btn" onclick="scrollToMixer()">🎛️ 八轨调音台</button>
-        <button class="nav-btn" onclick="scrollToMatrix()">📚 图谱库 (<span id="total-badge">600</span>)</button>
-        <a href="https://github.com/noahvisualsx/PersonaLens" target="_blank" class="nav-btn primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
-          GitHub 源码
-        </a>
-      </div>
+      <nav class="nav-links">
+        <button class="nav-link active" id="nav-btn-mixer" onclick="scrollToMixer()">八轨调音台</button>
+        <button class="nav-link" id="nav-btn-matrix" onclick="scrollToMatrix()">视觉图谱 (<span id="total-badge">600</span>)</button>
+        <a href="https://noahvisualsx.com" target="_blank" class="nav-link">返回博客 ↗</a>
+      </nav>
+
+      <a href="https://github.com/noahvisualsx/PersonaLens" target="_blank" class="nav-github-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-badge">
-      <span>✨ 全球首个 AI 虚拟人全矩阵摄影控制系统 · 支持一键复制粘贴配图</span>
+  <section class="hero wrap">
+    <div class="hero-eyebrow">
+      <span>✦ 全球首个 AI 虚拟人全矩阵摄影控制系统</span>
     </div>
-    <h1>PersonaLens (拟像之镜)</h1>
+    <h1>PersonaLens · 拟像之镜</h1>
     <p>
-      为 AI 虚拟人打造的工业级视觉调音台。彻底解耦人物骨相、光学滤镜、肢体动作、穿搭材质、微表情与随身道具，适配 <strong>ChatGPT (Image 2.5)</strong>、<strong>Seedream 5.0 Pro</strong> 与 <strong>Gemini</strong>。
+      为 AI 虚拟人打造的工业级视觉调音台。解耦人物骨相、光学滤镜、肢体动作、穿搭材质、微表情与随身道具，严格适配 <strong>ChatGPT (Image 2.5)</strong>、<strong>Seedream 5.0 Pro</strong> 与 <strong>Gemini</strong>。
     </p>
 
-    <div class="tab-switcher">
-      <button class="tab-btn active" id="btn-tab-mixer" onclick="switchView('mixer')">🎛️ 八轨混音台 (Studio Mixer)</button>
-      <button class="tab-btn" id="btn-tab-matrix" onclick="switchView('matrix')">📚 视觉全要素图谱 (<span id="matrix-tab-count">600</span>)</button>
+    <!-- Apple HIG Segmented Control -->
+    <div class="seg-wrap">
+      <nav class="seg-control" role="tablist">
+        <button class="seg-item active" id="btn-tab-mixer" onclick="switchView('mixer')">
+          <span>八轨混音台</span>
+          <span class="seg-badge">Studio</span>
+        </button>
+        <button class="seg-item" id="btn-tab-matrix" onclick="switchView('matrix')">
+          <span>视觉要素图谱</span>
+          <span class="seg-badge" id="matrix-tab-count">600</span>
+        </button>
+      </nav>
     </div>
   </section>
 
-  <!-- Main Container -->
-  <main class="main-wrap">
+  <!-- Main Content Wrap -->
+  <main class="wrap">
 
     <!-- View 1: Mixer Studio -->
-    <section class="mixer-studio" id="view-mixer">
+    <section class="card mixer-studio" id="view-mixer">
       <div class="mixer-header">
         <div>
-          <div class="mixer-title">
-            <span>🎛️ 韩国篇 · 八轨全矩阵调音台</span>
-          </div>
-          <div class="mixer-desc">像音乐人推拉推子一样，自由选择 8 个维度的预设，实时编译合成出绝对真实的生图指令。</div>
+          <h2 class="mixer-title">韩国篇 · 八轨全矩阵调音台</h2>
+          <p class="mixer-desc">像音乐人推拉推子一样自由搭配 8 大视觉轨道，实时编译出具备真实毛孔微质感的工业级生图指令。</p>
         </div>
-        <div class="mixer-tools">
-          <button class="nav-btn" onclick="randomMix()">🎲 随机灵感激发</button>
-          <button class="nav-btn" onclick="resetMixer()">重置预设</button>
+        <div class="mixer-actions">
+          <button class="pill-btn" onclick="randomMix()">🎲 随机灵感</button>
+          <button class="pill-btn" onclick="resetMixer()">重置预设</button>
         </div>
       </div>
 
@@ -969,7 +1059,7 @@
       <!-- Output Live Console -->
       <div class="console-box">
         <div class="console-head">
-          <div style="font-size:0.8rem; font-weight:600; color:var(--accent);">⚡ 实时编译输出 (COMPILER OUTPUT)</div>
+          <span class="console-title">⚡ 实时编译输出 (LIVE COMPILER)</span>
           <div class="model-pills">
             <button class="model-pill active" onclick="setModel('chatgpt')">ChatGPT (Image 2.5)</button>
             <button class="model-pill" onclick="setModel('seedream')">Seedream 5.0 Pro (豆包)</button>
@@ -978,10 +1068,10 @@
         </div>
         <div class="console-content" id="live-prompt-text">正在编译提示词...</div>
         <div class="console-foot">
-          <div style="font-size:0.75rem; color:var(--text-dim);">💡 复制后可直接粘贴至对应大模型出图，每条均已注入人物锚点与真实微质感。</div>
-          <button class="copy-btn" onclick="copyLivePrompt()">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            一键复制提示词
+          <span style="font-size:12px; color:var(--ink-3);">提示词已注入真实皮肤纹理、解剖细节与光学坠落阴影，直接复制即可使用。</span>
+          <button class="copy-main-btn" id="mixer-copy-btn" onclick="copyLivePrompt()">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span class="label">一键复制提示词</span>
           </button>
         </div>
       </div>
@@ -994,26 +1084,26 @@
       <div class="image-studio-bar">
         <div class="studio-stat-group">
           <div class="studio-progress-pill">
-            <span>📸 参考图配齐进度:</span>
-            <span id="filled-count-badge" style="color:var(--accent);">0</span> / <span id="total-count-badge">600</span>
+            <span>参考图配齐:</span>
+            <span id="filled-count-badge" style="color:var(--ink); font-weight:700;">0</span> / <span id="total-count-badge">600</span>
             <div class="progress-bar-wrap">
               <div class="progress-bar-fill" id="progress-bar-fill"></div>
             </div>
-            <span id="filled-percent-badge" style="color:var(--emerald); font-size:0.8rem;">0%</span>
+            <span id="filled-percent-badge" style="color:var(--ink-2); font-size:12px;">0%</span>
           </div>
 
           <div class="studio-hint-badge">
-            <span>⚡ 支持鼠标悬停/选中卡片直接按 <strong>⌘V / Ctrl+V</strong> 粘贴图片</span>
+            <span>⚡ 复制图片后，鼠标悬停或点击卡片直接按 <strong>⌘V / Ctrl+V</strong> 粘贴</span>
           </div>
         </div>
 
         <div class="studio-actions">
-          <button class="studio-btn" id="filter-img-all" onclick="filterImageStatus('all')">全部卡片</button>
-          <button class="studio-btn" id="filter-img-has" onclick="filterImageStatus('has')">✓ 已配图 (<span id="has-img-count">0</span>)</button>
-          <button class="studio-btn" id="filter-img-none" onclick="filterImageStatus('none')">⏳ 待配图 (<span id="none-img-count">600</span>)</button>
-          <button class="studio-btn primary" onclick="exportDataJs()">💾 导出更新后的 data.js</button>
-          <button class="studio-btn" onclick="exportAllImages()">📦 导出所有图片</button>
-          <button class="studio-btn" onclick="clearAllCustomImages()" style="color:#f87171;">🗑️ 清空本地图</button>
+          <button class="pill-btn" id="filter-img-all" onclick="filterImageStatus('all')">全部</button>
+          <button class="pill-btn" id="filter-img-has" onclick="filterImageStatus('has')">已配图 (<span id="has-img-count">0</span>)</button>
+          <button class="pill-btn" id="filter-img-none" onclick="filterImageStatus('none')">待配图 (<span id="none-img-count">600</span>)</button>
+          <button class="pill-btn" onclick="exportDataJs()" style="background:var(--ink); color:var(--bg);">💾 导出 data.js</button>
+          <button class="pill-btn" onclick="exportAllImages()">📦 导出所有图片</button>
+          <button class="pill-btn" onclick="clearAllCustomImages()" style="color:#e02424;">清空本地</button>
         </div>
       </div>
 
@@ -1033,7 +1123,7 @@
 
         <div class="search-box">
           <span class="search-icon">🔍</span>
-          <input type="text" class="search-input" id="search-input" placeholder="搜索机型、穿搭、黑丝、卧蚕..." oninput="filterSearch()">
+          <input type="text" class="search-input" id="search-input" placeholder="搜索穿搭、滤镜、动作、道具..." oninput="filterSearch()">
         </div>
       </div>
 
@@ -1055,17 +1145,17 @@
         </div>
         <div class="lightbox-info">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span class="card-id-tag" id="lightbox-id">ID</span>
-            <span class="card-cat-tag" id="lightbox-cat">分类</span>
+            <span class="chip" id="lightbox-id">ID</span>
+            <span class="chip" id="lightbox-cat">分类</span>
           </div>
-          <h3 id="lightbox-title" style="font-size:1.2rem; color:#fff;">标题</h3>
-          <div id="lightbox-fields" class="card-fields" style="font-size:0.8rem;"></div>
-          <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.6rem;">
-            <button class="copy-btn" id="lightbox-copy-btn" onclick="copyLightboxPrompt()" style="width:100%; justify-content:center;">
-              📋 复制本项生图提示词
+          <h3 id="lightbox-title" style="font-size:20px; color:var(--ink); font-weight:700;">标题</h3>
+          <div id="lightbox-fields" class="card-fields" style="font-size:13px;"></div>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:8px;">
+            <button class="copy-main-btn" id="lightbox-copy-btn" onclick="copyLightboxPrompt()" style="width:100%; justify-content:center;">
+              复制本项提示词
             </button>
-            <button class="studio-btn" id="lightbox-replace-btn" onclick="triggerReplaceFromLightbox()" style="justify-content:center;">
-              📋 替换此参考图 (或直接按 ⌘V / Ctrl+V)
+            <button class="pill-btn" id="lightbox-replace-btn" onclick="triggerReplaceFromLightbox()" style="justify-content:center;">
+              替换此参考图 (直接按 ⌘V / Ctrl+V)
             </button>
           </div>
         </div>
@@ -1073,15 +1163,19 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer (Apple Minimalist) -->
   <footer>
-    <p>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册 · 专为工业级 AI 真实视觉控制而生</p>
-    <p style="margin-top: 0.5rem; color: #475569;">支持一键从剪贴板粘贴生图参考，数据本地永久存储，适配 ChatGPT (Image 2.5)、Seedream 5.0 与 Gemini</p>
+    <div class="wrap">
+      <p>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册 · 专为工业级 AI 真实视觉控制打造</p>
+      <p style="margin-top: 8px;">
+        Designed by <a href="https://noahvisualsx.com" target="_blank">@noahvisualsx</a> · 遵循 Apple Human Interface Guidelines 极简美学
+      </p>
+    </div>
   </footer>
 
   <!-- Toast -->
   <div class="toast" id="toast">
-    <span id="toast-text">通知内容</span>
+    <span id="toast-text">已复制</span>
   </div>
 
   <script>
@@ -1089,7 +1183,7 @@
     let currentModel = 'chatgpt';
     let currentCategory = 'all';
     let currentSearch = '';
-    let currentImageFilter = 'all'; // 'all', 'has', 'none'
+    let currentImageFilter = 'all';
     let hoveredCardId = null;
     let selectedActiveCardId = null;
     let currentLightboxItem = null;
@@ -1107,7 +1201,7 @@
     };
 
     // ==========================================
-    // 1. IndexedDB 存储引擎 (支持无限本地存储图片)
+    // 1. IndexedDB 存储引擎 (浏览器本地持久化)
     // ==========================================
     const DB_NAME = 'PersonaLens_DB';
     const DB_VERSION = 1;
@@ -1178,7 +1272,6 @@
       initMixerDropdowns();
       compileLivePrompt();
 
-      // 从 IndexedDB 同步用户之前保存过的所有图片
       try {
         const saved = await getAllImagesFromDB();
         saved.forEach(rec => {
@@ -1196,7 +1289,6 @@
       setupGlobalPasteListener();
     });
 
-    // Populate Mixer Dropdowns
     function initMixerDropdowns() {
       trackKeys.forEach(key => {
         const select = document.getElementById(`select-${key}`);
@@ -1208,23 +1300,28 @@
       });
     }
 
-    // Switch View Tab
     function switchView(view) {
       const mixerSec = document.getElementById('view-mixer');
       const matrixSec = document.getElementById('view-matrix');
       const btnMixer = document.getElementById('btn-tab-mixer');
       const btnMatrix = document.getElementById('btn-tab-matrix');
+      const navBtnMixer = document.getElementById('nav-btn-mixer');
+      const navBtnMatrix = document.getElementById('nav-btn-matrix');
 
       if (view === 'mixer') {
         mixerSec.style.display = 'block';
         matrixSec.style.display = 'none';
         btnMixer.classList.add('active');
         btnMatrix.classList.remove('active');
+        navBtnMixer.classList.add('active');
+        navBtnMatrix.classList.remove('active');
       } else {
         mixerSec.style.display = 'none';
         matrixSec.style.display = 'block';
         btnMixer.classList.remove('active');
         btnMatrix.classList.add('active');
+        navBtnMixer.classList.remove('active');
+        navBtnMatrix.classList.add('active');
         renderCards();
       }
     }
@@ -1239,7 +1336,6 @@
       document.getElementById('view-matrix').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Compile Prompt from 8 Tracks
     function compileLivePrompt() {
       const selected = {};
       trackKeys.forEach(key => {
@@ -1304,7 +1400,7 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
         select.selectedIndex = randomIdx;
       });
       compileLivePrompt();
-      showToast('🎲 已随机混音生成全新配方！');
+      showToast('🎲 已随机混音生成全新配方');
     }
 
     function resetMixer() {
@@ -1318,13 +1414,20 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
 
     function copyLivePrompt() {
       const text = document.getElementById('live-prompt-text').textContent;
+      const btn = document.getElementById('mixer-copy-btn');
       navigator.clipboard.writeText(text).then(() => {
-        showToast('✓ 提示词已复制！可直接发送给 ChatGPT (Image 2.5)');
+        btn.classList.add('done');
+        btn.querySelector('.label').textContent = '已复制！';
+        showToast('✓ 提示词已复制');
+        setTimeout(() => {
+          btn.classList.remove('done');
+          btn.querySelector('.label').textContent = '一键复制提示词';
+        }, 1800);
       });
     }
 
     // ==========================================
-    // 3. Matrix Explorer 卡片渲染与过滤
+    // 3. Matrix Explorer 卡片渲染
     // ==========================================
     function filterCategory(cat) {
       currentCategory = cat;
@@ -1337,7 +1440,15 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       currentImageFilter = status;
       ['all', 'has', 'none'].forEach(k => {
         const btn = document.getElementById(`filter-img-${k}`);
-        if (btn) btn.classList.toggle('primary', k === status);
+        if (btn) {
+          if (k === status) {
+            btn.style.background = 'var(--ink)';
+            btn.style.color = 'var(--bg)';
+          } else {
+            btn.style.background = 'var(--bg-sunk)';
+            btn.style.color = 'var(--ink)';
+          }
+        }
       });
       renderCards();
     }
@@ -1371,13 +1482,13 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       }
 
       container.innerHTML = filtered.map(item => `
-        <div class="prompt-card ${selectedActiveCardId === item.id ? 'focused-target' : ''}" 
-             id="card-${item.id}"
-             onmouseenter="onCardMouseEnter('${item.id}')"
-             onmouseleave="onCardMouseLeave('${item.id}')"
-             onclick="selectCardForPaste('${item.id}')">
+        <article class="prompt-card ${selectedActiveCardId === item.id ? 'focused-target' : ''}" 
+                 id="card-${item.id}"
+                 onmouseenter="onCardMouseEnter('${item.id}')"
+                 onmouseleave="onCardMouseLeave('${item.id}')"
+                 onclick="selectCardForPaste('${item.id}')">
 
-          <!-- Reference Image Slot (支持直接按 ⌘V / Ctrl+V 粘贴图片) -->
+          <!-- Reference Image Slot -->
           <div class="card-img-slot" id="slot-${item.id}"
                ondragover="handleSlotDragOver(event, '${item.id}')"
                ondragleave="handleSlotDragLeave(event, '${item.id}')"
@@ -1386,17 +1497,17 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
             ${item.image ? `
               <img src="${item.image}" alt="${item.title}" loading="lazy">
               <div class="card-img-overlay">
-                <button class="overlay-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
-                <button class="overlay-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
-                <button class="overlay-btn danger" onclick="removeCardImage(event, '${item.id}')">🗑️ 移除图片</button>
+                <button class="overlay-pill-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
+                <button class="overlay-pill-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
+                <button class="overlay-pill-btn danger" onclick="removeCardImage(event, '${item.id}')">移除</button>
               </div>
-              <div class="card-img-badge active-filled">✓ 已配参考图</div>
+              <div class="card-img-badge active-filled">✓ 已配图</div>
             ` : `
               <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
                 <div class="card-img-icon">📷</div>
-                <div style="font-size:0.85rem; font-weight:600; color:var(--text-main);">点击上传或直接粘贴</div>
-                <div class="card-paste-guide">📋 鼠标移入后按 ⌘V / Ctrl+V 粘贴</div>
-                <div class="card-img-hint">待出图 · 支持直接用 GPT Image 2.5 生成后复制粘贴</div>
+                <div style="font-size:14px; font-weight:600; color:var(--ink);">待配参考图</div>
+                <div class="card-paste-guide">按 ⌘V / Ctrl+V 粘贴</div>
+                <div class="card-img-hint">点击可上传或拖拽图片进入</div>
               </div>
               <div class="card-img-badge">3:4 · #${item.num}</div>
             `}
@@ -1405,10 +1516,10 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
           <!-- Body -->
           <div class="card-body">
             <div class="card-meta">
-              <span class="card-id-tag">${item.id}</span>
-              <span class="card-cat-tag">${item.icon} ${item.category_name}</span>
+              <span class="chip">${item.id}</span>
+              <span class="chip">${item.icon} ${item.category_name}</span>
             </div>
-            <div class="card-title">#${item.num} 【${item.title}】</div>
+            <h3 class="card-title">#${item.num} 【${item.title}】</h3>
 
             <div class="card-fields">
               ${Object.entries(item.fields).filter(([k,v]) => v).map(([k, v]) => `
@@ -1420,31 +1531,30 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
             </div>
 
             <div class="card-foot">
-              <button class="card-btn" onclick="copyCardPrompt('${item.id}')">
-                <span>📋</span> 复制提示词
+              <button class="card-copy-btn" id="copy-btn-${item.id}" onclick="copyCardPrompt('${item.id}')">
+                <span>📋 复制提示词</span>
               </button>
-              <button class="card-btn" onclick="useInMixer('${item.category_id}', '${item.id}')">
-                <span>🎛️</span> 加入调音台
+              <button class="card-mixer-btn" onclick="useInMixer('${item.category_id}', '${item.id}')">
+                <span>🎛️ 调音</span>
               </button>
             </div>
           </div>
-        </div>
+        </article>
       `).join('');
     }
 
     // ==========================================
-    // 4. 直接复制粘贴图片核心功能 (⌘V / Ctrl+V)
+    // 4. 直接复制粘贴核心逻辑 (⌘V / Ctrl+V)
     // ==========================================
     function setupGlobalPasteListener() {
       window.addEventListener('paste', async (e) => {
-        // 如果焦点在输入框中，走原生粘贴逻辑
         if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
           return;
         }
 
         const targetId = hoveredCardId || selectedActiveCardId;
         if (!targetId) {
-          showToast('💡 复制图片后，请将鼠标悬停在想要配图的卡片上，或点击选中该卡片，再按 ⌘V / Ctrl+V 粘贴！');
+          showToast('💡 复制图片后，鼠标移到卡片上直接按 ⌘V 即可粘贴');
           return;
         }
 
@@ -1458,7 +1568,7 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
         }
 
         if (!imageItem) {
-          showToast('⚠️ 剪贴板中未检测到图片，请先在 ChatGPT / 网页中右键「复制图片」或截图！');
+          showToast('⚠️ 剪贴板中未检测到图片，请先复制图片');
           return;
         }
 
@@ -1469,13 +1579,8 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       });
     }
 
-    function onCardMouseEnter(id) {
-      hoveredCardId = id;
-    }
-
-    function onCardMouseLeave(id) {
-      if (hoveredCardId === id) hoveredCardId = null;
-    }
+    function onCardMouseEnter(id) { hoveredCardId = id; }
+    function onCardMouseLeave(id) { if (hoveredCardId === id) hoveredCardId = null; }
 
     function selectCardForPaste(id) {
       selectedActiveCardId = id;
@@ -1484,11 +1589,10 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       if (targetCard) targetCard.classList.add('focused-target');
       const item = allData.find(d => d.id === id);
       if (item) {
-        showToast(`🎯 已锁定 #${item.num} 【${item.title}】· 现在直接按 ⌘V / Ctrl+V 即可粘贴参考图！`);
+        showToast(`已选中 #${item.num} · 现在按 ⌘V / Ctrl+V 直接粘贴`);
       }
     }
 
-    // 将图片文件压缩并转换为合适尺寸的 Data URL
     function fileToDataUrl(file, maxWidth = 1200, quality = 0.88) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -1516,24 +1620,22 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       });
     }
 
-    // 核心：处理图片文件并存入 IndexedDB
     async function processAndAttachImage(itemId, file) {
       const item = allData.find(d => d.id === itemId);
       if (!item) return;
 
-      showToast(`⏳ 正在处理并存储参考图至 #${item.num}...`);
+      showToast(`正在保存至 #${item.num}...`);
       try {
         const dataUrl = await fileToDataUrl(file);
         item.image = dataUrl;
         await saveImageToDB(itemId, dataUrl);
 
-        // 局部刷新该卡片图像插槽
         updateCardSlotDOM(item);
         updateImageStats();
-        showToast(`🎉 成功粘贴参考图至 #${item.num} 【${item.title}】！已永久保存在浏览器`);
+        showToast(`✓ 已成功保存参考图至 #${item.num}`);
       } catch (err) {
         console.error(err);
-        showToast('❌ 保存图片失败，请检查后重试');
+        showToast('保存图片失败，请重试');
       }
     }
 
@@ -1543,11 +1645,11 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       slot.innerHTML = `
         <img src="${item.image}" alt="${item.title}" loading="lazy">
         <div class="card-img-overlay">
-          <button class="overlay-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
-          <button class="overlay-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
-          <button class="overlay-btn danger" onclick="removeCardImage(event, '${item.id}')">🗑️ 移除图片</button>
+          <button class="overlay-pill-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
+          <button class="overlay-pill-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
+          <button class="overlay-pill-btn danger" onclick="removeCardImage(event, '${item.id}')">移除</button>
         </div>
-        <div class="card-img-badge active-filled">✓ 已配参考图</div>
+        <div class="card-img-badge active-filled">✓ 已配图</div>
       `;
     }
 
@@ -1566,9 +1668,9 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
         slot.innerHTML = `
           <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
             <div class="card-img-icon">📷</div>
-            <div style="font-size:0.85rem; font-weight:600; color:var(--text-main);">点击上传或直接粘贴</div>
-            <div class="card-paste-guide">📋 鼠标移入后按 ⌘V / Ctrl+V 粘贴</div>
-            <div class="card-img-hint">待出图 · 支持直接用 GPT Image 2.5 生成后复制粘贴</div>
+            <div style="font-size:14px; font-weight:600; color:var(--ink);">待配参考图</div>
+            <div class="card-paste-guide">按 ⌘V / Ctrl+V 粘贴</div>
+            <div class="card-img-hint">点击可上传或拖拽图片进入</div>
           </div>
           <div class="card-img-badge">3:4 · #${item.num}</div>
         `;
@@ -1577,7 +1679,6 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       showToast(`已移除 #${item.num} 的参考图`);
     }
 
-    // Drag and Drop
     function handleSlotDragOver(event, itemId) {
       event.preventDefault();
       event.stopPropagation();
@@ -1602,11 +1703,10 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       if (files && files.length > 0 && files[0].type.indexOf('image') !== -1) {
         await processAndAttachImage(itemId, files[0]);
       } else {
-        showToast('⚠️ 请拖入有效的图片文件（JPG/PNG/WEBP）');
+        showToast('请拖入有效的图片文件');
       }
     }
 
-    // Trigger File Picker fallback
     let currentCardPickerTargetId = null;
     function triggerFilePickerForCard(event, itemId) {
       if (event) event.stopPropagation();
@@ -1642,7 +1742,7 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
     function exportDataJs() {
       const content = `// PersonaLens Global Dataset
 // Total Presets: ${allData.length}
-// Exported with user reference images
+// Exported with reference images
 const allData = ${JSON.stringify(allData, null, 2)};
 `;
       const blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
@@ -1652,16 +1752,16 @@ const allData = ${JSON.stringify(allData, null, 2)};
       a.download = 'data.js';
       a.click();
       URL.revokeObjectURL(url);
-      showToast('💾 已导出最新版 data.js！直接替换仓库根目录 data.js 即可推送到 GitHub Pages');
+      showToast('💾 已导出 data.js，直接替换仓库文件并推送即可');
     }
 
     function exportAllImages() {
       const itemsWithImg = allData.filter(d => d.image);
       if (itemsWithImg.length === 0) {
-        showToast('⚠️ 当前还没有配过参考图的卡片哦');
+        showToast('当前还没有已配图的卡片');
         return;
       }
-      showToast(`📦 开始逐一下载 ${itemsWithImg.length} 张参考图...`);
+      showToast(`正在批量下载 ${itemsWithImg.length} 张参考图...`);
       itemsWithImg.forEach((item, idx) => {
         setTimeout(() => {
           const a = document.createElement('a');
@@ -1673,7 +1773,7 @@ const allData = ${JSON.stringify(allData, null, 2)};
     }
 
     async function clearAllCustomImages() {
-      if (!confirm('⚠️ 警告：确定要清空所有本地保存的参考图吗？此操作不可撤销！')) return;
+      if (!confirm('确定要清空本地所有已配参考图吗？')) return;
       await clearAllFromDB();
       allData.forEach(d => {
         if (d.id !== 'KR-outfits-001') d.image = null;
@@ -1716,7 +1816,7 @@ const allData = ${JSON.stringify(allData, null, 2)};
     function copyLightboxPrompt() {
       if (!currentLightboxItem) return;
       navigator.clipboard.writeText(currentLightboxItem.prompt).then(() => {
-        showToast(`✓ #${currentLightboxItem.num} 【${currentLightboxItem.title}】提示词已复制！`);
+        showToast(`✓ #${currentLightboxItem.num} 提示词已复制`);
       });
     }
 
@@ -1727,12 +1827,20 @@ const allData = ${JSON.stringify(allData, null, 2)};
       selectCardForPaste(itemId);
     }
 
-    // Card Actions
     function copyCardPrompt(id) {
       const item = allData.find(d => d.id === id);
       if (!item) return;
+      const btn = document.getElementById(`copy-btn-${id}`);
       navigator.clipboard.writeText(item.prompt).then(() => {
-        showToast(`✓ #${item.num} 【${item.title}】提示词已复制！`);
+        if (btn) {
+          btn.classList.add('done');
+          btn.innerHTML = '<span>✓ 已复制</span>';
+          setTimeout(() => {
+            btn.classList.remove('done');
+            btn.innerHTML = '<span>📋 复制提示词</span>';
+          }, 1600);
+        }
+        showToast(`✓ #${item.num} 提示词已复制`);
       });
     }
 
@@ -1742,7 +1850,7 @@ const allData = ${JSON.stringify(allData, null, 2)};
         select.value = itemId;
         scrollToMixer();
         compileLivePrompt();
-        showToast(`🎛️ 已加载至调音台【${trackNames[catId] || catId}】轨道`);
+        showToast(`已加载至调音台【${trackNames[catId] || catId}】`);
       }
     }
 
@@ -1753,7 +1861,7 @@ const allData = ${JSON.stringify(allData, null, 2)};
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 2800);
+      }, 2500);
     }
   </script>
 </body>
