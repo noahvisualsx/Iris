@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册</title>
-  <meta name="description" content="专为 AI 虚拟人打造的工业级跨模型（ChatGPT Image 2.5 / Seedream 5.0 Pro / Gemini）摄影与视觉全矩阵控制系统。">
+  <meta name="description" content="专为 AI 虚拟人打造的工业级跨模型（ChatGPT Image 2.5 / Seedream 5.0 Pro / Gemini）摄影与视觉全矩阵控制系统。支持一键直接复制粘贴参考图。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230a0d14' stroke='%2338bdf8' stroke-width='6'/><circle cx='50' cy='50' r='24' fill='none' stroke='%23818cf8' stroke-width='4'/><circle cx='50' cy='50' r='8' fill='%2338bdf8'/></svg>">
   <script src="data.js"></script>
   <style>
@@ -157,7 +157,7 @@
       -webkit-text-fill-color: transparent;
     }
     .hero p {
-      max-width: 720px;
+      max-width: 780px;
       margin: 0 auto 1.75rem;
       font-size: 1.05rem;
       color: var(--text-muted);
@@ -228,34 +228,37 @@
     .mixer-desc {
       font-size: 0.85rem;
       color: var(--text-dim);
+      margin-top: 0.3rem;
     }
     .mixer-tools {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    /* 8-Tracks Selector Grid */
+    /* 8 Track Selectors */
     .tracks-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
       margin-bottom: 2rem;
     }
     .track-col {
-      background: rgba(10, 14, 22, 0.6);
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 0.85rem;
+      padding: 1rem;
       transition: all 0.2s ease;
     }
     .track-col:hover {
       border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(15, 23, 42, 0.7);
     }
     .track-label {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: var(--text-dim);
+      color: var(--accent);
       text-transform: uppercase;
+      letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
@@ -263,23 +266,25 @@
     }
     .track-select {
       width: 100%;
-      background: #111624;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #0b0f19;
+      border: 1px solid var(--card-border);
       color: var(--text-main);
-      padding: 0.5rem;
-      font-size: 0.8rem;
+      padding: 0.55rem 0.75rem;
       border-radius: 8px;
+      font-size: 0.85rem;
       outline: none;
       cursor: pointer;
+      transition: border-color 0.2s ease;
     }
     .track-select:focus {
       border-color: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
-    /* Output Console */
+    /* Console Box */
     .console-box {
-      background: #06080d;
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: #06080e;
+      border: 1px solid rgba(56, 189, 248, 0.2);
       border-radius: 14px;
       padding: 1.25rem;
       position: relative;
@@ -288,7 +293,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.85rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--card-border);
     }
     .model-pills {
       display: flex;
@@ -296,13 +303,13 @@
     }
     .model-pill {
       font-size: 0.75rem;
-      font-weight: 600;
       padding: 0.25rem 0.6rem;
       border-radius: 6px;
       border: 1px solid var(--card-border);
       background: rgba(255, 255, 255, 0.05);
       color: var(--text-muted);
       cursor: pointer;
+      transition: all 0.2s;
     }
     .model-pill.active {
       background: rgba(56, 189, 248, 0.15);
@@ -350,6 +357,90 @@
     }
 
     /* Section: Matrix Explorer */
+    /* Reference Image Progress Studio Bar */
+    .image-studio-bar {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      backdrop-filter: blur(12px);
+    }
+    .studio-stat-group {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .studio-progress-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .progress-bar-wrap {
+      width: 140px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      overflow: hidden;
+      display: inline-block;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .studio-hint-badge {
+      font-size: 0.75rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .studio-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .studio-btn {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+    .studio-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .studio-btn.primary {
+      background: linear-gradient(135deg, #0ea5e9, #10b981);
+      border-color: transparent;
+      color: #030712;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    }
+
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -424,14 +515,19 @@
       flex-direction: column;
       transition: all 0.25s ease;
       backdrop-filter: blur(10px);
+      position: relative;
     }
     .prompt-card:hover {
       border-color: rgba(56, 189, 248, 0.3);
       transform: translateY(-3px);
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
     }
+    .prompt-card.focused-target {
+      border: 2px solid var(--accent) !important;
+      box-shadow: 0 0 25px var(--accent-glow) !important;
+    }
 
-    /* Image Preview Slot (支持后面每条提示词带参考图) */
+    /* Image Preview Slot (支持后面每个提示词带参考图 + 直接复制粘贴) */
     .card-img-slot {
       aspect-ratio: 3 / 4;
       background: #0b0f19;
@@ -443,12 +539,20 @@
       justify-content: center;
       border-bottom: 1px solid var(--card-border);
       color: var(--text-dim);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .card-img-slot.drag-over {
+      border: 2px dashed var(--accent) !important;
+      background: rgba(56, 189, 248, 0.12) !important;
     }
     .card-img-slot img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.4s ease;
+      display: block;
     }
     .card-img-slot:hover img {
       transform: scale(1.03);
@@ -457,9 +561,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       padding: 1.5rem;
       text-align: center;
+      width: 100%;
     }
     .card-img-icon {
       width: 48px;
@@ -472,9 +577,25 @@
       justify-content: center;
       font-size: 1.25rem;
       color: var(--accent);
+      transition: all 0.2s ease;
+    }
+    .card-img-slot:hover .card-img-icon {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      transform: scale(1.08);
+    }
+    .card-paste-guide {
+      font-size: 0.72rem;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      margin-top: 0.35rem;
+      font-weight: 600;
     }
     .card-img-hint {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--text-dim);
     }
     .card-img-badge {
@@ -489,6 +610,54 @@
       border-radius: 6px;
       color: var(--text-muted);
       border: 1px solid rgba(255, 255, 255, 0.1);
+      z-index: 2;
+    }
+    .card-img-badge.active-filled {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.5);
+      color: #34d399;
+    }
+
+    /* Hover Overlay on Filled Card */
+    .card-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      z-index: 3;
+    }
+    .card-img-slot:hover .card-img-overlay {
+      opacity: 1;
+    }
+    .overlay-btn {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+    .overlay-btn:hover {
+      background: rgba(56, 189, 248, 0.3);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+    .overlay-btn.danger:hover {
+      background: rgba(239, 68, 68, 0.4);
+      border-color: #ef4444;
     }
 
     /* Card Body */
@@ -573,6 +742,77 @@
       color: var(--accent);
     }
 
+    /* Lightbox Modal */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .lightbox-modal.show {
+      display: flex;
+    }
+    .lightbox-inner {
+      max-width: 900px;
+      max-height: 90vh;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+    }
+    .lightbox-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow-y: auto;
+    }
+    @media (max-width: 768px) {
+      .lightbox-body { grid-template-columns: 1fr; }
+    }
+    .lightbox-img-wrap {
+      background: #06080e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 400px;
+    }
+    .lightbox-img-wrap img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+    .lightbox-info {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      z-index: 10;
+    }
+
     /* Toast Notification */
     .toast {
       position: fixed;
@@ -580,23 +820,29 @@
       right: 2rem;
       background: rgba(15, 23, 42, 0.95);
       border: 1px solid var(--accent);
-      color: var(--text-main);
+      color: #ffffff;
       padding: 0.75rem 1.25rem;
       border-radius: 10px;
       font-size: 0.85rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(12px);
-      z-index: 999;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       transform: translateY(100px);
       opacity: 0;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 99;
+      pointer-events: none;
     }
     .toast.show {
       transform: translateY(0);
       opacity: 1;
+    }
+
+    /* Hidden File Input */
+    #global-file-input {
+      display: none;
     }
 
     /* Footer */
@@ -612,10 +858,13 @@
       .header-inner { flex-direction: column; gap: 0.75rem; }
       .tracks-grid { grid-template-columns: repeat(2, 1fr); }
       .console-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .image-studio-bar { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
+
+  <input type="file" id="global-file-input" accept="image/*" onchange="handleFileChosen(event)">
 
   <!-- Top Header -->
   <header>
@@ -650,7 +899,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-badge">
-      <span>✨ 全球首个 AI 虚拟人全矩阵摄影控制系统</span>
+      <span>✨ 全球首个 AI 虚拟人全矩阵摄影控制系统 · 支持一键复制粘贴配图</span>
     </div>
     <h1>PersonaLens (拟像之镜)</h1>
     <p>
@@ -659,7 +908,7 @@
 
     <div class="tab-switcher">
       <button class="tab-btn active" id="btn-tab-mixer" onclick="switchView('mixer')">🎛️ 八轨混音台 (Studio Mixer)</button>
-      <button class="tab-btn" id="btn-tab-matrix" onclick="switchView('matrix')">📚 视觉全要素图谱 (600+)</button>
+      <button class="tab-btn" id="btn-tab-matrix" onclick="switchView('matrix')">📚 视觉全要素图谱 (<span id="matrix-tab-count">600</span>)</button>
     </div>
   </section>
 
@@ -740,6 +989,34 @@
 
     <!-- View 2: Matrix Explorer -->
     <section class="matrix-explorer" id="view-matrix" style="display:none;">
+
+      <!-- Image Studio Progress & Action Toolbar -->
+      <div class="image-studio-bar">
+        <div class="studio-stat-group">
+          <div class="studio-progress-pill">
+            <span>📸 参考图配齐进度:</span>
+            <span id="filled-count-badge" style="color:var(--accent);">0</span> / <span id="total-count-badge">600</span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            </div>
+            <span id="filled-percent-badge" style="color:var(--emerald); font-size:0.8rem;">0%</span>
+          </div>
+
+          <div class="studio-hint-badge">
+            <span>⚡ 支持鼠标悬停/选中卡片直接按 <strong>⌘V / Ctrl+V</strong> 粘贴图片</span>
+          </div>
+        </div>
+
+        <div class="studio-actions">
+          <button class="studio-btn" id="filter-img-all" onclick="filterImageStatus('all')">全部卡片</button>
+          <button class="studio-btn" id="filter-img-has" onclick="filterImageStatus('has')">✓ 已配图 (<span id="has-img-count">0</span>)</button>
+          <button class="studio-btn" id="filter-img-none" onclick="filterImageStatus('none')">⏳ 待配图 (<span id="none-img-count">600</span>)</button>
+          <button class="studio-btn primary" onclick="exportDataJs()">💾 导出更新后的 data.js</button>
+          <button class="studio-btn" onclick="exportAllImages()">📦 导出所有图片</button>
+          <button class="studio-btn" onclick="clearAllCustomImages()" style="color:#f87171;">🗑️ 清空本地图</button>
+        </div>
+      </div>
+
       <!-- Filter and Search Bar -->
       <div class="filter-bar">
         <div class="category-pills" id="category-pills">
@@ -760,32 +1037,62 @@
         </div>
       </div>
 
-      <!-- Card List Grid -->
-      <div class="cards-grid" id="cards-container"></div>
+      <!-- Grid of Cards -->
+      <div class="cards-grid" id="cards-container">
+        <!-- Rendered by JavaScript -->
+      </div>
     </section>
 
   </main>
 
-  <!-- Toast Notification -->
-  <div class="toast" id="toast">
-    <span style="color:#10b981;">✓</span>
-    <span id="toast-text">已成功复制提示词！</span>
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <div class="lightbox-body">
+        <div class="lightbox-img-wrap">
+          <img id="lightbox-img" src="" alt="预览图">
+        </div>
+        <div class="lightbox-info">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="card-id-tag" id="lightbox-id">ID</span>
+            <span class="card-cat-tag" id="lightbox-cat">分类</span>
+          </div>
+          <h3 id="lightbox-title" style="font-size:1.2rem; color:#fff;">标题</h3>
+          <div id="lightbox-fields" class="card-fields" style="font-size:0.8rem;"></div>
+          <div style="margin-top:auto; display:flex; flex-direction:column; gap:0.6rem;">
+            <button class="copy-btn" id="lightbox-copy-btn" onclick="copyLightboxPrompt()" style="width:100%; justify-content:center;">
+              📋 复制本项生图提示词
+            </button>
+            <button class="studio-btn" id="lightbox-replace-btn" onclick="triggerReplaceFromLightbox()" style="justify-content:center;">
+              📋 替换此参考图 (或直接按 ⌘V / Ctrl+V)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <p>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册</p>
-    <p style="margin-top:0.4rem; font-size:0.8rem; color:#475569;">
-      Created by <a href="https://github.com/noahvisualsx" target="_blank" style="color:#94a3b8; text-decoration:none;">@noahvisualsx</a> • Open Source under MIT License
-    </p>
+    <p>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册 · 专为工业级 AI 真实视觉控制而生</p>
+    <p style="margin-top: 0.5rem; color: #475569;">支持一键从剪贴板粘贴生图参考，数据本地永久存储，适配 ChatGPT (Image 2.5)、Seedream 5.0 与 Gemini</p>
   </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <span id="toast-text">通知内容</span>
+  </div>
 
   <script>
     // State
-    const allData = window.PERSONA_DATA || [];
+    let currentModel = 'chatgpt';
     let currentCategory = 'all';
     let currentSearch = '';
-    let currentModel = 'chatgpt';
+    let currentImageFilter = 'all'; // 'all', 'has', 'none'
+    let hoveredCardId = null;
+    let selectedActiveCardId = null;
+    let currentLightboxItem = null;
 
     const trackKeys = ['filters', 'poses', 'outfits', 'hosiery', 'styles', 'hair_makeup', 'expressions', 'props'];
     const trackNames = {
@@ -799,11 +1106,94 @@
       props: '道具美甲'
     };
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // 1. IndexedDB 存储引擎 (支持无限本地存储图片)
+    // ==========================================
+    const DB_NAME = 'PersonaLens_DB';
+    const DB_VERSION = 1;
+    const STORE_NAME = 'reference_images';
+
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open(DB_NAME, DB_VERSION);
+        request.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) {
+            db.createObjectStore(STORE_NAME, { keyPath: 'id' });
+          }
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+      });
+    }
+
+    async function saveImageToDB(id, dataUrl) {
+      const db = await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        store.put({ id, dataUrl, updatedAt: Date.now() });
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function removeImageFromDB(id) {
+      const db = await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        store.delete(id);
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    async function getAllImagesFromDB() {
+      const db = await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const store = tx.objectStore(STORE_NAME);
+        const req = store.getAll();
+        req.onsuccess = () => resolve(req.result || []);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function clearAllFromDB() {
+      const db = await openDB();
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readwrite');
+        const store = tx.objectStore(STORE_NAME);
+        store.clear();
+        tx.oncomplete = () => resolve();
+        tx.onerror = () => reject(tx.error);
+      });
+    }
+
+    // ==========================================
+    // 2. 初始化与数据同步
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', async () => {
       initMixerDropdowns();
-      renderCards();
       compileLivePrompt();
+
+      // 从 IndexedDB 同步用户之前保存过的所有图片
+      try {
+        const saved = await getAllImagesFromDB();
+        saved.forEach(rec => {
+          const item = allData.find(d => d.id === rec.id);
+          if (item) {
+            item.image = rec.dataUrl;
+          }
+        });
+      } catch (e) {
+        console.warn('IndexedDB sync failed:', e);
+      }
+
+      renderCards();
+      updateImageStats();
+      setupGlobalPasteListener();
     });
 
     // Populate Mixer Dropdowns
@@ -933,11 +1323,22 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       });
     }
 
-    // Matrix Explorer Rendering
+    // ==========================================
+    // 3. Matrix Explorer 卡片渲染与过滤
+    // ==========================================
     function filterCategory(cat) {
       currentCategory = cat;
       document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
       event.target.classList.add('active');
+      renderCards();
+    }
+
+    function filterImageStatus(status) {
+      currentImageFilter = status;
+      ['all', 'has', 'none'].forEach(k => {
+        const btn = document.getElementById(`filter-img-${k}`);
+        if (btn) btn.classList.toggle('primary', k === status);
+      });
       renderCards();
     }
 
@@ -954,6 +1355,12 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       if (currentCategory !== 'all') {
         filtered = filtered.filter(d => d.category_id === currentCategory);
       }
+      if (currentImageFilter === 'has') {
+        filtered = filtered.filter(d => !!d.image);
+      } else if (currentImageFilter === 'none') {
+        filtered = filtered.filter(d => !d.image);
+      }
+
       if (currentSearch) {
         filtered = filtered.filter(d => 
           d.title.toLowerCase().includes(currentSearch) ||
@@ -964,19 +1371,35 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       }
 
       container.innerHTML = filtered.map(item => `
-        <div class="prompt-card" id="card-${item.id}">
-          <!-- Reference Image Slot (后面每个提示词有一张参考图) -->
-          <div class="card-img-slot">
+        <div class="prompt-card ${selectedActiveCardId === item.id ? 'focused-target' : ''}" 
+             id="card-${item.id}"
+             onmouseenter="onCardMouseEnter('${item.id}')"
+             onmouseleave="onCardMouseLeave('${item.id}')"
+             onclick="selectCardForPaste('${item.id}')">
+
+          <!-- Reference Image Slot (支持直接按 ⌘V / Ctrl+V 粘贴图片) -->
+          <div class="card-img-slot" id="slot-${item.id}"
+               ondragover="handleSlotDragOver(event, '${item.id}')"
+               ondragleave="handleSlotDragLeave(event, '${item.id}')"
+               ondrop="handleSlotDrop(event, '${item.id}')">
+
             ${item.image ? `
               <img src="${item.image}" alt="${item.title}" loading="lazy">
-            ` : `
-              <div class="card-img-placeholder">
-                <div class="card-img-icon">📷</div>
-                <div style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">参考图插槽</div>
-                <div class="card-img-hint">待生成 · 支持直接用 GPT Image 2.5 出图</div>
+              <div class="card-img-overlay">
+                <button class="overlay-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
+                <button class="overlay-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
+                <button class="overlay-btn danger" onclick="removeCardImage(event, '${item.id}')">🗑️ 移除图片</button>
               </div>
+              <div class="card-img-badge active-filled">✓ 已配参考图</div>
+            ` : `
+              <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
+                <div class="card-img-icon">📷</div>
+                <div style="font-size:0.85rem; font-weight:600; color:var(--text-main);">点击上传或直接粘贴</div>
+                <div class="card-paste-guide">📋 鼠标移入后按 ⌘V / Ctrl+V 粘贴</div>
+                <div class="card-img-hint">待出图 · 支持直接用 GPT Image 2.5 生成后复制粘贴</div>
+              </div>
+              <div class="card-img-badge">3:4 · #${item.num}</div>
             `}
-            <div class="card-img-badge">3:4 · #${item.num}</div>
           </div>
 
           <!-- Body -->
@@ -988,7 +1411,7 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
             <div class="card-title">#${item.num} 【${item.title}】</div>
 
             <div class="card-fields">
-              ${Object.entries(item.fields).map(([k, v]) => `
+              ${Object.entries(item.fields).filter(([k,v]) => v).map(([k, v]) => `
                 <div class="card-field-row">
                   <span class="card-field-label">${k}:</span>
                   <span>${v}</span>
@@ -1009,6 +1432,302 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       `).join('');
     }
 
+    // ==========================================
+    // 4. 直接复制粘贴图片核心功能 (⌘V / Ctrl+V)
+    // ==========================================
+    function setupGlobalPasteListener() {
+      window.addEventListener('paste', async (e) => {
+        // 如果焦点在输入框中，走原生粘贴逻辑
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) {
+          return;
+        }
+
+        const targetId = hoveredCardId || selectedActiveCardId;
+        if (!targetId) {
+          showToast('💡 复制图片后，请将鼠标悬停在想要配图的卡片上，或点击选中该卡片，再按 ⌘V / Ctrl+V 粘贴！');
+          return;
+        }
+
+        const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+        let imageItem = null;
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf('image') !== -1) {
+            imageItem = items[i];
+            break;
+          }
+        }
+
+        if (!imageItem) {
+          showToast('⚠️ 剪贴板中未检测到图片，请先在 ChatGPT / 网页中右键「复制图片」或截图！');
+          return;
+        }
+
+        const file = imageItem.getAsFile();
+        if (file) {
+          await processAndAttachImage(targetId, file);
+        }
+      });
+    }
+
+    function onCardMouseEnter(id) {
+      hoveredCardId = id;
+    }
+
+    function onCardMouseLeave(id) {
+      if (hoveredCardId === id) hoveredCardId = null;
+    }
+
+    function selectCardForPaste(id) {
+      selectedActiveCardId = id;
+      document.querySelectorAll('.prompt-card').forEach(c => c.classList.remove('focused-target'));
+      const targetCard = document.getElementById(`card-${id}`);
+      if (targetCard) targetCard.classList.add('focused-target');
+      const item = allData.find(d => d.id === id);
+      if (item) {
+        showToast(`🎯 已锁定 #${item.num} 【${item.title}】· 现在直接按 ⌘V / Ctrl+V 即可粘贴参考图！`);
+      }
+    }
+
+    // 将图片文件压缩并转换为合适尺寸的 Data URL
+    function fileToDataUrl(file, maxWidth = 1200, quality = 0.88) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = () => resolve(e.target.result);
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // 核心：处理图片文件并存入 IndexedDB
+    async function processAndAttachImage(itemId, file) {
+      const item = allData.find(d => d.id === itemId);
+      if (!item) return;
+
+      showToast(`⏳ 正在处理并存储参考图至 #${item.num}...`);
+      try {
+        const dataUrl = await fileToDataUrl(file);
+        item.image = dataUrl;
+        await saveImageToDB(itemId, dataUrl);
+
+        // 局部刷新该卡片图像插槽
+        updateCardSlotDOM(item);
+        updateImageStats();
+        showToast(`🎉 成功粘贴参考图至 #${item.num} 【${item.title}】！已永久保存在浏览器`);
+      } catch (err) {
+        console.error(err);
+        showToast('❌ 保存图片失败，请检查后重试');
+      }
+    }
+
+    function updateCardSlotDOM(item) {
+      const slot = document.getElementById(`slot-${item.id}`);
+      if (!slot) return;
+      slot.innerHTML = `
+        <img src="${item.image}" alt="${item.title}" loading="lazy">
+        <div class="card-img-overlay">
+          <button class="overlay-btn" onclick="openLightbox(event, '${item.id}')">🔍 查看全屏大图</button>
+          <button class="overlay-btn" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 选择图片替换</button>
+          <button class="overlay-btn danger" onclick="removeCardImage(event, '${item.id}')">🗑️ 移除图片</button>
+        </div>
+        <div class="card-img-badge active-filled">✓ 已配参考图</div>
+      `;
+    }
+
+    async function removeCardImage(event, itemId) {
+      if (event) event.stopPropagation();
+      const item = allData.find(d => d.id === itemId);
+      if (!item) return;
+
+      if (!confirm(`确定要移除 #${item.num} 【${item.title}】的参考图吗？`)) return;
+
+      item.image = null;
+      await removeImageFromDB(itemId);
+
+      const slot = document.getElementById(`slot-${itemId}`);
+      if (slot) {
+        slot.innerHTML = `
+          <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
+            <div class="card-img-icon">📷</div>
+            <div style="font-size:0.85rem; font-weight:600; color:var(--text-main);">点击上传或直接粘贴</div>
+            <div class="card-paste-guide">📋 鼠标移入后按 ⌘V / Ctrl+V 粘贴</div>
+            <div class="card-img-hint">待出图 · 支持直接用 GPT Image 2.5 生成后复制粘贴</div>
+          </div>
+          <div class="card-img-badge">3:4 · #${item.num}</div>
+        `;
+      }
+      updateImageStats();
+      showToast(`已移除 #${item.num} 的参考图`);
+    }
+
+    // Drag and Drop
+    function handleSlotDragOver(event, itemId) {
+      event.preventDefault();
+      event.stopPropagation();
+      const slot = document.getElementById(`slot-${itemId}`);
+      if (slot) slot.classList.add('drag-over');
+    }
+
+    function handleSlotDragLeave(event, itemId) {
+      event.preventDefault();
+      event.stopPropagation();
+      const slot = document.getElementById(`slot-${itemId}`);
+      if (slot) slot.classList.remove('drag-over');
+    }
+
+    async function handleSlotDrop(event, itemId) {
+      event.preventDefault();
+      event.stopPropagation();
+      const slot = document.getElementById(`slot-${itemId}`);
+      if (slot) slot.classList.remove('drag-over');
+
+      const files = event.dataTransfer.files;
+      if (files && files.length > 0 && files[0].type.indexOf('image') !== -1) {
+        await processAndAttachImage(itemId, files[0]);
+      } else {
+        showToast('⚠️ 请拖入有效的图片文件（JPG/PNG/WEBP）');
+      }
+    }
+
+    // Trigger File Picker fallback
+    let currentCardPickerTargetId = null;
+    function triggerFilePickerForCard(event, itemId) {
+      if (event) event.stopPropagation();
+      currentCardPickerTargetId = itemId;
+      document.getElementById('global-file-input').click();
+    }
+
+    async function handleFileChosen(event) {
+      const file = event.target.files[0];
+      if (!file || !currentCardPickerTargetId) return;
+      await processAndAttachImage(currentCardPickerTargetId, file);
+      event.target.value = '';
+    }
+
+    // ==========================================
+    // 5. 进度统计与数据导出
+    // ==========================================
+    function updateImageStats() {
+      const total = allData.length;
+      const filled = allData.filter(d => !!d.image).length;
+      const none = total - filled;
+      const percent = Math.round((filled / total) * 100);
+
+      document.getElementById('filled-count-badge').textContent = filled;
+      document.getElementById('total-count-badge').textContent = total;
+      document.getElementById('filled-percent-badge').textContent = `${percent}%`;
+      document.getElementById('progress-bar-fill').style.width = `${(filled / total) * 100}%`;
+
+      document.getElementById('has-img-count').textContent = filled;
+      document.getElementById('none-img-count').textContent = none;
+    }
+
+    function exportDataJs() {
+      const content = `// PersonaLens Global Dataset
+// Total Presets: ${allData.length}
+// Exported with user reference images
+const allData = ${JSON.stringify(allData, null, 2)};
+`;
+      const blob = new Blob([content], { type: 'application/javascript;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'data.js';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('💾 已导出最新版 data.js！直接替换仓库根目录 data.js 即可推送到 GitHub Pages');
+    }
+
+    function exportAllImages() {
+      const itemsWithImg = allData.filter(d => d.image);
+      if (itemsWithImg.length === 0) {
+        showToast('⚠️ 当前还没有配过参考图的卡片哦');
+        return;
+      }
+      showToast(`📦 开始逐一下载 ${itemsWithImg.length} 张参考图...`);
+      itemsWithImg.forEach((item, idx) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = item.image;
+          a.download = `${item.id}.jpg`;
+          a.click();
+        }, idx * 180);
+      });
+    }
+
+    async function clearAllCustomImages() {
+      if (!confirm('⚠️ 警告：确定要清空所有本地保存的参考图吗？此操作不可撤销！')) return;
+      await clearAllFromDB();
+      allData.forEach(d => {
+        if (d.id !== 'KR-outfits-001') d.image = null;
+      });
+      renderCards();
+      updateImageStats();
+      showToast('已清空本地图片');
+    }
+
+    // ==========================================
+    // 6. Lightbox 大图全屏预览
+    // ==========================================
+    function openLightbox(event, itemId) {
+      if (event) event.stopPropagation();
+      const item = allData.find(d => d.id === itemId);
+      if (!item || !item.image) return;
+
+      currentLightboxItem = item;
+      document.getElementById('lightbox-img').src = item.image;
+      document.getElementById('lightbox-id').textContent = item.id;
+      document.getElementById('lightbox-cat').textContent = `${item.icon} ${item.category_name}`;
+      document.getElementById('lightbox-title').textContent = `#${item.num} 【${item.title}】`;
+
+      const fieldsEl = document.getElementById('lightbox-fields');
+      fieldsEl.innerHTML = Object.entries(item.fields).filter(([k,v]) => v).map(([k, v]) => `
+        <div class="card-field-row">
+          <span class="card-field-label">${k}:</span>
+          <span>${v}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('lightbox-modal').classList.add('show');
+    }
+
+    function closeLightbox(event) {
+      if (event && event.target !== event.currentTarget && !event.target.classList.contains('lightbox-close')) return;
+      document.getElementById('lightbox-modal').classList.remove('show');
+    }
+
+    function copyLightboxPrompt() {
+      if (!currentLightboxItem) return;
+      navigator.clipboard.writeText(currentLightboxItem.prompt).then(() => {
+        showToast(`✓ #${currentLightboxItem.num} 【${currentLightboxItem.title}】提示词已复制！`);
+      });
+    }
+
+    function triggerReplaceFromLightbox() {
+      if (!currentLightboxItem) return;
+      const itemId = currentLightboxItem.id;
+      closeLightbox();
+      selectCardForPaste(itemId);
+    }
+
+    // Card Actions
     function copyCardPrompt(id) {
       const item = allData.find(d => d.id === id);
       if (!item) return;
@@ -1034,7 +1753,7 @@ Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authent
       toast.classList.add('show');
       setTimeout(() => {
         toast.classList.remove('show');
-      }, 2500);
+      }, 2800);
     }
   </script>
 </body>
