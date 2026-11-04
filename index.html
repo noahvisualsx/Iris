@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册</title>
+  <meta name="description" content="专为 AI 虚拟人打造的工业级跨模型（ChatGPT Image 2.5 / Seedream 5.0 Pro / Gemini）摄影与视觉全矩阵控制系统。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230a0d14' stroke='%2338bdf8' stroke-width='6'/><circle cx='50' cy='50' r='24' fill='none' stroke='%23818cf8' stroke-width='4'/><circle cx='50' cy='50' r='8' fill='%2338bdf8'/></svg>">
+  <script src="data.js"></script>
+  <style>
+    :root {
+      --bg: #090b10;
+      --card-bg: rgba(20, 24, 35, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover: rgba(30, 36, 52, 0.9);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --emerald: #10b981;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.06) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(9, 11, 16, 0.75);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0.85rem 1.5rem;
+    }
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #0ea5e9, #a855f7);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .brand-title {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .brand-title span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.1rem 0.4rem;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .nav-btn.primary {
+      background: linear-gradient(135deg, #0284c7, #7c3aed);
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
+    }
+    .nav-btn.primary:hover {
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 1.75rem;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Mode Tab Switcher */
+    .tab-switcher {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      padding: 0.3rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 9px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: #1e293b;
+      color: var(--text-main);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Container */
+    .main-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem 5rem;
+    }
+
+    /* Section: Mixer Studio */
+    .mixer-studio {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      margin-bottom: 3rem;
+    }
+    .mixer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .mixer-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .mixer-desc {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+    .mixer-tools {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    /* 8-Tracks Selector Grid */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .track-col {
+      background: rgba(10, 14, 22, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 0.85rem;
+      transition: all 0.2s ease;
+    }
+    .track-col:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    .track-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .track-select {
+      width: 100%;
+      background: #111624;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      outline: none;
+      cursor: pointer;
+    }
+    .track-select:focus {
+      border-color: var(--accent);
+    }
+
+    /* Output Console */
+    .console-box {
+      background: #06080d;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 1.25rem;
+      position: relative;
+    }
+    .console-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+    .model-pills {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .model-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .model-pill.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .console-content {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-all;
+      min-height: 120px;
+      max-height: 240px;
+      overflow-y: auto;
+      padding: 0.5rem;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+    }
+    .console-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+      color: #030712;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+      transition: all 0.2s ease;
+    }
+    .copy-btn:hover {
+      box-shadow: 0 4px 22px rgba(14, 165, 233, 0.6);
+      transform: translateY(-1px);
+    }
+
+    /* Section: Matrix Explorer */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .cat-btn {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+    .cat-btn.active, .cat-btn:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+    .search-box {
+      position: relative;
+      min-width: 260px;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      padding: 0.5rem 1rem 0.5rem 2.2rem;
+      border-radius: 9999px;
+      color: var(--text-main);
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .search-icon {
+      position: absolute;
+      left: 0.8rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    /* Grid of Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .prompt-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(10px);
+    }
+    .prompt-card:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Image Preview Slot (支持后面每条提示词带参考图) */
+    .card-img-slot {
+      aspect-ratio: 3 / 4;
+      background: #0b0f19;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--card-border);
+      color: var(--text-dim);
+    }
+    .card-img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card-img-slot:hover img {
+      transform: scale(1.03);
+    }
+    .card-img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .card-img-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+    .card-img-hint {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .card-img-badge {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Card Body */
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+    .card-id-tag {
+      font-size: 0.75rem;
+      font-family: ui-monospace, monospace;
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.1);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+    .card-cat-tag {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+    .card-fields {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+    }
+    .card-field-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    .card-field-label {
+      color: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    .card-foot {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      gap: 0.5rem;
+    }
+    .card-btn {
+      flex: 1;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 7px;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+    }
+    .card-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .header-inner { flex-direction: column; gap: 0.75rem; }
+      .tracks-grid { grid-template-columns: repeat(2, 1fr); }
+      .console-head { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header>
+    <div class="header-inner">
+      <a href="#" class="brand">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m4.93 4.93 4.24 4.24"></path>
+            <path d="m14.83 9.17 4.24-4.24"></path>
+            <path d="m14.83 14.83 4.24 4.24"></path>
+            <path d="m9.17 14.83-4.24 4.24"></path>
+            <circle cx="12" cy="12" r="4"></circle>
+          </svg>
+        </div>
+        <div class="brand-title">
+          PersonaLens <span>拟像之镜</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <button class="nav-btn" onclick="scrollToMixer()">🎛️ 八轨调音台</button>
+        <button class="nav-btn" onclick="scrollToMatrix()">📚 图谱库 (<span id="total-badge">600</span>)</button>
+        <a href="https://github.com/noahvisualsx/PersonaLens" target="_blank" class="nav-btn primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+          GitHub 源码
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span>✨ 全球首个 AI 虚拟人全矩阵摄影控制系统</span>
+    </div>
+    <h1>PersonaLens (拟像之镜)</h1>
+    <p>
+      为 AI 虚拟人打造的工业级视觉调音台。彻底解耦人物骨相、光学滤镜、肢体动作、穿搭材质、微表情与随身道具，适配 <strong>ChatGPT (Image 2.5)</strong>、<strong>Seedream 5.0 Pro</strong> 与 <strong>Gemini</strong>。
+    </p>
+
+    <div class="tab-switcher">
+      <button class="tab-btn active" id="btn-tab-mixer" onclick="switchView('mixer')">🎛️ 八轨混音台 (Studio Mixer)</button>
+      <button class="tab-btn" id="btn-tab-matrix" onclick="switchView('matrix')">📚 视觉全要素图谱 (600+)</button>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="main-wrap">
+
+    <!-- View 1: Mixer Studio -->
+    <section class="mixer-studio" id="view-mixer">
+      <div class="mixer-header">
+        <div>
+          <div class="mixer-title">
+            <span>🎛️ 韩国篇 · 八轨全矩阵调音台</span>
+          </div>
+          <div class="mixer-desc">像音乐人推拉推子一样，自由选择 8 个维度的预设，实时编译合成出绝对真实的生图指令。</div>
+        </div>
+        <div class="mixer-tools">
+          <button class="nav-btn" onclick="randomMix()">🎲 随机灵感激发</button>
+          <button class="nav-btn" onclick="resetMixer()">重置预设</button>
+        </div>
+      </div>
+
+      <!-- 8 Track Selectors -->
+      <div class="tracks-grid">
+        <div class="track-col">
+          <div class="track-label"><span>1. 滤镜光学</span><span>📷</span></div>
+          <select class="track-select" id="select-filters" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>2. 拍照姿势</span><span>🧍</span></div>
+          <select class="track-select" id="select-poses" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>3. 穿搭面料</span><span>👗</span></div>
+          <select class="track-select" id="select-outfits" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>4. 丝袜腿饰</span><span>🧦</span></div>
+          <select class="track-select" id="select-hosiery" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>5. 风格场景</span><span>🏙️</span></div>
+          <select class="track-select" id="select-styles" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>6. 发型妆容</span><span>💄</span></div>
+          <select class="track-select" id="select-hair_makeup" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>7. 神态表情</span><span>👁️</span></div>
+          <select class="track-select" id="select-expressions" onchange="compileLivePrompt()"></select>
+        </div>
+        <div class="track-col">
+          <div class="track-label"><span>8. 道具美甲</span><span>☕</span></div>
+          <select class="track-select" id="select-props" onchange="compileLivePrompt()"></select>
+        </div>
+      </div>
+
+      <!-- Output Live Console -->
+      <div class="console-box">
+        <div class="console-head">
+          <div style="font-size:0.8rem; font-weight:600; color:var(--accent);">⚡ 实时编译输出 (COMPILER OUTPUT)</div>
+          <div class="model-pills">
+            <button class="model-pill active" onclick="setModel('chatgpt')">ChatGPT (Image 2.5)</button>
+            <button class="model-pill" onclick="setModel('seedream')">Seedream 5.0 Pro (豆包)</button>
+            <button class="model-pill" onclick="setModel('gemini')">Gemini (Imagen 3)</button>
+          </div>
+        </div>
+        <div class="console-content" id="live-prompt-text">正在编译提示词...</div>
+        <div class="console-foot">
+          <div style="font-size:0.75rem; color:var(--text-dim);">💡 复制后可直接粘贴至对应大模型出图，每条均已注入人物锚点与真实微质感。</div>
+          <button class="copy-btn" onclick="copyLivePrompt()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            一键复制提示词
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- View 2: Matrix Explorer -->
+    <section class="matrix-explorer" id="view-matrix" style="display:none;">
+      <!-- Filter and Search Bar -->
+      <div class="filter-bar">
+        <div class="category-pills" id="category-pills">
+          <button class="cat-btn active" onclick="filterCategory('all')">全部 (600)</button>
+          <button class="cat-btn" onclick="filterCategory('filters')">📷 滤镜 (100)</button>
+          <button class="cat-btn" onclick="filterCategory('poses')">🧍 姿势 (100)</button>
+          <button class="cat-btn" onclick="filterCategory('outfits')">👗 穿搭 (100)</button>
+          <button class="cat-btn" onclick="filterCategory('hosiery')">🧦 丝袜 (50)</button>
+          <button class="cat-btn" onclick="filterCategory('styles')">🏙️ 风格 (100)</button>
+          <button class="cat-btn" onclick="filterCategory('hair_makeup')">💄 妆发 (50)</button>
+          <button class="cat-btn" onclick="filterCategory('expressions')">👁️ 神态 (50)</button>
+          <button class="cat-btn" onclick="filterCategory('props')">☕ 道具 (50)</button>
+        </div>
+
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" id="search-input" placeholder="搜索机型、穿搭、黑丝、卧蚕..." oninput="filterSearch()">
+        </div>
+      </div>
+
+      <!-- Card List Grid -->
+      <div class="cards-grid" id="cards-container"></div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span style="color:#10b981;">✓</span>
+    <span id="toast-text">已成功复制提示词！</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>PersonaLens (拟像之镜) · 全球虚拟人摄影全矩阵开源手册</p>
+    <p style="margin-top:0.4rem; font-size:0.8rem; color:#475569;">
+      Created by <a href="https://github.com/noahvisualsx" target="_blank" style="color:#94a3b8; text-decoration:none;">@noahvisualsx</a> • Open Source under MIT License
+    </p>
+  </footer>
+
+  <script>
+    // State
+    const allData = window.PERSONA_DATA || [];
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let currentModel = 'chatgpt';
+
+    const trackKeys = ['filters', 'poses', 'outfits', 'hosiery', 'styles', 'hair_makeup', 'expressions', 'props'];
+    const trackNames = {
+      filters: '滤镜光学',
+      poses: '拍照姿势',
+      outfits: '穿搭面料',
+      hosiery: '丝袜腿饰',
+      styles: '风格场景',
+      hair_makeup: '发型妆容',
+      expressions: '神态表情',
+      props: '道具美甲'
+    };
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      initMixerDropdowns();
+      renderCards();
+      compileLivePrompt();
+    });
+
+    // Populate Mixer Dropdowns
+    function initMixerDropdowns() {
+      trackKeys.forEach(key => {
+        const select = document.getElementById(`select-${key}`);
+        if (!select) return;
+        const items = allData.filter(d => d.category_id === key);
+        select.innerHTML = items.map((item, idx) => `
+          <option value="${item.id}" ${idx === 0 ? 'selected' : ''}>#${item.num} ${item.title}</option>
+        `).join('');
+      });
+    }
+
+    // Switch View Tab
+    function switchView(view) {
+      const mixerSec = document.getElementById('view-mixer');
+      const matrixSec = document.getElementById('view-matrix');
+      const btnMixer = document.getElementById('btn-tab-mixer');
+      const btnMatrix = document.getElementById('btn-tab-matrix');
+
+      if (view === 'mixer') {
+        mixerSec.style.display = 'block';
+        matrixSec.style.display = 'none';
+        btnMixer.classList.add('active');
+        btnMatrix.classList.remove('active');
+      } else {
+        mixerSec.style.display = 'none';
+        matrixSec.style.display = 'block';
+        btnMixer.classList.remove('active');
+        btnMatrix.classList.add('active');
+        renderCards();
+      }
+    }
+
+    function scrollToMixer() {
+      switchView('mixer');
+      document.getElementById('view-mixer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollToMatrix() {
+      switchView('matrix');
+      document.getElementById('view-matrix').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Compile Prompt from 8 Tracks
+    function compileLivePrompt() {
+      const selected = {};
+      trackKeys.forEach(key => {
+        const select = document.getElementById(`select-${key}`);
+        if (select) {
+          const item = allData.find(d => d.id === select.value);
+          selected[key] = item;
+        }
+      });
+
+      const f = selected.filters;
+      const p = selected.poses;
+      const o = selected.outfits;
+      const h = selected.hosiery;
+      const s = selected.styles;
+      const hm = selected.hair_makeup;
+      const e = selected.expressions;
+      const pr = selected.props;
+
+      let prompt = "";
+
+      if (currentModel === 'chatgpt') {
+        prompt = `A candid photographic masterpiece of a 22-year-old East Asian female with porcelain cool-white skin. 
+Hair & Makeup: ${hm ? hm.title : 'sleek black hair with wispy see-through bangs, dewy glass skin with soft peach blush and glossy glaze lips'}. 
+Expression & Gaze: ${e ? e.title : 'aloof and calm micro-expression with eyes looking 15 degrees off-camera, pinpoint catchlight reflection in pupils'}.
+Outfit & Garments: ${o ? o.title : 'Korean minimalist tailored blazer layered over a clean ribbed top'}. 
+Legwear: ${h ? h.title : '10D ultra-sheer black hosiery with subtle skin translucency at knees and ankles'}.
+Pose & Dynamics: ${p ? p.title : 'holding smartphone with both hands casually covering lower face for a mirror selfie'}.
+Hand Props & Details: ${pr ? pr.title : 'holding an iced americano plastic cup with condensed water droplets'}.
+Setting & Lighting: ${s ? s.title : 'Seongsu-dong raw concrete minimalist cafe'}. 
+Optical & Camera: ${f ? f.title : 'vintage compact CCD camera with on-axis harsh direct flash, crisp fall-off drop shadows'}. 
+Authentic raw skin pores, fine flyaway baby hairs, natural nylon stocking tension, unposed lifestyle candid realism, vertical 3:4 portrait.`;
+      } else if (currentModel === 'seedream') {
+        prompt = `（参考垫图：上传标准母图），1位22岁年轻女性，冷白皮清冷脸。发型妆容：${hm ? hm.title : '空气八字刘海，饱满珠光卧蚕，水润玻璃唇'}。神态：${e ? e.title : '视线偏离镜头15度，眼神空灵平静'}。穿搭造型：${o ? o.title : '韩系极简风格'}，腿部搭配：${h ? h.title : '10D超薄极透蝉翼黑丝'}。动作与姿态：${p ? p.title : '对镜自拍'}，手部道具细节：${pr ? pr.title : '手里拿冰美式塑料杯'}。场景与光线：${s ? s.title : '首尔极简室内'}，光学质感：${f ? f.title : '千禧CCD机顶直闪'}。真实皮肤毛孔与微小质感，无美颜滤镜，真实生动，3:4`;
+      } else {
+        prompt = `Photorealistic 35mm candid portrait of a 22-year-old East Asian female.
+Features & Face: ${hm ? hm.title : 'Porcelain cool-white complexion, natural flyaway baby hair, subtle dewy glow, glossy glazed lips'}.
+Eye Dynamics: ${e ? e.title : 'Calm, detached expression, subtle catchlight reflections in dark iris'}.
+Wardrobe & Textiles: ${o ? o.title : 'Structured Korean tailored garments'}, legwear: ${h ? h.title : '10D sheer stockings'}.
+Pose & Spatial: ${p ? p.title : 'Casual unposed mirror selfie framing'}.
+Props: ${pr ? pr.title : 'Holding iced beverage with condensation droplets'}.
+Atmosphere: ${s ? s.title : 'Modern Seoul architectural environment'}.
+Optics: ${f ? f.title : 'Compact flash illumination, crisp drop shadows, authentic sensor noise, 3:4 aspect ratio'}.`;
+      }
+
+      document.getElementById('live-prompt-text').textContent = prompt;
+    }
+
+    function setModel(model) {
+      currentModel = model;
+      document.querySelectorAll('.model-pill').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      compileLivePrompt();
+    }
+
+    function randomMix() {
+      trackKeys.forEach(key => {
+        const select = document.getElementById(`select-${key}`);
+        if (!select) return;
+        const count = select.options.length;
+        const randomIdx = Math.floor(Math.random() * count);
+        select.selectedIndex = randomIdx;
+      });
+      compileLivePrompt();
+      showToast('🎲 已随机混音生成全新配方！');
+    }
+
+    function resetMixer() {
+      trackKeys.forEach(key => {
+        const select = document.getElementById(`select-${key}`);
+        if (select) select.selectedIndex = 0;
+      });
+      compileLivePrompt();
+      showToast('已重置回经典预设');
+    }
+
+    function copyLivePrompt() {
+      const text = document.getElementById('live-prompt-text').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✓ 提示词已复制！可直接发送给 ChatGPT (Image 2.5)');
+      });
+    }
+
+    // Matrix Explorer Rendering
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      renderCards();
+    }
+
+    function filterSearch() {
+      currentSearch = document.getElementById('search-input').value.toLowerCase().trim();
+      renderCards();
+    }
+
+    function renderCards() {
+      const container = document.getElementById('cards-container');
+      if (!container) return;
+
+      let filtered = allData;
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(d => d.category_id === currentCategory);
+      }
+      if (currentSearch) {
+        filtered = filtered.filter(d => 
+          d.title.toLowerCase().includes(currentSearch) ||
+          d.id.toLowerCase().includes(currentSearch) ||
+          d.prompt.toLowerCase().includes(currentSearch) ||
+          Object.values(d.fields).some(v => v.toLowerCase().includes(currentSearch))
+        );
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <div class="prompt-card" id="card-${item.id}">
+          <!-- Reference Image Slot (后面每个提示词有一张参考图) -->
+          <div class="card-img-slot">
+            ${item.image ? `
+              <img src="${item.image}" alt="${item.title}" loading="lazy">
+            ` : `
+              <div class="card-img-placeholder">
+                <div class="card-img-icon">📷</div>
+                <div style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">参考图插槽</div>
+                <div class="card-img-hint">待生成 · 支持直接用 GPT Image 2.5 出图</div>
+              </div>
+            `}
+            <div class="card-img-badge">3:4 · #${item.num}</div>
+          </div>
+
+          <!-- Body -->
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-id-tag">${item.id}</span>
+              <span class="card-cat-tag">${item.icon} ${item.category_name}</span>
+            </div>
+            <div class="card-title">#${item.num} 【${item.title}】</div>
+
+            <div class="card-fields">
+              ${Object.entries(item.fields).map(([k, v]) => `
+                <div class="card-field-row">
+                  <span class="card-field-label">${k}:</span>
+                  <span>${v}</span>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="card-foot">
+              <button class="card-btn" onclick="copyCardPrompt('${item.id}')">
+                <span>📋</span> 复制提示词
+              </button>
+              <button class="card-btn" onclick="useInMixer('${item.category_id}', '${item.id}')">
+                <span>🎛️</span> 加入调音台
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function copyCardPrompt(id) {
+      const item = allData.find(d => d.id === id);
+      if (!item) return;
+      navigator.clipboard.writeText(item.prompt).then(() => {
+        showToast(`✓ #${item.num} 【${item.title}】提示词已复制！`);
+      });
+    }
+
+    function useInMixer(catId, itemId) {
+      const select = document.getElementById(`select-${catId}`);
+      if (select) {
+        select.value = itemId;
+        scrollToMixer();
+        compileLivePrompt();
+        showToast(`🎛️ 已加载至调音台【${trackNames[catId] || catId}】轨道`);
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
