@@ -650,13 +650,36 @@
       inset: 0;
       width: 100%;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f13;
+      overflow: hidden;
+    }
+    .card-media-backdrop {
+      position: absolute;
+      inset: -24px;
+      background-size: cover;
+      background-position: center;
+      filter: blur(28px) brightness(0.38);
+      opacity: 0.65;
+      transform: scale(1.15);
+      pointer-events: none;
+      z-index: 1;
     }
     .card-media-layer img {
+      position: relative;
+      max-width: 100%;
+      max-height: 100%;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* 100% 完整原图展示，彻底杜绝任何边缘文字、标尺与图表裁切 */
       display: block;
-      transition: transform 0.4s var(--ease-out);
+      z-index: 2;
+      transition: transform 0.35s var(--ease-out);
+    }
+    .card-media-layer.mode-cover img {
+      object-fit: cover !important;
     }
     .card-img-slot:hover .card-media-layer img {
       transform: scale(1.02);
@@ -1366,7 +1389,7 @@
         <div class="studio-stat-group">
           <div class="studio-progress-pill">
             <span>双图总覆盖:</span>
-            <span id="filled-count-badge" style="color:var(--ink); font-weight:700;">0</span> / <span id="total-count-badge">1220</span>
+            <span id="filled-count-badge" style="color:var(--ink); font-weight:700;">0</span> / <span id="total-count-badge">1320</span>
             <div class="progress-bar-wrap">
               <div class="progress-bar-fill" id="progress-bar-fill"></div>
             </div>
@@ -2087,22 +2110,24 @@
 
             <!-- Top-Right Badge -->
             <div class="card-img-badge-float" id="badge-${item.id}">
-              ${currentImg ? '<span class="badge-dot-green"></span>✓ 已配图' : (activeTab === 'fit' ? '3:4 · 上身' : '3:4 · 单品')}
+              ${currentImg ? '<span class="badge-dot-green"></span>✓ 已配图' : (activeTab === 'fit' ? '3:4 · 上身' : '1:1 · 单品解构')}
             </div>
 
-            <!-- Media Layer -->
+            <!-- Media Layer (100% 完整无裁切展示) -->
             <div class="card-media-layer" id="media-layer-${item.id}">
               ${currentImg ? `
+                <div class="card-media-backdrop" style="background-image: url('${currentImg}');"></div>
                 <img src="${currentImg}" alt="${item.title}" loading="lazy">
                 <div class="card-img-hover-bar">
                   <button class="glass-pill-btn" onclick="openLightbox(event, '${item.id}', '${activeTab}')">🔍 全屏大图</button>
+                  <button class="glass-pill-btn secondary" onclick="toggleCardFitMode(event, '${item.id}')" title="切换完整无裁切 / 铺满画面">↔️ 完整/铺满</button>
                   <button class="glass-pill-btn secondary" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 替换</button>
                   <button class="glass-pill-btn danger" onclick="removeCardImage(event, '${item.id}')" title="移除当前图片">✕</button>
                 </div>
               ` : `
                 <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
                   <div class="card-img-icon">${activeTab === 'fit' ? '💃' : '📦'}</div>
-                  <div class="placeholder-title">待配${activeTab === 'fit' ? '真人上身效果图' : '单品形态/平铺图'}</div>
+                  <div class="placeholder-title">待配${activeTab === 'fit' ? '真人上身效果图 (3:4)' : '微表情解构图谱/单品标本 (1:1)'}</div>
                   <div class="card-paste-guide">⌘V 直接粘贴 · 或点击上传</div>
                 </div>
               `}
@@ -2291,9 +2316,11 @@
 
       if (currentImg) {
         mediaLayer.innerHTML = `
+          <div class="card-media-backdrop" style="background-image: url('${currentImg}');"></div>
           <img src="${currentImg}" alt="${item.title}" loading="lazy">
           <div class="card-img-hover-bar">
             <button class="glass-pill-btn" onclick="openLightbox(event, '${item.id}', '${activeTab}')">🔍 全屏大图</button>
+            <button class="glass-pill-btn secondary" onclick="toggleCardFitMode(event, '${item.id}')" title="切换完整无裁切 / 铺满画面">↔️ 完整/铺满</button>
             <button class="glass-pill-btn secondary" onclick="triggerFilePickerForCard(event, '${item.id}')">📁 替换</button>
             <button class="glass-pill-btn danger" onclick="removeCardImage(event, '${item.id}')" title="移除当前图片">✕</button>
           </div>
@@ -2302,7 +2329,7 @@
         mediaLayer.innerHTML = `
           <div class="card-img-placeholder" onclick="triggerFilePickerForCard(event, '${item.id}')">
             <div class="card-img-icon">${activeTab === 'fit' ? '💃' : '📦'}</div>
-            <div class="placeholder-title">待配${activeTab === 'fit' ? '真人上身效果图' : '单品形态/平铺图'}</div>
+            <div class="placeholder-title">待配${activeTab === 'fit' ? '真人上身效果图 (3:4)' : '微表情解构图谱/单品标本 (1:1)'}</div>
             <div class="card-paste-guide">⌘V 直接粘贴 · 或点击上传</div>
           </div>
         `;
@@ -2311,10 +2338,18 @@
       if (badge) {
         badge.innerHTML = currentImg 
           ? '<span class="badge-dot-green"></span>✓ 已配图' 
-          : (activeTab === 'fit' ? '3:4 · 上身' : '3:4 · 单品');
+          : (activeTab === 'fit' ? '3:4 · 上身' : '1:1 · 单品解构');
       }
 
       updateCardTabsDOM(item);
+    }
+
+    function toggleCardFitMode(event, itemId) {
+      if (event) event.stopPropagation();
+      const layer = document.getElementById(`media-layer-${itemId}`);
+      if (!layer) return;
+      const isCover = layer.classList.toggle('mode-cover');
+      showToast(isCover ? '已切换为：铺满裁剪模式' : '✓ 已恢复：100% 完整原图展示（无裁切）');
     }
 
     async function removeCardImage(event, itemId) {
@@ -2410,15 +2445,27 @@
       const filledSlots = fitCount + prodCount;
       const percent = Math.round((filledSlots / totalSlots) * 100);
 
-      const percentEl = document.getElementById('studio-percent');
-      const barEl = document.getElementById('studio-progress-fill');
-      const statEl = document.getElementById('studio-stat-detail');
+      const percentEl = document.getElementById('filled-percent-badge');
+      const barEl = document.getElementById('progress-bar-fill');
+      const filledEl = document.getElementById('filled-count-badge');
+      const totalEl = document.getElementById('total-count-badge');
 
       if (percentEl) percentEl.textContent = `${percent}%`;
       if (barEl) barEl.style.width = `${percent}%`;
-      if (statEl) {
-        statEl.innerHTML = `已配 <strong>${filledSlots}</strong> / ${totalSlots} 槽位（双图齐备: <strong>${bothCount}</strong> 条 · 上身: <strong>${fitCount}</strong> · 单品: <strong>${prodCount}</strong>）`;
-      }
+      if (filledEl) filledEl.textContent = filledSlots;
+      if (totalEl) totalEl.textContent = totalSlots;
+
+      const bothEl = document.getElementById('both-img-count');
+      const hasEl = document.getElementById('has-img-count');
+      const fitEl = document.getElementById('fit-img-count');
+      const prodEl = document.getElementById('prod-img-count');
+      const noneEl = document.getElementById('none-img-count');
+
+      if (bothEl) bothEl.textContent = bothCount;
+      if (hasEl) hasEl.textContent = anyCount;
+      if (fitEl) fitEl.textContent = fitCount;
+      if (prodEl) prodEl.textContent = prodCount;
+      if (noneEl) noneEl.textContent = total - anyCount;
     }
 
     function exportDataJs() {
