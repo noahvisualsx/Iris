@@ -16,8 +16,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#iv-3大モデルコンパイラ仕様)
-[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#iii-5カ国全方位ビジュアルデータベース-the-5-country-matrix)
-[![Korea](https://img.shields.io/badge/Korea%20(韩国)-660%20Presets-blue.svg)](韩国/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3315%20Dual--Image%20Prompts-success.svg)](#iii-5カ国全方位ビジュアルデータベース-the-5-country-matrix)
+[![Korea](https://img.shields.io/badge/Korea%20(韩国)-675%20Presets-blue.svg)](韩国/README.md)
 [![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
 [![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
 [![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
@@ -105,7 +105,7 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ## III. 5カ国全マトリクス視覚データベース (The 5-Country Matrix)
 
-当システムは、世界5大主要エリアの**3,300件に及ぶ産業級クロスモデル・プロンプトプリセット**を完全構築・納品済みです（国ごとに8大支柱、デュアル画像アーキテクチャに基づく660件の無損失プリセット、計6,600枚の視覚標本と13,200組の独立プロンプトコードブロック）。以下の表より、各国の全量データベースへ直接アクセスいただけます：
+当システムは、世界5大主要エリアの**3,315件に及ぶ産業級クロスモデル・プロンプトプリセット**を完全構築・納品済みです（国ごとに8大支柱、デュアル画像アーキテクチャに基づく660件の無損失プリセット、計6,600枚の視覚標本と13,200組の独立プロンプトコードブロック）。以下の表より、各国の全量データベースへ直接アクセスいただけます：
 
 | 国 / 地域 | 美学の核心とビジュアルDNA | プリセット規模 | 8大支柱の構成 | 全量データベースへのリンク |
 | :--- | :--- | :--- | :--- | :--- |

@@ -16,8 +16,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#iv-cross-model-compiler-specifications)
-[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#iii-the-5-country-visual-matrix)
-[![Korea](https://img.shields.io/badge/Korea%20(韩国)-660%20Presets-blue.svg)](韩国/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3315%20Dual--Image%20Prompts-success.svg)](#iii-the-5-country-visual-matrix)
+[![Korea](https://img.shields.io/badge/Korea%20(韩国)-675%20Presets-blue.svg)](韩国/README.md)
 [![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
 [![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
 [![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
@@ -40,7 +40,7 @@ Solving the ultimate engineering challenges in AI portraiture: *"changing filter
   - [1. Master Reference Sheet Standard](#1-master-reference-sheet-standard)
   - [2. Universal Master Sheet Prompt Block](#2-universal-master-sheet-prompt-block)
 - [III. The 5-Country Complete Visual Database](#iii-the-5-country-complete-visual-database)
-  - [🇰🇷 1. Korea Edition · 660 Presets Full Database 📂](韩国/README.md) ([Preview](#1-korea-edition--muted-porcelain-effortless-chic-y2k-ccd-grain))
+  - [🇰🇷 1. Korea) · 675 Presets Full Database 📂](韩国/README.md) ([Preview](#1-korea-edition--muted-porcelain-effortless-chic-y2k-ccd-grain))
   - [🇯🇵 2. Japan Edition · 660 Presets Full Database 📂](日本/README.md) ([Preview](#2-japan-edition--komorebi-airiness-everyday-life-fragments-city-girl-35mm))
   - [🇨🇳 3. China Edition · 660 Presets Full Database 📂](中国/README.md) ([Preview](#3-china-edition--neo-chinese-quiet-luxury-sculptural-bone-structure-direct-night-flash))
   - [🇺🇸 4. USA Edition · 660 Presets Full Database 📂](美国/README.md) ([Preview](#4-usa-edition--golden-hour-flare-clean-girl-uninhibited-street-energy))
@@ -105,11 +105,11 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ## III. The 5-Country Complete Visual Database
 
-Iris has completely delivered **3,300 industrial-grade cross-model prompt presets** across the world's 5 major visual regions (8 pillars per country, 660 presets per country with dual-image architecture, totaling 6,600 reference specimens and 13,200 prompt code blocks). Click below to access each country's full database:
+Iris has completely delivered **3,315 industrial-grade cross-model prompt presets** across the world's 5 major visual regions (8 pillars per country, 660 presets per country with dual-image architecture, totaling 6,600 reference specimens and 13,200 prompt code blocks). Click below to access each country's full database:
 
 | Region | Aesthetic DNA & Philosophy | Preset Scale | 8-Pillar Structure | Full Database Direct Link |
 | :--- | :--- | :--- | :--- | :--- |
-| 🇰🇷 **Korea Edition** | Muted porcelain, effortless chic, Y2K CCD grain | **660 Presets** | 100 Outfits / 100 Filters / 100 Poses / 100 Expressions / 100 Styles / 60 Hosiery / 50 Hair & Makeup / 50 Props & Nails | [📂 **Enter Korea Matrix (韩国/README.md)**](韩国/README.md) |
+| 🇰🇷 **Korea) · 675 Presets** | 100 Outfits / 100 Filters / 100 Poses / 100 Expressions / 100 Styles / 60 Hosiery / 50 Hair & Makeup / 50 Props & Nails | [📂 **Enter Korea Matrix (韩国/README.md)**](韩国/README.md) |
 | 🇯🇵 **Japan Edition** | Komorebi airiness, daily fragments, City Girl 35mm | **660 Presets** | 100 Outfits / 100 Filters / 100 Poses / 100 Expressions / 100 Styles / 60 Hosiery / 50 Hair & Makeup / 50 Props & Nails | [📂 **Enter Japan Matrix (日本/README.md)**](日本/README.md) |
 | 🇨🇳 **China Edition** | Neo-Chinese quiet luxury, sculptural bone structure | **660 Presets** | 100 Outfits / 100 Filters / 100 Poses / 100 Expressions / 100 Styles / 60 Hosiery / 50 Hair & Makeup / 50 Props & Nails | [📂 **Enter China Matrix (中国/README.md)**](中国/README.md) |
 | 🇺🇸 **USA Edition** | Golden hour flare, Clean Girl, street freedom | **660 Presets** | 100 Outfits / 100 Filters / 100 Poses / 100 Expressions / 100 Styles / 60 Hosiery / 50 Hair & Makeup / 50 Props & Nails | [📂 **Enter USA Matrix (美国/README.md)**](美国/README.md) |

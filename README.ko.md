@@ -16,8 +16,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#iv-3대-ai-모델-컴파일러-규격)
-[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#iii-5개국-전방위-비주얼-데이터베이스-the-5-country-matrix)
-[![Korea](https://img.shields.io/badge/Korea%20(한국)-660%20Presets-blue.svg)](韩国/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3315%20Dual--Image%20Prompts-success.svg)](#iii-5개국-전방위-비주얼-데이터베이스-the-5-country-matrix)
+[![Korea](https://img.shields.io/badge/Korea%20(韩国)-675%20Presets-blue.svg)](韩国/README.md)
 [![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
 [![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
 [![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
@@ -40,7 +40,7 @@
   - [1. 표준 마스터 시트 규격 (Master Sheet Standard)](#1-표준-마스터-시트-규격-master-sheet-standard)
   - [2. 범용 마스터 시트 프롬프트 코드 블록](#2-범용-마스터-시트-프롬프트-코드-블록)
 - [III. 5개국 전 매트릭스 시각 데이터베이스 (The 5-Country Matrix)](#iii-5개국-전-매트릭스-시각-데이터베이스)
-  - [🇰🇷 1. 한국편 (Korea) · 660개 전체 매트릭스 데이터베이스 📂](韩国/README.md) ([요약 보기](#1-한국편-korea--쿨톤-백옥-피부-꾸안꾸-무드-y2k-ccd-노이즈))
+  - [🇰🇷 1. 한국편 (Korea) · 675개 전체 매트릭스 데이터베이스 📂](韩国/README.md) ([요약 보기](#1-한국편-korea--쿨톤-백옥-피부-꾸안꾸-무드-y2k-ccd-노이즈))
   - [🇯🇵 2. 일본편 (Japan) · 660개 전체 매트릭스 데이터베이스 📂](日本/README.md) ([요약 보기](#2-일본편-japan--코모레비-감성-일상의-조각-시티걸-35mm-필름))
   - [🇨🇳 3. 중국편 (China) · 660개 전체 매트릭스 데이터베이스 📂](中国/README.md) ([요약 보기](#3-중국편-china--신중식-콰이어트-럭셔리-또렷한-골격미-야간-직광-플래시))
   - [🇺🇸 4. 미국편 (USA) · 660개 전체 매트릭스 데이터베이스 📂](美国/README.md) ([요약 보기](#4-미국편-usa--캘리포니아-골든아워-클린걸-자유분방한-스트리트))
@@ -105,11 +105,11 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ## III. 5개국 전 매트릭스 시각 데이터베이스 (The 5-Country Matrix)
 
-본 시스템은 전 세계 5대 핵심 국가/지역의 **3,300개 산업급 크로스 모델 프롬프트 프리셋**을 완전 구축하여 인도하였습니다 (국가당 8대 핵심 기둥, 듀얼 이미지 아키텍처 기반 660개 무손실 프리셋, 총 6,600장 시각 표본 및 13,200개 독립 프롬프트 코드 블록). 아래 표에서 원하는 국가의 전체 데이터베이스로 바로 이동할 수 있습니다:
+본 시스템은 전 세계 5대 핵심 국가/지역의 **3,315개 산업급 크로스 모델 프롬프트 프리셋**을 완전 구축하여 인도하였습니다 (국가당 8대 핵심 기둥, 듀얼 이미지 아키텍처 기반 660개 무손실 프리셋, 총 6,600장 시각 표본 및 13,200개 독립 프롬프트 코드 블록). 아래 표에서 원하는 국가의 전체 데이터베이스로 바로 이동할 수 있습니다:
 
 | 국가 / 지역 | 미학 핵심 및 비주얼 DNA | 프리셋 규모 | 8대 핵심 기둥 구성 | 전체 데이터베이스 바로가기 |
 | :--- | :--- | :--- | :--- | :--- |
-| 🇰🇷 **한국편 (Korea)** | 쿨톤 백옥 피부 · 꾸안꾸 무드 · 성수동 미니멀 입자 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **한국 전체 매트릭스 (韩国/README.md)**](韩国/README.md) |
+| 🇰🇷 **한국편 (Korea) · 675개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **한국 전체 매트릭스 (韩国/README.md)**](韩国/README.md) |
 | 🇯🇵 **일본편 (Japan)** | 코모레비 공기감 · 일상의 단편 · 시티걸 35mm 필름 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **일본 전체 매트릭스 (日本/README.md)**](日本/README.md) |
 | 🇨🇳 **중국편 (China)** | 신중식 콰이어트 럭셔리 · 또렷한 골격미 · 야간 직광 플래시 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **중국 전체 매트릭스 (中国/README.md)**](中国/README.md) |
 | 🇺🇸 **미국편 (USA)** | 캘리포니아 골든아워 · 클린걸 · 자유분방한 스트리트 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **미국 전체 매트릭스 (美国/README.md)**](美国/README.md) |

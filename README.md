@@ -16,8 +16,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
-[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#三-五国全矩阵视觉数据库)
-[![Korea](https://img.shields.io/badge/Korea%20(韩国)-660%20Presets-blue.svg)](韩国/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3315%20Dual--Image%20Prompts-success.svg)](#三-五国全矩阵视觉数据库)
+[![Korea](https://img.shields.io/badge/Korea%20(韩国)-675%20Presets-blue.svg)](韩国/README.md)
 [![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
 [![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
 [![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
@@ -38,7 +38,7 @@
 - [一、 核心架构：四维解耦控制体系 (4D Decoupled Control)](#一-核心架构四维解耦控制体系)
 - [二、 虚拟人锁脸与身份保真度工程规范 (ID Anchoring)](#二-虚拟人锁脸与身份保真度工程规范)
 - [三、 五国全矩阵视觉数据库 (The 5-Country Matrix)](#三-五国全矩阵视觉数据库)
-  - [🇰🇷 1. 韩国篇 (Korea) · 660套全量矩阵数据库 📂](韩国/README.md)（[章节速览](#1-韩国篇-korea--冷白皮极简松弛千禧微粒)）
+  - [🇰🇷 1. 韩国篇 (Korea) · 675套全量矩阵数据库 📂](韩国/README.md)（[章节速览](#1-韩国篇-korea--冷白皮极简松弛千禧微粒)）
   - [🇯🇵 2. 日本篇 (Japan) · 660套全量矩阵数据库 📂](日本/README.md)（[章节速览](#2-日本篇-japan--空气感日常碎片city-girl-胶片)）
   - [🇨🇳 3. 中国篇 (China) · 660套全量矩阵数据库 📂](中国/README.md)（[章节速览](#3-中国篇-china--新中式静奢清冷骨相夜间直闪)）
   - [🇺🇸 4. 美国篇 (USA) · 660套全量矩阵数据库 📂](美国/README.md)（[章节速览](#4-美国篇-usa--加州落日金光clean-girl无拘街头)）
@@ -104,7 +104,7 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ## 三、 五国全矩阵视觉数据库 (The 5-Country Matrix)
 
-本系统已完整交付全球五大审美高地全量 **3,300 套跨模型摄影提示词全矩阵**（每国 8 大支柱、660 套无损双图架构预设，共计 6,600 张视觉标本与 13,200 组独立提示词代码块）。点击直达各分部完整数据库：
+本系统已完整交付全球五大审美高地全量 **3,315 套跨模型摄影提示词全矩阵**（每国 8 大支柱、660 套无损双图架构预设，共计 6,600 张视觉标本与 13,200 组独立提示词代码块）。点击直达各分部完整数据库：
 
 | 国家 / 地区 | 美学核心与视觉基因 | 预设规模 | 8大支柱结构 (各篇完整覆盖) | 全量数据库入口 |
 | :--- | :--- | :--- | :--- | :--- |
