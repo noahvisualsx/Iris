@@ -16,15 +16,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#iv-3대-ai-모델-컴파일러-규격)
-[![Dataset: Korea](https://img.shields.io/badge/Korea%20Matrix-660%20Prompts%20Airtight%20Complete-success.svg)](韩国/README.md)
-[![Korea: Filters](https://img.shields.io/badge/Korea-100%20Filters-blue.svg)](韩国/滤镜/README.md)
-[![Korea: Poses](https://img.shields.io/badge/Korea-100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
-[![Korea: Outfits](https://img.shields.io/badge/Korea-100%20Outfits-orange.svg)](韩国/穿搭/README.md)
-[![Korea: Hosiery](https://img.shields.io/badge/Korea-60%20Hosiery-pink.svg)](韩国/丝袜/README.md)
-[![Korea: Styles](https://img.shields.io/badge/Korea-100%20Styles-green.svg)](韩国/风格/README.md)
-[![Korea: Hair & Makeup](https://img.shields.io/badge/Korea-50%20Hair%20%26%20Makeup-red.svg)](韩国/发型与妆容/README.md)
-[![Korea: Expressions](https://img.shields.io/badge/Korea-100%20Expressions-yellow.svg)](韩国/神态与微表情/README.md)
-[![Korea: Props & Nails](https://img.shields.io/badge/Korea-50%20Props%20%26%20Nails-teal.svg)](韩国/道具与美甲/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#iii-5개국-전방위-비주얼-데이터베이스-the-5-country-matrix)
+[![Korea](https://img.shields.io/badge/Korea%20(한국)-660%20Presets-blue.svg)](韩国/README.md)
+[![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
+[![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
+[![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
+[![France](https://img.shields.io/badge/France%20(法国)-660%20Presets-teal.svg)](法国/README.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#vii-기여하기--로드맵)
 
 **AI 버추얼 휴먼(Digital Humans) 생성을 위한 산업급 크로스 모델 포토그래피 제어 시스템.**  
@@ -43,11 +40,11 @@
   - [1. 표준 마스터 시트 규격 (Master Sheet Standard)](#1-표준-마스터-시트-규격-master-sheet-standard)
   - [2. 범용 마스터 시트 프롬프트 코드 블록](#2-범용-마스터-시트-프롬프트-코드-블록)
 - [III. 5개국 전 매트릭스 시각 데이터베이스 (The 5-Country Matrix)](#iii-5개국-전-매트릭스-시각-데이터베이스)
-  - [1. 한국편 (Korea) —— 쿨톤 백옥 피부, 꾸안꾸 무드, Y2K CCD 노이즈](#1-한국편-korea--쿨톤-백옥-피부-꾸안꾸-무드-y2k-ccd-노이즈)
-  - [2. 일본편 (Japan) —— 코모레비 감성, 일상의 조각, 시티걸 35mm 필름](#2-일본편-japan--코모레비-감성-일상의-조각-시티걸-35mm-필름)
-  - [3. 중국편 (China) —— 신중식 콰이어트 럭셔리, 또렷한 골격미, 야간 직광 플래시](#3-중국편-china--신중식-콰이어트-럭셔리-또렷한-골격미-야간-직광-플래시)
-  - [4. 미국편 (USA) —— 캘리포니아 골든아워, 클린걸, 자유분방한 스트리트](#4-미국편-usa--캘리포니아-골든아워-클린걸-자유분방한-스트리트)
-  - [5. 프랑스편 (France) —— 레세페르의 무심한 우아함, 파리지앵 그레이, 누벨바그 16mm](#5-프랑스편-france--레세페르의-무심한-우아함-파리지앵-그레이-누벨바그-16mm)
+  - [🇰🇷 1. 한국편 (Korea) · 660개 전체 매트릭스 데이터베이스 📂](韩国/README.md) ([요약 보기](#1-한국편-korea--쿨톤-백옥-피부-꾸안꾸-무드-y2k-ccd-노이즈))
+  - [🇯🇵 2. 일본편 (Japan) · 660개 전체 매트릭스 데이터베이스 📂](日本/README.md) ([요약 보기](#2-일본편-japan--코모레비-감성-일상의-조각-시티걸-35mm-필름))
+  - [🇨🇳 3. 중국편 (China) · 660개 전체 매트릭스 데이터베이스 📂](中国/README.md) ([요약 보기](#3-중국편-china--신중식-콰이어트-럭셔리-또렷한-골격미-야간-직광-플래시))
+  - [🇺🇸 4. 미국편 (USA) · 660개 전체 매트릭스 데이터베이스 📂](美国/README.md) ([요약 보기](#4-미국편-usa--캘리포니아-골든아워-클린걸-자유분방한-스트리트))
+  - [🇫🇷 5. 프랑스편 (France) · 660개 전체 매트릭스 데이터베이스 📂](法国/README.md) ([요약 보기](#5-프랑스편-france--레세페르의-무심한-우아함-파리지앵-그레이-누벨바그-16mm))
 - [IV. 3대 AI 모델 컴파일러 규격 (Cross-Model Compilers)](#iv-3대-ai-모델-컴파일러-규격)
   - [1. Seedream 5.0 Pro (화산엔진 / 더우바오)](#1-seedream-50-pro-화산엔진--더우바오)
   - [2. ChatGPT (Image 2.5)](#2-chatgpt-image-25)
@@ -106,11 +103,24 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ---
 
-## III. 5개국 전 매트릭스 시각 데이터베이스
+## III. 5개국 전 매트릭스 시각 데이터베이스 (The 5-Country Matrix)
+
+본 시스템은 전 세계 5대 핵심 국가/지역의 **3,300개 산업급 크로스 모델 프롬프트 프리셋**을 완전 구축하여 인도하였습니다 (국가당 8대 핵심 기둥, 듀얼 이미지 아키텍처 기반 660개 무손실 프리셋, 총 6,600장 시각 표본 및 13,200개 독립 프롬프트 코드 블록). 아래 표에서 원하는 국가의 전체 데이터베이스로 바로 이동할 수 있습니다:
+
+| 국가 / 지역 | 미학 핵심 및 비주얼 DNA | 프리셋 규모 | 8대 핵심 기둥 구성 | 전체 데이터베이스 바로가기 |
+| :--- | :--- | :--- | :--- | :--- |
+| 🇰🇷 **한국편 (Korea)** | 쿨톤 백옥 피부 · 꾸안꾸 무드 · 성수동 미니멀 입자 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **한국 전체 매트릭스 (韩国/README.md)**](韩国/README.md) |
+| 🇯🇵 **일본편 (Japan)** | 코모레비 공기감 · 일상의 단편 · 시티걸 35mm 필름 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **일본 전체 매트릭스 (日本/README.md)**](日本/README.md) |
+| 🇨🇳 **중국편 (China)** | 신중식 콰이어트 럭셔리 · 또렷한 골격미 · 야간 직광 플래시 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **중국 전체 매트릭스 (中国/README.md)**](中国/README.md) |
+| 🇺🇸 **미국편 (USA)** | 캘리포니아 골든아워 · 클린걸 · 자유분방한 스트리트 | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **미국 전체 매트릭스 (美国/README.md)**](美国/README.md) |
+| 🇫🇷 **프랑스편 (France)** | 레세페르의 무심한 우아함 · 파리지앵 그레이 · 누벨바그 16mm | **660개** 듀얼 프리셋 | 착장 100 / 필터 100 / 포즈 100 / 표정 100 / 스타일 100 / 스타킹 60 / 헤어메이크업 50 / 소품네일 50 | [📂 **프랑스 전체 매트릭스 (法国/README.md)**](法国/README.md) |
 
 ---
 
 ### 1. 한국편 (Korea) —— 쿨톤 백옥 피부, 꾸안꾸 무드, Y2K CCD 노이즈
+
+> 📂 **전체 데이터베이스 바로가기**: [👉 한국편 660개 듀얼 이미지 프롬프트 전체 매트릭스 열람 (韩国/README.md)](韩国/README.md)  
+> *착장(100), 필터(100), 표정 및 미세표정(100), 포즈(100), 스타일(100), 스타킹(60), 헤어 및 메이크업(50), 소품 및 네일(50)*
 
 #### A. 비주얼 유전자 및 미학 철학
 * **미학 핵심**: 부담 없는 편안함(꾸안꾸 · Effortless), 쿨톤 세미 매트 백옥 피부, 저채도 미니멀리즘.
@@ -166,6 +176,9 @@ Wardrobe: Heavyweight charcoal-melange oversized jacket, crisp white ribbed unde
 
 ### 2. 일본편 (Japan) —— 코모레비 감성, 일상의 조각, 시티걸 35mm 필름
 
+> 📂 **전체 데이터베이스 바로가기**: [👉 일본편 660개 듀얼 이미지 프롬프트 전체 매트릭스 열람 (日本/README.md)](日本/README.md)  
+> *착장(100), 필터(100), 표정 및 미세표정(100), 포즈(100), 스타일(100), 스타킹(60), 헤어 및 메이크업(50), 소품 및 네일(50)*
+
 #### A. 비주얼 유전자 및 미학 철학
 * **미학 핵심**: 나뭇잎 사이로 비치는 햇살과 바람의 호흡(코모레비 · 木漏れ日), 따스한 필름 그레인, 인위적이지 않은 투명감.
 * **대표적 공간**: 도쿄 시타마치 주택가 비탈길, 오후 한적한 기차역 나무 벤치, 따스한 불빛의 자판기 앞, 다이칸야마 서점.
@@ -214,6 +227,9 @@ Wardrobe: Layered classic menswear-inspired garments: loose khaki mac coat, knit
 ---
 
 ### 3. 중국편 (China) —— 신중식 콰이어트 럭셔리, 또렷한 골격미, 야간 직광 플래시
+
+> 📂 **전체 데이터베이스 바로가기**: [👉 중국편 660개 듀얼 이미지 프롬프트 전체 매트릭스 열람 (中国/README.md)](中国/README.md)  
+> *착장(100), 필터(100), 표정 및 미세표정(100), 포즈(100), 스타일(100), 스타킹(60), 헤어 및 메이크업(50), 소품 및 네일(50)*
 
 #### A. 비주얼 유전자 및 미학 철학
 * **미학 핵심**: 타고난 안면 골격미, 당당하고 여유로운 아우라, 동양적 여백의 미와 현대적 하이엔드 럭셔리의 충돌.
@@ -264,6 +280,9 @@ Wardrobe & Textures: 30-momme heavy black silk faille jacket with handcrafted ja
 
 ### 4. 미국편 (USA) —— 캘리포니아 골든아워, 클린걸, 자유분방한 스트리트
 
+> 📂 **전체 데이터베이스 바로가기**: [👉 미국편 660개 듀얼 이미지 프롬프트 전체 매트릭스 열람 (美国/README.md)](美国/README.md)  
+> *착장(100), 필터(100), 표정 및 미세표정(100), 포즈(100), 스타일(100), 스타킹(60), 헤어 및 메이크업(50), 소품 및 네일(50)*
+
 #### A. 비주얼 유전자 및 미학 철학
 * **미학 핵심**: 햇살을 머금은 건강한 생명력, 은은한 허니 글로우 스킨, 자신감 넘치는 애슬레틱 스트리트 무드.
 * **대표적 공간**: LA 베니스 비치 야자수 거리, 뉴욕 소호(SoHo)의 주철 건축물 골목, 캘리포니아 1번 국도 컨버터블 위.
@@ -312,6 +331,9 @@ Wardrobe: Heavyweight worn-in leather flight jacket, cropped white cotton tank, 
 ---
 
 ### 5. 프랑스편 (France) —— 레세페르의 무심한 우아함, 파리지앵 그레이, 누벨바그 16mm
+
+> 📂 **전체 데이터베이스 바로가기**: [👉 프랑스편 660개 듀얼 이미지 프롬프트 전체 매트릭스 열람 (法国/README.md)](法国/README.md)  
+> *착장(100), 필터(100), 표정 및 미세표정(100), 포즈(100), 스타일(100), 스타킹(60), 헤어 및 메이크업(50), 소품 및 네일(50)*
 
 #### A. 비주얼 유전자 및 미학 철학
 * **미학 핵심**: 무심하고 자연스러운 우아함(Laissez-faire), 과도한 연출의 거부, 지적인 뉘앙스, 살짝 흐트러진 내추럴 헤어.

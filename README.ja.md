@@ -16,15 +16,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#iv-3大モデルコンパイラ仕様)
-[![Dataset: Korea](https://img.shields.io/badge/Korea%20Matrix-660%20Prompts%20Airtight%20Complete-success.svg)](韩国/README.md)
-[![Korea: Filters](https://img.shields.io/badge/Korea-100%20Filters-blue.svg)](韩国/滤镜/README.md)
-[![Korea: Poses](https://img.shields.io/badge/Korea-100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
-[![Korea: Outfits](https://img.shields.io/badge/Korea-100%20Outfits-orange.svg)](韩国/穿搭/README.md)
-[![Korea: Hosiery](https://img.shields.io/badge/Korea-60%20Hosiery-pink.svg)](韩国/丝袜/README.md)
-[![Korea: Styles](https://img.shields.io/badge/Korea-100%20Styles-green.svg)](韩国/风格/README.md)
-[![Korea: Hair & Makeup](https://img.shields.io/badge/Korea-50%20Hair%20%26%20Makeup-red.svg)](韩国/发型与妆容/README.md)
-[![Korea: Expressions](https://img.shields.io/badge/Korea-100%20Expressions-yellow.svg)](韩国/神态与微表情/README.md)
-[![Korea: Props & Nails](https://img.shields.io/badge/Korea-50%20Props%20%26%20Nails-teal.svg)](韩国/道具与美甲/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#iii-5カ国全方位ビジュアルデータベース-the-5-country-matrix)
+[![Korea](https://img.shields.io/badge/Korea%20(韩国)-660%20Presets-blue.svg)](韩国/README.md)
+[![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
+[![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
+[![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
+[![France](https://img.shields.io/badge/France%20(法国)-660%20Presets-teal.svg)](法国/README.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#vii-コントリビューション--ロードマップ)
 
 **AIバーチャルヒューマン（Digital Humans）生成のための産業級クロスモデル写真制御システム。**  
@@ -43,11 +40,11 @@
   - [1. 標準マスターシート仕様 (Master Sheet Standard)](#1-標準マスターシート仕様-master-sheet-standard)
   - [2. 汎用マスターシート用プロンプトコードブロック](#2-汎用マスターシート用プロンプトコードブロック)
 - [III. 5カ国全マトリクス視覚データベース (The 5-Country Matrix)](#iii-5カ国全マトリクス視覚データベース)
-  - [1. 韓国編 (Korea) —— クールトーン白肌、エフォートレスな抜け感、Y2K CCD粒子](#1-韓国編-korea--クールトーン白肌エフォートレスな抜け感y2k-ccd粒子)
-  - [2. 日本編 (Japan) —— 木漏れ日の空気感、日常の断片、シティガール35mmフィルム](#2-日本編-japan--木漏れ日の空気感日常の断片シティガール35mmフィルム)
-  - [3. 中国編 (China) —— 新中式クワイエットラグジュアリー、洗練された骨格美、夜間直光フラッシュ](#3-中国編-china--新中式クワイエットラグジュアリー洗練された骨格美夜間直光フラッシュ)
-  - [4. 米国編 (USA) —— カリフォルニアの夕暮れゴールド、クリーンガール、ストリートの自由](#4-米国編-usa--カリフォルニアの夕暮れゴールドクリーンガールストリートの自由)
-  - [5. フランス編 (France) —— レッセフェールの気だるい気品、パリジャングレー、ヌーヴェルヴァーグ16mm](#5-フランス編-france--レッセフェールの気だるい気品パリジャングレーヌーヴェルヴァーグ16mm)
+  - [🇰🇷 1. 韓国編 (Korea) · 660件全量マトリクスデータベース 📂](韩国/README.md) ([プレビュー](#1-韓国編-korea--クールトーン白肌エフォートレスな抜け感y2k-ccd粒子))
+  - [🇯🇵 2. 日本編 (Japan) · 660件全量マトリクスデータベース 📂](日本/README.md) ([プレビュー](#2-日本編-japan--木漏れ日の空気感日常の断片シティガール35mmフィルム))
+  - [🇨🇳 3. 中国編 (China) · 660件全量マトリクスデータベース 📂](中国/README.md) ([プレビュー](#3-中国編-china--新中式クワイエットラグジュアリー洗練された骨格美夜間直光フラッシュ))
+  - [🇺🇸 4. 米国編 (USA) · 660件全量マトリクスデータベース 📂](美国/README.md) ([プレビュー](#4-米国編-usa--カリフォルニアの夕暮れゴールドクリーンガールストリートの自由))
+  - [🇫🇷 5. フランス編 (France) · 660件全量マトリクスデータベース 📂](法国/README.md) ([プレビュー](#5-フランス編-france--レッセフェールの気だるい気品パリジャングレーヌーヴェルヴァーグ16mm))
 - [IV. 3大モデルコンパイラ仕様 (Cross-Model Compilers)](#iv-3大モデルコンパイラ仕様)
   - [1. Seedream 5.0 Pro (Volcengine Ark / 豆包)](#1-seedream-50-pro-volcengine-ark--豆包)
   - [2. ChatGPT (Image 2.5)](#2-chatgpt-image-25)
@@ -106,11 +103,24 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ---
 
-## III. 5カ国全マトリクス視覚データベース
+## III. 5カ国全マトリクス視覚データベース (The 5-Country Matrix)
+
+当システムは、世界5大主要エリアの**3,300件に及ぶ産業級クロスモデル・プロンプトプリセット**を完全構築・納品済みです（国ごとに8大支柱、デュアル画像アーキテクチャに基づく660件の無損失プリセット、計6,600枚の視覚標本と13,200組の独立プロンプトコードブロック）。以下の表より、各国の全量データベースへ直接アクセスいただけます：
+
+| 国 / 地域 | 美学の核心とビジュアルDNA | プリセット規模 | 8大支柱の構成 | 全量データベースへのリンク |
+| :--- | :--- | :--- | :--- | :--- |
+| 🇰🇷 **韓国編 (Korea)** | クールトーン白玉陶器肌 · 抜け感 · 聖水洞ミニマル粒子 | **660件** 複製可能プリセット | コーデ 100 / フィルター 100 / ポーズ 100 / 表情 100 / スタイル 100 / ストッキング 60 / ヘアメイク 50 / 小物ネイル 50 | [📂 **韓国全量マトリクス (韩国/README.md)**](韩国/README.md) |
+| 🇯🇵 **日本編 (Japan)** | 木漏れ日の空気感 · 日常の断片 · シティガール35mm | **660件** 複製可能プリセット | コーデ 100 / フィルター 100 / ポーズ 100 / 表情 100 / スタイル 100 / ストッキング 60 / ヘアメイク 50 / 小物ネイル 50 | [📂 **日本全量マトリクス (日本/README.md)**](日本/README.md) |
+| 🇨🇳 **中国編 (China)** | 新中式クワイエットラグジュアリー · 洗練された骨格美 · 夜間直光 | **660件** 複製可能プリセット | コーデ 100 / フィルター 100 / ポーズ 100 / 表情 100 / スタイル 100 / ストッキング 60 / ヘアメイク 50 / 小物ネイル 50 | [📂 **中国全量マトリクス (中国/README.md)**](中国/README.md) |
+| 🇺🇸 **米国編 (USA)** | カリフォルニアの夕暮れゴールド · クリーンガール · ストリートの自由 | **660件** 複製可能プリセット | コーデ 100 / フィルター 100 / ポーズ 100 / 表情 100 / スタイル 100 / ストッキング 60 / ヘアメイク 50 / 小物ネイル 50 | [📂 **米国全量マトリクス (美国/README.md)**](美国/README.md) |
+| 🇫🇷 **フランス編 (France)** | レッセフェールの気だるい気品 · パリジャングレー · ヌーヴェルヴァーグ | **660件** 複製可能プリセット | コーデ 100 / フィルター 100 / ポーズ 100 / 表情 100 / スタイル 100 / ストッキング 60 / ヘアメイク 50 / 小物ネイル 50 | [📂 **フランス全量マトリクス (法国/README.md)**](法国/README.md) |
 
 ---
 
 ### 1. 韓国編 (Korea) —— クールトーン白肌、エフォートレスな抜け感、Y2K CCD粒子
+
+> 📂 **全量データベースへの直通リンク**: [👉 韓国編 660件デュアル画像プロンプト全量マトリクスを閲覧 (韩国/README.md)](韩国/README.md)  
+> *コーデ(100)、フィルター(100)、表情・微表情(100)、ポーズ(100)、スタイル(100)、ストッキング(60)、ヘア＆メイク(50)、小物＆ネイル(50)*
 
 #### A. ビジュアル遺伝子と美学
 * **美学の核心**：無理のない抜け感（Effortless · 꾸안꾸）、クールトーンの澄んだ白玉陶器肌、低彩度ミニマリズム。
@@ -166,6 +176,9 @@ Wardrobe: Heavyweight charcoal-melange oversized jacket, crisp white ribbed unde
 
 ### 2. 日本編 (Japan) —— 木漏れ日の空気感、日常の断片、シティガール35mmフィルム
 
+> 📂 **全量データベースへの直通リンク**: [👉 日本編 660件デュアル画像プロンプト全量マトリクスを閲覧 (日本/README.md)](日本/README.md)  
+> *コーデ(100)、フィルター(100)、表情・微表情(100)、ポーズ(100)、スタイル(100)、ストッキング(60)、ヘア＆メイク(50)、小物＆ネイル(50)*
+
 #### A. ビジュアル遺伝子と美学
 * **美学の核心**：木漏れ日とそよ風の呼吸感、温もりのあるフィルム粒子、飾らない透明感。
 * **代表的なシーン**：東京下町の住宅街の坂道、午後の駅の木製ベンチ、暖色の自販機の前、代官山の書店。
@@ -214,6 +227,9 @@ Wardrobe: Layered classic menswear-inspired garments: loose khaki mac coat, knit
 ---
 
 ### 3. 中国編 (China) —— 新中式クワイエットラグジュアリー、洗練された骨格美、夜間直光フラッシュ
+
+> 📂 **全量データベースへの直通リンク**: [👉 中国編 660件デュアル画像プロンプト全量マトリクスを閲覧 (中国/README.md)](中国/README.md)  
+> *コーデ(100)、フィルター(100)、表情・微表情(100)、ポーズ(100)、スタイル(100)、ストッキング(60)、ヘア＆メイク(50)、小物＆ネイル(50)*
 
 #### A. ビジュアル遺伝子と美学
 * **美学の核心**：際立つ骨格美、堂々とした凛とした佇まい、東洋の余白の美と現代のラグジュアリーが交錯する品格。
@@ -264,6 +280,9 @@ Wardrobe & Textures: 30-momme heavy black silk faille jacket with handcrafted ja
 
 ### 4. 米国編 (USA) —— カリフォルニアの夕暮れゴールド、クリーンガール、ストリートの自由
 
+> 📂 **全量データベースへの直通リンク**: [👉 米国編 660件デュアル画像プロンプト全量マトリクスを閲覧 (美国/README.md)](美国/README.md)  
+> *コーデ(100)、フィルター(100)、表情・微表情(100)、ポーズ(100)、スタイル(100)、ストッキング(60)、ヘア＆メイク(50)、小物＆ネイル(50)*
+
 #### A. ビジュアル遺伝子と美学
 * **美学の核心**：陽光を浴びたヘルシーな生命力、健康的なハニーグロウ肌、エネルギッシュなストリートのアスレチック感。
 * **代表的なシーン**：LAベニスビーチのパームツリーアベニュー、NYソーホーの鋳鉄建築が並ぶストリート、カリフォルニア1号線のコンバーチブル。
@@ -312,6 +331,9 @@ Wardrobe: Heavyweight worn-in leather flight jacket, cropped white cotton tank, 
 ---
 
 ### 5. フランス編 (France) —— レッセフェールの気だるい気品、パリジャングレー、ヌーヴェルヴァーグ16mm
+
+> 📂 **全量データベースへの直通リンク**: [👉 フランス編 660件デュアル画像プロンプト全量マトリクスを閲覧 (法国/README.md)](法国/README.md)  
+> *コーデ(100)、フィルター(100)、表情・微表情(100)、ポーズ(100)、スタイル(100)、ストッキング(60)、ヘア＆メイク(50)、小物＆ネイル(50)*
 
 #### A. ビジュアル遺伝子と美学
 * **美学の核心**：気負わない自然体のエレガンス（Laissez-faire）、過度な装飾の否定、知的なニュアンス、寝起きのような無造作ヘア（Bedhead）。

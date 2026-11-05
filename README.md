@@ -16,15 +16,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Web Studio](https://img.shields.io/badge/Web%20Studio-Live%20on%20GitHub%20Pages-0071e3.svg)](https://noahvisualsx.github.io/Iris/)
 [![Model Support](https://img.shields.io/badge/Model-Seedream%205.0%20Pro%20%7C%20ChatGPT%20Image%202.5%20%7C%20Gemini%20Imagen%203-blue.svg)](#四-三大模型编译器规范)
-[![Dataset: Korea](https://img.shields.io/badge/Korea%20Matrix-660%20Prompts%20Airtight%20Complete-success.svg)](韩国/README.md)
-[![Korea: Filters](https://img.shields.io/badge/Korea-100%20Filters-blue.svg)](韩国/滤镜/README.md)
-[![Korea: Poses](https://img.shields.io/badge/Korea-100%20Poses-purple.svg)](韩国/拍照姿势/README.md)
-[![Korea: Outfits](https://img.shields.io/badge/Korea-100%20Outfits-orange.svg)](韩国/穿搭/README.md)
-[![Korea: Hosiery](https://img.shields.io/badge/Korea-60%20Hosiery-pink.svg)](韩国/丝袜/README.md)
-[![Korea: Styles](https://img.shields.io/badge/Korea-100%20Styles-green.svg)](韩国/风格/README.md)
-[![Korea: Hair & Makeup](https://img.shields.io/badge/Korea-50%20Hair%20%26%20Makeup-red.svg)](韩国/发型与妆容/README.md)
-[![Korea: Expressions](https://img.shields.io/badge/Korea-100%20Expressions-yellow.svg)](韩国/神态与微表情/README.md)
-[![Korea: Props & Nails](https://img.shields.io/badge/Korea-50%20Props%20%26%20Nails-teal.svg)](韩国/道具与美甲/README.md)
+[![Global Matrix](https://img.shields.io/badge/5--Country%20Matrix-3300%20Dual--Image%20Prompts-success.svg)](#三-五国全矩阵视觉数据库)
+[![Korea](https://img.shields.io/badge/Korea%20(韩国)-660%20Presets-blue.svg)](韩国/README.md)
+[![Japan](https://img.shields.io/badge/Japan%20(日本)-660%20Presets-purple.svg)](日本/README.md)
+[![China](https://img.shields.io/badge/China%20(中国)-660%20Presets-red.svg)](中国/README.md)
+[![USA](https://img.shields.io/badge/USA%20(美国)-660%20Presets-orange.svg)](美国/README.md)
+[![France](https://img.shields.io/badge/France%20(法国)-660%20Presets-teal.svg)](法国/README.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](#七-参与贡献与路线图)
 
 **专为 AI 虚拟人（Digital Humans）打造的工业级跨模型摄影全矩阵控制系统。**  
@@ -41,11 +38,11 @@
 - [一、 核心架构：四维解耦控制体系 (4D Decoupled Control)](#一-核心架构四维解耦控制体系)
 - [二、 虚拟人锁脸与身份保真度工程规范 (ID Anchoring)](#二-虚拟人锁脸与身份保真度工程规范)
 - [三、 五国全矩阵视觉数据库 (The 5-Country Matrix)](#三-五国全矩阵视觉数据库)
-  - [1. 韩国篇 (Korea) —— 冷白皮、极简松弛、千禧微粒](#1-韩国篇-korea--冷白皮极简松弛千禧微粒)
-  - [2. 日本篇 (Japan) —— 空气感、日常碎片、City Girl 胶片](#2-日本篇-japan--空气感日常碎片city-girl-胶片)
-  - [3. 中国篇 (China) —— 新中式静奢、清冷骨相、夜间直闪](#3-中国篇-china--新中式静奢清冷骨相夜间直闪)
-  - [4. 美国篇 (USA) —— 加州落日金光、Clean Girl、无拘街头](#4-美国篇-usa--加州落日金光clean-girl无拘街头)
-  - [5. 法国篇 (France) —— 毫不费力的慵懒、巴黎灰调、新浪潮电影](#5-法国篇-france--毫不费力的慵懒巴黎灰调新浪潮电影)
+  - [🇰🇷 1. 韩国篇 (Korea) · 660套全量矩阵数据库 📂](韩国/README.md)（[章节速览](#1-韩国篇-korea--冷白皮极简松弛千禧微粒)）
+  - [🇯🇵 2. 日本篇 (Japan) · 660套全量矩阵数据库 📂](日本/README.md)（[章节速览](#2-日本篇-japan--空气感日常碎片city-girl-胶片)）
+  - [🇨🇳 3. 中国篇 (China) · 660套全量矩阵数据库 📂](中国/README.md)（[章节速览](#3-中国篇-china--新中式静奢清冷骨相夜间直闪)）
+  - [🇺🇸 4. 美国篇 (USA) · 660套全量矩阵数据库 📂](美国/README.md)（[章节速览](#4-美国篇-usa--加州落日金光clean-girl无拘街头)）
+  - [🇫🇷 5. 法国篇 (France) · 660套全量矩阵数据库 📂](法国/README.md)（[章节速览](#5-法国篇-france--毫不费力的慵懒巴黎灰调新浪潮电影)）
 - [四、 三大模型编译器规范 (Cross-Model Compilers)](#四-三大模型编译器规范)
   - [1. Seedream 5.0 Pro (火山方舟/豆包)](#1-seedream-50-pro-火山方舟豆包)
   - [2. ChatGPT (Image 2.5)](#2-chatgpt-gpt-4o--dall-e-3)
@@ -105,11 +102,24 @@ A front-facing master reference passport-grade portrait of a 22-year-old East As
 
 ---
 
-## 三、 五国全矩阵视觉数据库
+## 三、 五国全矩阵视觉数据库 (The 5-Country Matrix)
+
+本系统已完整交付全球五大审美高地全量 **3,300 套跨模型摄影提示词全矩阵**（每国 8 大支柱、660 套无损双图架构预设，共计 6,600 张视觉标本与 13,200 组独立提示词代码块）。点击直达各分部完整数据库：
+
+| 国家 / 地区 | 美学核心与视觉基因 | 预设规模 | 8大支柱结构 (各篇完整覆盖) | 全量数据库入口 |
+| :--- | :--- | :--- | :--- | :--- |
+| 🇰🇷 **韩国篇 (Korea)** | 冷白瓷肌 · 极简松弛 · 首尔圣水洞微粒 | **660 套** 双图预设 | 穿搭 100 / 滤镜 100 / 姿势 100 / 神态 100 / 风格 100 / 丝袜 60 / 妆发 50 / 美甲 50 | [📂 **进入韩国全矩阵数据库**](韩国/README.md) |
+| 🇯🇵 **日本篇 (Japan)** | 空气呼吸感 · 日常碎片 · City Girl 胶片 | **660 套** 双图预设 | 穿搭 100 / 滤镜 100 / 姿势 100 / 神态 100 / 风格 100 / 丝袜 60 / 妆发 50 / 美甲 50 | [📂 **进入日本全矩阵数据库**](日本/README.md) |
+| 🇨🇳 **中国篇 (China)** | 新中式静奢 · 清冷骨相 · 东方留白夜直闪 | **660 套** 双图预设 | 穿搭 100 / 滤镜 100 / 姿势 100 / 神态 100 / 风格 100 / 丝袜 60 / 妆发 50 / 美甲 50 | [📂 **进入中国全矩阵数据库**](中国/README.md) |
+| 🇺🇸 **美国篇 (USA)** | 加州落日金光 · Clean Girl · 无拘街头 | **660 套** 双图预设 | 穿搭 100 / 滤镜 100 / 姿势 100 / 神态 100 / 风格 100 / 丝袜 60 / 妆发 50 / 美甲 50 | [📂 **进入美国全矩阵数据库**](美国/README.md) |
+| 🇫🇷 **法国篇 (France)** | 毫不费力慵懒 · 巴黎灰调 · 新浪潮电影 | **660 套** 双图预设 | 穿搭 100 / 滤镜 100 / 姿势 100 / 神态 100 / 风格 100 / 丝袜 60 / 妆发 50 / 美甲 50 | [📂 **进入法国全矩阵数据库**](法国/README.md) |
 
 ---
 
 ### 1. 韩国篇 (Korea) —— 冷白皮、极简松弛、千禧微粒
+
+> 📂 **全量数据库直达**：[👉 点击浏览《韩国篇 660 套全量摄影美学矩阵与双图代码库》(韩国/README.md)](韩国/README.md)  
+> *涵盖穿搭(100)、滤镜(100)、神态与微表情(100)、拍照姿势(100)、风格(100)、丝袜(60)、发型与妆容(50)、道具与美甲(50)*
 
 #### A. 视觉基因与哲学
 * **审美核心**：无负担的松弛感（Effortless）、冷白微光瓷肌、低饱和极简主义。
@@ -165,6 +175,9 @@ Wardrobe: Heavyweight charcoal-melange oversized jacket, crisp white ribbed unde
 
 ### 2. 日本篇 (Japan) —— 空气感、日常碎片、City Girl 胶片
 
+> 📂 **全量数据库直达**：[👉 点击浏览《日本篇 660 套全量摄影美学矩阵与双图代码库》(日本/README.md)](日本/README.md)  
+> *涵盖穿搭(100)、滤镜(100)、神态与微表情(100)、拍照姿势(100)、风格(100)、丝袜(60)、发型与妆容(50)、道具与美甲(50)*
+
 #### A. 视觉基因与哲学
 * **审美核心**：生活在别处的呼吸感（Komorebi）、胶片颗粒温润感、自然不做作的透明度。
 * **场景氛围**：东京下町居民区坡道、午后电车站台木椅、亮着暖灯的饮料自动贩卖机旁、代官山书店。
@@ -218,6 +231,9 @@ Wardrobe: Layered classic menswear-inspired garments: loose khaki mac coat, knit
 ---
 
 ### 3. 中国篇 (China) —— 新中式静奢、清冷骨相、夜间直闪
+
+> 📂 **全量数据库直达**：[👉 点击浏览《中国篇 660 套全量摄影美学矩阵与双图代码库》(中国/README.md)](中国/README.md)  
+> *涵盖穿搭(100)、滤镜(100)、神态与微表情(100)、拍照姿势(100)、风格(100)、丝袜(60)、发型与妆容(50)、道具与美甲(50)*
 
 #### A. 视觉基因与哲学
 * **审美核心**：骨相美、大女主从容气场、东方留白意境与现代千金奢感的碰撞。
@@ -274,6 +290,9 @@ Wardrobe & Textures: 30-momme heavy black silk faille jacket with handcrafted ja
 
 ### 4. 美国篇 (USA) —— 加州落日金光、Clean Girl、无拘街头
 
+> 📂 **全量数据库直达**：[👉 点击浏览《美国篇 660 套全量摄影美学矩阵与双图代码库》(美国/README.md)](美国/README.md)  
+> *涵盖穿搭(100)、滤镜(100)、神态与微表情(100)、拍照姿势(100)、风格(100)、丝袜(60)、发型与妆容(50)、道具与美甲(50)*
+
 #### A. 视觉基因与哲学
 * **审美核心**：生命力、自洽的自信（Unapologetic Confidence）、阳光水光肌、健康运动生活。
 * **场景氛围**：加利福尼亚一号公路沿岸海滩、洛杉矶棕榈树街道、曼哈顿红砖公寓消防逃生梯、深夜复古美式 Diner 餐馆。
@@ -327,6 +346,9 @@ Wardrobe: Heavyweight worn-in leather flight jacket, cropped white cotton tank, 
 ---
 
 ### 5. 法国篇 (France) —— 毫不费力的慵懒、巴黎灰调、新浪潮电影
+
+> 📂 **全量数据库直达**：[👉 点击浏览《法国篇 660 套全量摄影美学矩阵与双图代码库》(法国/README.md)](法国/README.md)  
+> *涵盖穿搭(100)、滤镜(100)、神态与微表情(100)、拍照姿势(100)、风格(100)、丝袜(60)、发型与妆容(50)、道具与美甲(50)*
 
 #### A. 视觉基因与哲学
 * **审美核心**：漫不经心的优雅（Laissez-faire）、拒绝过度修饰、知识分子文艺气质、真实雀斑与凌乱。
