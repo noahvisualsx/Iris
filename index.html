@@ -269,9 +269,10 @@
     .search-input-wrap input { width: 100%; height: 40px; padding: 0 36px 0 38px; border-radius: 999px; border: 1px solid var(--line); background: var(--bg-elev); color: var(--ink); font: inherit; font-size: 13px; outline: none; }
     .clear-search-btn { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: transparent; font-size: 18px; color: var(--ink-3); }
     .toolbar-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .img-filter-pill { display: inline-flex; background: var(--bg-sunk); border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; }
-    .img-filter-btn { font-size: 12px; font-weight: 600; height: 28px; padding: 0 12px; border-radius: 999px; background: transparent; color: var(--ink-2); display: inline-flex; align-items: center; gap: 5px; }
-    .img-filter-btn.active { background: var(--seg-thumb); color: var(--ink); }
+    .engine-global-pill, .img-filter-pill { display: inline-flex; background: var(--bg-sunk); border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; }
+    .engine-global-btn, .img-filter-btn { font-size: 12px; font-weight: 600; height: 28px; padding: 0 12px; border-radius: 999px; background: transparent; color: var(--ink-2); display: inline-flex; align-items: center; gap: 5px; }
+    .engine-global-btn.active, .img-filter-btn.active { background: var(--seg-thumb); color: var(--ink); }
+    .engine-global-btn[data-global-engine="seedream"].active { background: var(--accent); color: #fff; }
     .img-count-dot { font-size: 11px; padding: 0 6px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); }
     .count-badge { font-size: 13px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 
@@ -286,9 +287,12 @@
     .chip-country { background: var(--accent-soft); color: var(--accent-text); }
     .chip-id { font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
 
-    .card-face-switch, .view-mode-pill { display: inline-flex; background: var(--bg-sunk); border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; flex-shrink: 0; }
+    .card-face-switch, .view-mode-pill, .engine-pill { display: inline-flex; background: var(--bg-sunk); border: 1px solid var(--line); border-radius: 999px; padding: 2px; gap: 2px; flex-shrink: 0; }
     .switch-btn, .mode-btn { font-size: 11px; font-weight: 600; height: 24px; padding: 0 10px; border-radius: 999px; background: transparent; color: var(--ink-2); display: inline-flex; align-items: center; gap: 5px; }
     .switch-btn.active, .mode-btn.active { background: var(--seg-thumb); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+    .engine-btn { font-size: 11px; font-weight: 700; height: 22px; padding: 0 9px; border-radius: 999px; background: transparent; color: var(--ink-2); display: inline-flex; align-items: center; }
+    .engine-btn.active { background: var(--seg-thumb); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,0.06); }
+    .engine-btn[data-engine="seedream"].active { background: var(--accent); color: #fff; }
     .has-img-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success-fill); }
 
     .card-pane { display: flex; flex-direction: column; gap: 14px; }
@@ -302,6 +306,10 @@
     .spec-row .k { color: var(--ink-3); font-weight: 700; flex-shrink: 0; min-width: 32px; }
     .spec-row .v { color: var(--ink-2); word-break: break-word; }
 
+    .prompt-box { display: flex; flex-direction: column; gap: 6px; }
+    .prompt-box-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .engine-tag { font-size: 11px; font-weight: 600; color: var(--ink-3); }
+    .engine-tag.is-sd { color: var(--accent-text); }
     .prompt-text { padding: 12px 14px; border-radius: 12px; background: var(--bg-sunk); color: var(--ink); font-family: var(--mono); font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; border: 1px solid var(--line); }
     .prompt-text.clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; }
     .card-actions { display: flex; align-items: center; gap: 8px; }
@@ -413,6 +421,10 @@
           <button type="button" class="clear-search-btn" id="clear-search-btn" hidden>×</button>
         </div>
         <div class="toolbar-right">
+          <div class="engine-global-pill">
+            <button type="button" class="engine-global-btn active" data-global-engine="chatgpt">GPT 提示词</button>
+            <button type="button" class="engine-global-btn" data-global-engine="seedream">SD 5.0 提示词</button>
+          </div>
           <div class="img-filter-pill">
             <button type="button" class="img-filter-btn active" data-img-filter="all">全部条目</button>
             <button type="button" class="img-filter-btn" data-img-filter="has">
@@ -476,6 +488,7 @@
     let currentCategory = 'all';
     let currentImgFilter = 'all';
     let currentModel = 'chatgpt';
+    let currentCardEngine = 'chatgpt';
     let searchQuery = '';
     let activeMix = {};
     let hoveredCardId = null;
@@ -628,16 +641,111 @@
       return specs.slice(0, 2);
     }
 
+    function cleanSentence(s) {
+      if (!s) return '';
+      return s
+        .replace(/^外套与上装[：:]/g, '')
+        .replace(/^下装与剪裁[：:]/g, '')
+        .replace(/^下装[：:]/g, '')
+        .replace(/适用场合[：:][^；;]+[；;]\s*搭配鞋包[：:]/g, '')
+        .replace(/^搭配鞋包[：:]/g, '')
+        .replace(/^适用场合[：:]/g, '')
+        .replace(/\s+/g, ' ')
+        .replace(/^[，,。；;.\s]+/, '')
+        .replace(/[。，,；;.\s]+$/, '')
+        .trim();
+    }
+
+    function compileCardPrompt(item, engine, mode) {
+      if (mode === 'product') {
+        const baseProd = (item.product_prompt || item.prompt || '').trim();
+        if (engine === 'chatgpt') return baseProd;
+        const coreProd = baseProd
+          .replace(/[，,\s]*1:1[。.\s]*$/, '')
+          .replace(/^超写实微距静物摄影与视觉拆解标本图[，,。:\s]*/g, '')
+          .replace(/^超写实商业静物平铺摄影（Knolling）[，,。:\s]*/g, '')
+          .trim();
+        return `生成一张1:1正方形、超写实商业静物摄影与视觉拆解标本图（画面中绝对不出现任何人物、模特、脸部或人体肢体）。核心静物与光学拆解内容（${item.title}）：${coreProd}。商业级微距棚拍布光，8K超高清材质纤维与光学质感，干净高级背景；禁止出现人物、禁止乱码文字、水印、Logo变形与拼图边框，比例 1:1。`;
+      }
+      if (engine === 'chatgpt') return item.prompt;
+
+      const f = item.fields || {};
+      const cat = normalizeCat(item.category_id);
+      const clauses = [
+        '以参考图中的成年女性为唯一人物身份，生成一张3:4竖版、极致写实的真人感摄影照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形与自然肤色，仅提取参考图人物五官骨相，不照搬参考图的服装与背景，人物高度一致，不换脸、不美颜、不网红化',
+        '自然写实7.5～8头身，小头小脸比例，头肩比与四肢协调，身形纤细修长，禁止大头、短腿、超8.5头身与关节变形'
+      ];
+
+      if (cat === 'filters') {
+        const cam = cleanSentence(f['相机/介质'] || item.title);
+        const light = cleanSentence((f['色温/光影'] || '').replace(/\|/g, '，'));
+        const env = cleanSentence(f['场景氛围'] || '');
+        clauses.push('保持参考人物原有发色与面部特征，神态松弛自然，眼神不经意看向镜头，姿态随意不僵硬');
+        if (env) clauses.push(`身处${env}`);
+        clauses.push(`核心光学滤镜与成像质感（${item.title}）：模拟${cam}实拍光学质感${light ? '，' + light : ''}`);
+      } else if (cat === 'poses') {
+        const pose = cleanSentence(f['人体工学细节'] || item.title);
+        const env = cleanSentence(f['场景氛围'] || '');
+        clauses.push('保持参考人物原有发色与清透伪素颜妆感，神态松弛自然');
+        clauses.push(`核心抓拍动态与构图（${item.title}）：${pose}，动作舒展松弛，像被朋友偶然抓拍，毫无死板摆拍感`);
+        if (env) clauses.push(`场景与光影氛围：${env}`);
+      } else if (cat === 'outfits') {
+        const details = cleanSentence(f['单品构成与面料工艺细节'] || '');
+        const match = cleanSentence(f['适用场合与搭配鞋包'] || '');
+        clauses.push('保持参考人物原有发色与清透自然妆感，姿态松弛自然');
+        const outfitBody = [details, match].filter(Boolean).join('；');
+        clauses.push(`全身穿搭完整替换为「${item.title}」${outfitBody ? '：' + outfitBody : ''}。衣料呈现真实重力垂坠褶皱、领口袖口剪裁骨位与高支纱线编织肌理`);
+      } else if (cat === 'hosiery') {
+        const craft = cleanSentence(f['视觉特征与材质工艺'] || '');
+        const match = cleanSentence(f['穿搭场景与鞋履搭配'] || f['时尚/流行流派'] || '');
+        clauses.push('保持参考人物原有发色与清透自然妆感，修长双腿线条流畅自然');
+        const hosBody = [craft, match].filter(Boolean).join('；');
+        clauses.push(`腿部核心穿搭为「${item.title}」${hosBody ? '：' + hosBody : ''}。丝袜尼龙经纬纱线在光线下呈现真实透肤度过渡、膝窝与踝骨生理微褶皱及细腻光泽`);
+      } else if (cat === 'styles') {
+        const spot = cleanSentence(item.title);
+        const env = cleanSentence(f['环境与光影细节'] || '');
+        const light = cleanSentence(f['色温光影与环境氛围'] || '');
+        const mood = cleanSentence((f['场景氛围'] || '').replace(/一位\d+岁[^，,]*[，,]\s*/g, ''));
+        clauses.push('保持参考人物原有发色与自然清透妆容，姿态松弛随性');
+        const styleBody = [env, light || mood].filter(Boolean).join('，');
+        clauses.push(`核心实景地标与美学氛围（${spot}）${styleBody ? '：' + styleBody : ''}。人物与实景空间透视、环境反射光及空气色温自然融合，无抠图感`);
+      } else if (cat === 'hair_makeup') {
+        const hair = cleanSentence(f['剪裁构造与妆容细节'] || item.title);
+        const makeup = cleanSentence(f['妆容质感与色彩工程参数'] || '');
+        const scene = cleanSentence((f['适用脸型与风格场景'] || '').replace(/^[^。.]*脸[^。.]*[。.]\s*/g, '').replace(/^适合[^。.]*[。.]\s*/g, ''));
+        const hmBody = [hair, makeup, scene].filter(Boolean).join('；');
+        clauses.push(`在严格锁定参考人物五官骨相的基础上，将发型与妆容重塑为「${item.title}」${hmBody ? '：' + hmBody : ''}。呈现根根分明的自然发丝光泽、耳侧碎发弧度与清透原生皮肤毛孔肌理`);
+      } else if (cat === 'expressions') {
+        const gaze = cleanSentence(f['双眸与视线物理特征'] || item.title);
+        const lips = cleanSentence(f['唇角与肌肉微动细节'] || '');
+        const expBody = [gaze, lips].filter(Boolean).join('；');
+        clauses.push('保持参考人物原有发色与五官骨相，近景至半身人像特写');
+        clauses.push(`核心神态与微表情（${item.title}）${expBody ? '：' + expBody : ''}。眼神灵动有神采，眼白清澈带真实眼神光，苹果肌与唇角肌肉微动自然真实，无僵硬假笑`);
+      } else if (cat === 'props') {
+        const prop = cleanSentence(f['材质工艺与视觉焦点'] || item.title);
+        const hand = cleanSentence(f['互动手势与场景'] || '');
+        const propBody = [prop, hand].filter(Boolean).join('；');
+        clauses.push('保持参考人物原有发色与清透自然妆容');
+        clauses.push(`核心随身道具与美甲手部互动（${item.title}）${propBody ? '：' + propBody : ''}。手部解剖结构准确，十指修长骨节自然，美甲甲面高光与道具材质反光真实细腻`);
+      }
+
+      clauses.push('真人感日常随手抓拍写真，手机/CCD原相机视角，画面边缘轻微柔光，轻薄细碎胶片颗粒与自然浅景深虚化，保留原生真实皮肤毛孔肌理、自然血色与真实光影过渡，真实自然不过度精修；禁止大头、短腿、手指畸形、多余肢体、乱码文字、水印、拼图，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，比例 3:4');
+      return clauses.map(c => c.trim().replace(/[。，,；;.\s]+$/, '')).filter(Boolean).join('。') + '。';
+    }
+
     function createCardHTML(item) {
       const specs = getCardSpecs(item);
       const catKey = normalizeCat(item.category_id);
       const nativeSub = item.fields?.['本土/日常叫法'] || item.fields?.['时尚/流行流派'] || '';
       const isLoaded = activeMix[catKey]?.id === item.id;
       const currentImg = item.fit_image || item.image || null;
+      const activePrompt = compileCardPrompt(item, currentCardEngine, 'model');
+      const copyLabel = currentCardEngine === 'seedream' ? '复制 SD 5.0 提示词' : '复制 GPT 提示词';
+      const engineTag = currentCardEngine === 'seedream' ? 'SD 5.0 · 参考图锁脸与比例防崩' : 'ChatGPT · 光学导演叙事';
       const specsHTML = specs.length > 0 ? `<div class="card-specs">${specs.map(s => `<div class="spec-row"><span class="k">${s.k}</span><span class="v">${s.v}</span></div>`).join('')}</div>` : '';
 
       return `
-        <article class="iris-card" data-id="${item.id}" data-category="${catKey}" data-country="${item.country}" data-active-mode="model">
+        <article class="iris-card" data-id="${item.id}" data-category="${catKey}" data-country="${item.country}" data-active-mode="model" data-active-engine="${currentCardEngine}">
           <div class="card-top-bar">
             <div class="card-meta">
               <span class="chip chip-country">${item.country}</span>
@@ -666,10 +774,17 @@
             </div>
             ${specsHTML}
             <div class="prompt-box">
-              <pre class="prompt-text clamp" data-prompt-main="${encodeURIComponent(item.prompt)}" data-prompt-prod="${encodeURIComponent(item.product_prompt || '')}">${item.prompt}</pre>
+              <div class="prompt-box-head">
+                <span class="engine-tag ${currentCardEngine === 'seedream' ? 'is-sd' : 'is-gpt'}" data-engine-tag>${engineTag}</span>
+                <div class="engine-pill">
+                  <button type="button" class="engine-btn ${currentCardEngine === 'chatgpt' ? 'active' : ''}" data-engine="chatgpt">GPT</button>
+                  <button type="button" class="engine-btn ${currentCardEngine === 'seedream' ? 'active' : ''}" data-engine="seedream">SD 5.0</button>
+                </div>
+              </div>
+              <pre class="prompt-text clamp">${activePrompt}</pre>
             </div>
             <div class="card-actions">
-              <button type="button" class="copy-btn" data-copy><span class="label">复制提示词</span></button>
+              <button type="button" class="copy-btn" data-copy><span class="label">${copyLabel}</span></button>
               <button type="button" class="expand-btn" data-expand>展开</button>
               <span class="spacer"></span>
               <button type="button" class="track-send-btn ${isLoaded ? 'sent' : ''}" data-send><span>${isLoaded ? '已入轨' : '入轨'}</span></button>
@@ -681,6 +796,10 @@
               <div class="view-mode-pill">
                 <button type="button" class="mode-btn active" data-mode="model">实穿 3:4</button>
                 <button type="button" class="mode-btn" data-mode="product" ${!item.product_prompt ? 'disabled' : ''}>标本 1:1</button>
+              </div>
+              <div class="engine-pill">
+                <button type="button" class="engine-btn ${currentCardEngine === 'chatgpt' ? 'active' : ''}" data-engine="chatgpt">GPT</button>
+                <button type="button" class="engine-btn ${currentCardEngine === 'seedream' ? 'active' : ''}" data-engine="seedream">SD 5.0</button>
               </div>
               <span class="spacer"></span>
               <button type="button" class="upload-mini-btn" data-upload-btn>上传配图</button>
@@ -698,7 +817,7 @@
             <div class="card-actions">
               <span class="back-title">${item.title}</span>
               <span class="spacer"></span>
-              <button type="button" class="copy-btn" data-copy><span class="label">复制提示词</span></button>
+              <button type="button" class="copy-btn" data-copy><span class="label">${copyLabel}</span></button>
             </div>
           </div>
         </article>
@@ -742,28 +861,43 @@
       updateFilterCounts(); renderCards();
     }
 
-    function syncCardMode(card, mode) {
+    function syncCardState(card, mode, engine) {
       const id = card.dataset.id;
       const item = allData.find(x => x.id === id);
       if (!item) return;
       card.dataset.activeMode = mode;
+      card.dataset.activeEngine = engine;
       card.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+      card.querySelectorAll('.engine-btn').forEach(b => b.classList.toggle('active', b.dataset.engine === engine));
       const promptEl = card.querySelector('.prompt-text');
+      const engineTagEl = card.querySelector('[data-engine-tag]');
       const coverWrap = card.querySelector('.card-cover-wrap');
       const mediaCont = card.querySelector('[data-media-box]');
       const imgEl = card.querySelector('.cover-img');
+
+      promptEl.textContent = compileCardPrompt(item, engine, mode);
+      if (engineTagEl) {
+        engineTagEl.textContent = engine === 'seedream' ? 'SD 5.0 · 参考图锁脸与比例防崩' : 'ChatGPT · 光学导演叙事';
+        engineTagEl.classList.toggle('is-sd', engine === 'seedream');
+        engineTagEl.classList.toggle('is-gpt', engine === 'chatgpt');
+      }
+      const copyLabel = engine === 'seedream' ? '复制 SD 5.0 提示词' : '复制 GPT 提示词';
+      card.querySelectorAll('[data-copy]:not(.done) .label').forEach(lbl => { lbl.textContent = copyLabel; });
+
       if (mode === 'product') {
-        promptEl.textContent = decodeURIComponent(promptEl.dataset.promptProd || '');
         coverWrap.dataset.ratio = '1:1';
         if (item.product_image) { imgEl.src = item.product_image; imgEl.style.display = 'block'; mediaCont.classList.remove('has-no-image'); }
         else { imgEl.src = ''; imgEl.style.display = 'none'; mediaCont.classList.add('has-no-image'); }
       } else {
-        promptEl.textContent = decodeURIComponent(promptEl.dataset.promptMain || '');
         coverWrap.dataset.ratio = '3:4';
         const fitImg = item.fit_image || item.image;
         if (fitImg) { imgEl.src = fitImg; imgEl.style.display = 'block'; mediaCont.classList.remove('has-no-image'); }
         else { imgEl.src = ''; imgEl.style.display = 'none'; mediaCont.classList.add('has-no-image'); }
       }
+    }
+
+    function syncCardMode(card, mode) {
+      syncCardState(card, mode, card.dataset.activeEngine || currentCardEngine);
     }
 
     grid.addEventListener('mouseover', e => {
@@ -783,6 +917,12 @@
         card.querySelector('.card-pane-image').hidden = face !== 'image';
         return;
       }
+      const engineBtn = target.closest('.engine-btn');
+      if (engineBtn) {
+        const card = engineBtn.closest('.iris-card');
+        syncCardState(card, card.dataset.activeMode || 'model', engineBtn.dataset.engine || 'chatgpt');
+        return;
+      }
       const copyBtn = target.closest('[data-copy]');
       if (copyBtn) {
         const card = copyBtn.closest('.iris-card');
@@ -790,7 +930,11 @@
         await navigator.clipboard.writeText(txt);
         const lbl = copyBtn.querySelector('.label');
         lbl.textContent = '已复制'; copyBtn.classList.add('done');
-        setTimeout(() => { lbl.textContent = '复制提示词'; copyBtn.classList.remove('done'); }, 1500);
+        setTimeout(() => {
+          const eng = card.dataset.activeEngine || currentCardEngine;
+          lbl.textContent = eng === 'seedream' ? '复制 SD 5.0 提示词' : '复制 GPT 提示词';
+          copyBtn.classList.remove('done');
+        }, 1500);
         return;
       }
       const expandBtn = target.closest('[data-expand]');
@@ -937,24 +1081,47 @@
 
     clearAllTracksBtn.addEventListener('click', () => Object.keys(activeMix).forEach(clearTrackValue));
 
+    function applyGlobalEngine(engine) {
+      currentCardEngine = engine;
+      document.querySelectorAll('.engine-global-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.globalEngine === engine);
+      });
+      document.querySelectorAll('.iris-card').forEach(card => {
+        syncCardState(card, card.dataset.activeMode || 'model', engine);
+      });
+    }
+
+    document.querySelectorAll('.engine-global-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const eng = btn.dataset.globalEngine || 'chatgpt';
+        applyGlobalEngine(eng);
+        currentModel = eng;
+        document.querySelectorAll('.model-tab').forEach(t => t.classList.toggle('active', t.dataset.model === eng));
+        updateMixPreview();
+      });
+    });
+
     document.querySelectorAll('.model-tab').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.model-tab').forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
         currentModel = tab.dataset.model;
+        if (currentModel === 'chatgpt' || currentModel === 'seedream') applyGlobalEngine(currentModel);
         updateMixPreview();
       });
     });
 
-    function cleanSentence(s) {
-      if (!s) return '';
-      return s.replace(/\s+/g, ' ').replace(/^[，,。；;.\s]+/, '').replace(/[。，,；;.\s]+$/, '').trim();
+    function isOutfitIncompatibleWithHosiery(outfit) {
+      const text = `${outfit.title} ${Object.values(outfit.fields || {}).join(' ')}`;
+      return /牛仔长裤|阔腿裤|工装裤|运动裤|卫裤|瑜伽裤|骑行裤|连体裤|背带裤|喇叭裤|直筒裤|西装长裤|休闲长裤|滑板鞋|堆堆袜|篮球|冲锋衣|比基尼|泳衣|泳装|浴袍|睡袍|睡衣|家居服/.test(text);
     }
 
     function compileMasterPrompt(mix) {
       const activeItems = Object.values(mix);
       if (activeItems.length === 0) return '';
       if (activeItems.length === 1 && currentModel === 'chatgpt') return activeItems[0].prompt;
+      if (activeItems.length === 1 && currentModel === 'seedream') return compileCardPrompt(activeItems[0], 'seedream', 'model');
+
       const parts = [];
       const pushClause = clause => {
         if (!clause) return;
@@ -962,11 +1129,23 @@
         if (s) parts.push(s.endsWith('。') ? s : s + '。');
       };
       const country = mix.outfits?.country || mix.styles?.country || mix.filters?.country || (currentCountry !== 'all' ? currentCountry : '韩国');
+      const hasExplicitScene = Boolean(mix.styles);
+      const sceneFullText = mix.styles ? `${mix.styles.title} ${Object.values(mix.styles.fields || {}).join(' ')}` : '';
+      const isNightScene = /夜|晚|午夜|霓虹|星光|灯火|天际线|Midnight|Night|Evening|Neon/.test(sceneFullText);
+
+      const getPureCamera = filterItem => {
+        let cam = cleanSentence(filterItem.fields['相机/介质'] || filterItem.title);
+        if (hasExplicitScene) {
+          cam = cam.replace(/,\s*(Natural Overcast Daylight|Golden Hour Sunlight|Midday Harsh Sun|Bright Daylight|Morning Mist)[^,，]*/gi, '').trim();
+        }
+        return cam;
+      };
+
       if (currentModel === 'seedream') {
-        pushClause('以参考图中的成年女性为唯一人物身份，生成一张超写实日常抓拍照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形与20岁出头年轻感，人物高度一致，不换脸、不美颜、不网红化。自然写实7.5～8头身，身形纤细修长');
-        if (mix.filters) pushClause(`模拟${cleanSentence(mix.filters.fields['相机/介质'] || mix.filters.title)}光学成像质感`);
+        pushClause('以参考图中的成年女性为唯一人物身份，生成一张3:4竖版、极致写实的真人感摄影照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形与自然肤色，仅提取参考图人物五官骨相，不照搬参考图的服装与背景，人物高度一致，不换脸、不美颜、不网红化。自然写实7.5～8头身，小头小脸比例，头肩比与四肢协调，身形纤细修长，禁止大头、短腿、超8.5头身与关节变形');
+        if (mix.filters) pushClause(`核心光学滤镜（${mix.filters.title}）：模拟${getPureCamera(mix.filters)}实拍光学成像质感`);
       } else {
-        pushClause(mix.filters ? `超写实日常抓拍照片，模拟${cleanSentence(mix.filters.fields['相机/介质'] || mix.filters.title)}光学成像质感` : '超写实日常抓拍照片，真实原相机抓拍质感');
+        pushClause(mix.filters ? `超写实日常抓拍照片，模拟${getPureCamera(mix.filters)}光学成像质感` : '超写实日常抓拍照片，真实原相机抓拍质感');
         const pMap = {
           '韩国': '一位20岁出头的年轻东亚女性，清冷淡颜，冷白皮，头小脸小骨相优越，身形纤细修长',
           '日本': '一位22岁的年轻日本女性，清透微光冷白皮，骨相柔和立体，头小脸小，身材轻盈纤细',
@@ -976,37 +1155,99 @@
         };
         pushClause(pMap[country] || pMap['韩国']);
       }
+
       if (mix.hair_makeup) {
-        const hm = [cleanSentence(mix.hair_makeup.fields['剪裁构造与妆容细节'] || mix.hair_makeup.title), cleanSentence(mix.hair_makeup.fields['适用脸型与风格场景'])].filter(Boolean).join('，');
-        if (hm) pushClause(hm);
-      } else pushClause('发丝微乱自然垂落肩头，耳侧几缕胎毛碎发随风轻拂，清透伪素颜底妆与原生水润唇色');
-      if (mix.expressions) {
-        const exp = [cleanSentence(mix.expressions.fields['双眸与视线物理特征'] || mix.expressions.title), cleanSentence(mix.expressions.fields['唇角与肌肉微动细节'])].filter(Boolean).join('，');
-        if (exp) pushClause('神态松弛自然，' + exp);
+        const hair = cleanSentence(mix.hair_makeup.fields['剪裁构造与妆容细节'] || mix.hair_makeup.title);
+        const makeup = cleanSentence(mix.hair_makeup.fields['妆容质感与色彩工程参数'] || '');
+        const hm = [hair, makeup].filter(Boolean).join('；');
+        if (hm) pushClause(currentModel === 'seedream' ? `在严格锁定参考人物五官骨相的基础上，将发型与妆容重塑为「${mix.hair_makeup.title}」：${hm}` : hm);
+      } else {
+        pushClause(currentModel === 'seedream' ? '保持参考人物原有发色与面部特征，发丝自然垂落肩头，耳侧几缕碎发轻拂，清透伪素颜底妆与原生水润唇色' : '发丝微乱自然垂落肩头，耳侧几缕胎毛碎发随风轻拂，清透伪素颜底妆与原生水润唇色');
       }
-      if (mix.poses) pushClause('身姿自然舒展，毫无死板僵硬摆拍感，' + cleanSentence(mix.poses.fields['人体工学细节'] || mix.poses.title));
+
+      if (mix.expressions) {
+        let gaze = cleanSentence(mix.expressions.fields['双眸与视线物理特征'] || mix.expressions.title);
+        let lips = cleanSentence(mix.expressions.fields['唇角与肌肉微动细节'] || '');
+        if (mix.poses) {
+          gaze = gaze.replace(/^身体背对镜头[^，,]*[，,]\s*/g, '').replace(/^身体侧对镜头[^，,]*[，,]\s*/g, '').replace(/^驻足侧身回眸[，,]\s*/g, '');
+          lips = lips.replace(/^转头动作使[^，,]*[，,]\s*/g, '');
+        }
+        const exp = [gaze, lips].filter(Boolean).join('，');
+        if (exp) pushClause('神态松弛自然，' + exp);
+      } else {
+        pushClause('神态松弛自然，眼神不经意看向镜头，像被朋友随手抓拍的生活瞬间');
+      }
+
+      if (mix.poses) {
+        let pose = cleanSentence(mix.poses.fields['人体工学细节'] || mix.poses.title);
+        if (hasExplicitScene) {
+          pose = pose.replace(/双脚稳踏在草地上[，,]?\s*/g, '').replace(/站立在音乐节高耸的细微高压喷雾降温拱门（Misting Arch）正下方[，,]?\s*/g, '自然站立，').replace(/任由清凉的细微水雾扑面洒下/g, '姿态舒展松弛');
+        }
+        if (pose) pushClause('身姿自然舒展，毫无死板僵硬摆拍感，' + pose);
+      }
+
       if (mix.outfits) {
-        const out = [`身穿${cleanSentence(mix.outfits.title)}`, cleanSentence(mix.outfits.fields['单品构成与面料工艺细节']), cleanSentence(mix.outfits.fields['适用场合与搭配鞋包'])].filter(Boolean).join('，');
+        let details = cleanSentence(mix.outfits.fields['单品构成与面料工艺细节'] || '');
+        let acc = cleanSentence(mix.outfits.fields['适用场合与搭配鞋包'] || '');
+        if (mix.hosiery) {
+          details = details.replace(/[；;，,]?\s*配饰包含[^。；;]*堆堆袜[^。；;]*/g, '').replace(/[与和及]\s*[^，,；;。]*?(堆堆袜|中筒袜|棉袜|长筒袜)/g, '');
+          acc = acc.replace(/[^，,、；;]*?(堆堆中筒袜|堆堆袜|纯棉中筒袜|棉质及膝中筒袜|运动棉袜)[、，,]?\s*/g, '').replace(/经典黑白撞色复古麂皮滑板鞋[、，,]?\s*/g, '哑光黑色极简厚底乐福皮鞋、');
+        }
+        const out = [`身穿${cleanSentence(mix.outfits.title)}`, details, acc].filter(Boolean).join('，');
         pushClause(out);
       }
+
       if (mix.hosiery) {
-        const hos = [`腿部搭配${cleanSentence(mix.hosiery.title)}`, cleanSentence(mix.hosiery.fields['视觉特征与材质工艺']), cleanSentence(mix.hosiery.fields['穿搭场景与鞋履搭配'])].filter(Boolean).join('，');
-        pushClause(hos);
+        const hDetails = cleanSentence(mix.hosiery.fields['视觉特征与材质工艺'] || '');
+        const hFabric = cleanSentence(mix.hosiery.fields['纺织参数与纤维密度'] || '');
+        const hParts = [`腿部搭配${cleanSentence(mix.hosiery.title)}`];
+        if (hDetails) hParts.push(hDetails);
+        if (hFabric) hParts.push(hFabric);
+        if (!mix.outfits && !mix.styles) {
+          const hMatch = cleanSentence(mix.hosiery.fields['穿搭场景与鞋履搭配'] || '');
+          if (hMatch) hParts.push(hMatch);
+        }
+        pushClause(hParts.join('，'));
       }
+
       if (mix.props) {
-        const pr = [cleanSentence(mix.props.fields['材质工艺与视觉焦点'] || mix.props.title), cleanSentence(mix.props.fields['互动手势与场景'])].filter(Boolean).join('，');
+        const propLook = cleanSentence(mix.props.fields['材质工艺与视觉焦点'] || mix.props.title);
+        let propHand = cleanSentence(mix.props.fields['互动手势与场景'] || '');
+        if (propHand.includes('；')) propHand = propHand.split('；').slice(1).join('；').trim();
+        else if (propHand.includes(';')) propHand = propHand.split(';').slice(1).join(';').trim();
+        propHand = propHand.replace(/^(22岁)?年轻女性/g, '').trim();
+        if (mix.hair_makeup) propHand = propHand.replace(/头戴[^，,]+将[^，,]+向后梳理[，,]?\s*/g, '');
+        const pr = [propLook, propHand].filter(Boolean).join('，');
         if (pr) pushClause(`随身搭配互动细节：${pr}`);
       }
+
       if (mix.styles) {
-        const st = [cleanSentence(mix.styles.fields['本土文化/场景名'] || mix.styles.title), cleanSentence(mix.styles.fields['环境与光影细节'] || mix.styles.fields['场景氛围'])].filter(Boolean).join('，');
-        if (st) pushClause(`身处${st}`);
+        const sTitle = cleanSentence(mix.styles.title);
+        const sEnv = cleanSentence(mix.styles.fields['环境与光影细节'] || '');
+        const sLight = cleanSentence(mix.styles.fields['色温光影与环境氛围'] || '');
+        const sceneBody = [sEnv, sLight].filter(Boolean).join('，');
+        pushClause(sceneBody ? `身处${sTitle}：${sceneBody}` : `身处${sTitle}`);
+      } else if (mix.filters?.fields['场景氛围']) {
+        pushClause(`身处${cleanSentence(mix.filters.fields['场景氛围'])}`);
+      } else if (mix.poses?.fields['场景氛围']) {
+        pushClause(`身处${cleanSentence(mix.poses.fields['场景氛围'])}`);
       }
-      if (mix.filters?.fields['色温/光影']) pushClause(cleanSentence(mix.filters.fields['色温/光影'].replace(/\|/g, '，')));
+
+      if (mix.filters?.fields['色温/光影']) {
+        const l = cleanSentence(mix.filters.fields['色温/光影'].replace(/\|/g, '，'));
+        if (l && !(isNightScene && /正午|烈日|清晨阳光|明媚日光/.test(l))) pushClause(l);
+      }
+
       if (currentModel === 'gemini') {
         const tags = activeItems.map(it => it.fields['时尚/流行流派'] || it.fields['本土/日常叫法'] || '').filter(Boolean).slice(0, 4).join(', ');
         if (tags) pushClause(`Optical & Aesthetic Anchors: ${tags}, candid 35mm photorealistic street snapshot`);
       }
-      parts.push('画面呈现真实照片质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、真实皮肤毛孔与微小肌理、自然血色与生理微褶皱，暗部带细密真实的感光噪点与边缘轻微色散，无过度磨皮美颜，真实社交网络原图生活感，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，3:4');
+
+      if (currentModel === 'seedream') {
+        parts.push('真人感日常随手抓拍写真，手机/CCD原相机视角，画面边缘轻微柔光，轻薄细碎胶片颗粒与自然浅景深虚化，保留原生真实皮肤毛孔肌理、自然血色与真实光影过渡，真实自然不过度精修；禁止大头、短腿、手指畸形、多余肢体、乱码文字、水印、拼图，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，比例 3:4');
+      } else {
+        parts.push('画面呈现真实照片质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、真实皮肤毛孔与微小肌理、自然血色与生理微褶皱，暗部带细密真实的感光噪点与边缘轻微色散，无过度磨皮美颜，真实社交网络原图生活感，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，3:4');
+      }
       return parts.join('');
     }
 
@@ -1018,12 +1259,85 @@
 
     randomBtn.addEventListener('click', () => {
       const targetCountry = currentCountry !== 'all' ? currentCountry : ['韩国', '日本', '中国', '美国', '法国'][Math.floor(Math.random() * 5)];
-      const pool = allData.filter(x => x.country === targetCountry);
+      const countryPool = allData.filter(x => x.country === targetCountry);
+      if (countryPool.length === 0) return;
       Object.keys(activeMix).forEach(clearTrackValue);
-      ['filters', 'poses', 'outfits', 'hosiery', 'styles', 'hair_makeup', 'expressions', 'props'].forEach(catId => {
-        const cands = pool.filter(x => normalizeCat(x.category_id) === catId);
-        if (cands.length > 0) setTrackValue(cands[Math.floor(Math.random() * cands.length)]);
-      });
+
+      const pickOne = (list, fallback) => {
+        const src = list.length > 0 ? list : fallback;
+        return src.length > 0 ? src[Math.floor(Math.random() * src.length)] : null;
+      };
+      const byCat = catId => countryPool.filter(x => normalizeCat(x.category_id) === catId);
+      const textOf = it => `${it.title} ${Object.values(it.fields || {}).join(' ')}`;
+
+      const vibes = ['chic_tailored', 'street_cool', 'night_glam', 'clean_film'];
+      const vibe = vibes[Math.floor(Math.random() * vibes.length)];
+
+      const allOutfits = byCat('outfits');
+      let outfitPool = allOutfits;
+      if (vibe === 'chic_tailored') {
+        outfitPool = allOutfits.filter(x => /西装|风衣|衬衫|针织|百褶裙|连衣裙|大衣|毛呢|套装|制服|校服|半身裙|A字裙/.test(textOf(x)) && !isOutfitIncompatibleWithHosiery(x));
+      } else if (vibe === 'street_cool') {
+        outfitPool = allOutfits.filter(x => /卫衣|牛仔|工装|短裤|热裤|辣妹|背心|T恤|夹克|棒球|皮衣|阔腿裤|运动/.test(textOf(x)));
+      } else if (vibe === 'night_glam') {
+        outfitPool = allOutfits.filter(x => /吊带裙|礼服|丝绸|真丝|天鹅绒|丝绒|露背|晚宴|小黑裙|开叉|抹胸|皮草|亮片/.test(textOf(x)) && !isOutfitIncompatibleWithHosiery(x));
+      } else {
+        outfitPool = allOutfits.filter(x => /棉麻|亚麻|碎花|长裙|开衫|毛衣|白衬衫|校服|学院|帆布|日系|森系|清冷/.test(textOf(x)));
+      }
+
+      const chosenOutfit = pickOne(outfitPool, allOutfits);
+      if (chosenOutfit) setTrackValue(chosenOutfit);
+
+      const allHosiery = byCat('hosiery');
+      const shouldUseHosiery = chosenOutfit && !isOutfitIncompatibleWithHosiery(chosenOutfit) && (vibe === 'chic_tailored' || vibe === 'night_glam');
+      if (shouldUseHosiery && allHosiery.length > 0) {
+        const calmHosiery = allHosiery.filter(x => !/朋克|撕裂|破洞|涂鸦|夸张|荧光|撞色拼接/.test(textOf(x)));
+        const chosenHosiery = pickOne(calmHosiery, allHosiery);
+        if (chosenHosiery) setTrackValue(chosenHosiery);
+      }
+
+      const allStyles = byCat('styles');
+      const safeStyles = allStyles.filter(x => !/泳池|海浪|冲浪|浴缸|浴室|沙漠|滑雪|雪山/.test(textOf(x)));
+      let stylePool = safeStyles;
+      if (vibe === 'night_glam') {
+        stylePool = safeStyles.filter(x => /夜|晚|露台|天际线|酒吧|酒店|派对|霓虹|香槟|外滩|塞纳河/.test(textOf(x)));
+      } else if (vibe === 'chic_tailored') {
+        stylePool = safeStyles.filter(x => /买手店|咖啡|美术馆|画廊|街角|林荫道|写字楼|书店|大堂|露台/.test(textOf(x)) && !/午夜|夜店/.test(textOf(x)));
+      } else if (vibe === 'street_cool') {
+        stylePool = safeStyles.filter(x => /街头|街区|涂鸦|天台|便利店|公路|滑板|地铁|街角/.test(textOf(x)));
+      } else {
+        stylePool = safeStyles.filter(x => /窗边|庭院|海边|镰仓|书店|花店|公园|林荫|午后|电车|胡同|胶片/.test(textOf(x)) && !/午夜|夜店/.test(textOf(x)));
+      }
+      const chosenStyle = pickOne(stylePool, safeStyles);
+      if (chosenStyle) setTrackValue(chosenStyle);
+
+      const isChosenStyleNight = chosenStyle ? /夜|晚|午夜|霓虹|天际线|Midnight|Night/.test(textOf(chosenStyle)) : false;
+      const allFilters = byCat('filters');
+      const filterPool = isChosenStyleNight
+        ? allFilters.filter(x => /闪光|直闪|夜|霓虹|王家卫|冷调|CCD|电影/.test(textOf(x)) && !/正午|烈日|Overcast Daylight/.test(textOf(x)))
+        : allFilters.filter(x => !/夜店|午夜|暗夜/.test(textOf(x)));
+      const chosenFilter = pickOne(filterPool, allFilters);
+      if (chosenFilter) setTrackValue(chosenFilter);
+
+      const allPoses = byCat('poses');
+      const universalPoses = allPoses.filter(x => !/草地|草坪|喷雾|喷水|泳池|海浪|沙滩|海水|浴缸|被窝|床垫|秋千|购物车|滑板|冲浪|自行车|单车|机舱|方向盘|引擎盖/.test(textOf(x)));
+      const chosenPose = pickOne(universalPoses, allPoses);
+      if (chosenPose) setTrackValue(chosenPose);
+
+      const allHair = byCat('hair_makeup');
+      const naturalHair = allHair.filter(x => !/刺猬|彩绘|舞台|哥特|夸张|脏辫|荧光/.test(textOf(x)));
+      const chosenHair = pickOne(naturalHair, allHair);
+      if (chosenHair) setTrackValue(chosenHair);
+
+      const allExp = byCat('expressions');
+      const naturalExp = allExp.filter(x => !/背对镜头快速回眸|极度惊恐|夸张大笑/.test(textOf(x)));
+      const chosenExp = pickOne(naturalExp, allExp);
+      if (chosenExp) setTrackValue(chosenExp);
+
+      const allProps = byCat('props');
+      const cleanProps = allProps.filter(x => !/发箍|棒球帽|贝雷帽|针织帽|头巾|发夹|真露|烧酒|啤酒|烤串|大排档|泡面/.test(textOf(x)));
+      const chosenProp = pickOne(cleanProps, allProps);
+      if (chosenProp) setTrackValue(chosenProp);
     });
 
     copyMixBtn.addEventListener('click', async () => {
