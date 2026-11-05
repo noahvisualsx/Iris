@@ -22,7 +22,7 @@ Commercial knolling flat-lay still life photography, minimal soft studio lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，立体清秀的高级骨相，微卷凌乱的深棕色长发随性垂落肩头，法式八字空气刘海轻拂眉眼。纯净原生裸妆，鼻梁上带有一抹若隐若现的自然细微雀斑，自然浆果红润双唇。身穿经典Rouje风格深V领系带樱桃红碎花真丝茶歇裙，侧系带轻收纤细腰身，行走时裙摆随风微扬开衩微露修长双腿，脚穿红色麂皮麻底绑带坡跟鞋，手挽一只小巧手工藤编菜篮。闲坐在蒙马特高地沿街咖啡馆露天藤椅上，初夏巴黎温润柔和的漫射日光洒在面庞。眼神慵懒而带有一丝狡黠笑意，漫不经心望向街头画家。真实手机原相机拍摄质感，浅景深自然虚化，保留真丝雪纺面料重力垂坠褶皱与真实皮肤毛孔，暗部带轻微胶片颗粒，严格杜绝二次元、动漫与3D渲染塑料感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，立体清秀的高级骨相，微卷凌乱的深棕色长发随性垂落肩头，法式八字空气刘海轻拂眉眼。纯净原生裸妆，鼻梁上带有一抹若隐若现的自然细微雀斑，自然浆果红润双唇。身穿经典Rouje风格深V领系带樱桃红碎花真丝茶歇裙，侧系带轻收纤细腰身，行走时裙摆随风微扬开衩微露修长双腿，脚穿红色麂皮麻底绑带坡跟鞋，手挽一只小巧手工藤编菜篮。闲坐在蒙马特高地沿街咖啡馆露天藤椅上，初夏巴黎温润柔和的漫射日光洒在面庞。眼神慵懒而带有一丝狡黠笑意，漫不经心望向街头画家。真实手机原相机拍摄质感，浅景深自然虚化，保留真丝雪纺面料重力垂坠褶皱与真实皮肤毛孔，暗部带轻微胶片颗粒，严格杜绝二次元、动漫与3D渲染塑料感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle candid photograph, a 22-year-old French woman sitting outside a Montmartre café terrace in Paris. Brunette wavy bedhead hair, wispy curtain bangs, bare skin with delicate freckles and berry-tinted lips. Wearing an iconic Rouje-style cherry red floral silk wrap dress with a deep V-neck, waist ties, slit skirt revealing legs, lace-up red suede espadrilles, holding a wicker basket bag. Soft early summer Parisian diffuse daylight. Daydreamy, nonchalant playful gaze towards the street. Authentic 35mm film fidelity, realistic fabric drape, 3:4
@@ -42,7 +42,7 @@ Commercial knolling flat-lay still life photography, minimal soft studio lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，五官立体雅致，骨相出众。深棕色及肩发微卷蓬松，头顶随意夹着一枚复古玳瑁发夹，法式八字刘海轻覆额前，原生轻透妆容，自然杏仁豆沙色双唇。身穿黑色底淡黄雏菊复古排扣茶歇长裙，贴合身形的立体剪裁展现纤细腰身，下摆随步态在脚踝边轻摆，脚穿黑色玛丽珍皮鞋。站在圣日耳曼大道一家旧书店绿漆门框旁，午后巴黎阴天柔和微灰的自然天光打在脸庞上。单手翻阅着一本泛黄画册，神情沉静专注，嘴角带有一抹若有所思的恬淡。真实原相机直出质感，浅景深自然过渡，保留黏胶面料自然垂褶与真实毛孔质感，严禁3D建模假面与过度磨皮，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，五官立体雅致，骨相出众。深棕色及肩发微卷蓬松，头顶随意夹着一枚复古玳瑁发夹，法式八字刘海轻覆额前，原生轻透妆容，自然杏仁豆沙色双唇。身穿黑色底淡黄雏菊复古排扣茶歇长裙，贴合身形的立体剪裁展现纤细腰身，下摆随步态在脚踝边轻摆，脚穿黑色玛丽珍皮鞋。站在圣日耳曼大道一家旧书店绿漆门框旁，午后巴黎阴天柔和微灰的自然天光打在脸庞上。单手翻阅着一本泛黄画册，神情沉静专注，嘴角带有一抹若有所思的恬淡。真实原相机直出质感，浅景深自然过渡，保留黏胶面料自然垂褶与真实毛孔质感，严禁3D建模假面与过度磨皮，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French girl standing outside an antique bookstore on Boulevard Saint-Germain. Tousled brunette hair held with a tortoiseshell hair clip, curtain bangs, natural skin texture with nude lips. Wearing a black button-down tea dress with tiny yellow daisies, accentuating a slim silhouette, black Mary Jane flats. Overcast Parisian grey diffuse light. Looking down at a yellowed art book with a serene, introspective expression. Authentic camera shot, zero airbrushed artificial smoothness, 3:4
@@ -62,7 +62,7 @@ Commercial knolling flat-lay still life photography, bright airy soft lighting. 
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，身形高挑曼妙，骨相清丽。深棕色长发随性束成一个松散的低马尾，几缕碎发在海风中轻轻飞舞，原生纯净微瑕裸妆，鼻梁带着微晒后的自然小雀斑，润泽蜜桃色双唇。身穿浅天蓝底白波点真丝裹身茶歇裙，高开衩裙摆被地中海微风轻轻吹起，露出修长双腿，脚踩麻绳平底凉鞋。站在阳光明媚的小镇石台阶上，身后是蔚蓝海岸与白色瓦房，地中海金灿灿的侧逆光穿透发丝。单手按住被风吹动的裙角，笑意盎然看向镜头。真实照片生活抓拍质感，浅景深自然虚化，保留真丝轻盈褶皱与真实皮肤纹理，严禁AI塑料质感与3D建模，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，身形高挑曼妙，骨相清丽。深棕色长发随性束成一个松散的低马尾，几缕碎发在海风中轻轻飞舞，原生纯净微瑕裸妆，鼻梁带着微晒后的自然小雀斑，润泽蜜桃色双唇。身穿浅天蓝底白波点真丝裹身茶歇裙，高开衩裙摆被地中海微风轻轻吹起，露出修长双腿，脚踩麻绳平底凉鞋。站在阳光明媚的小镇石台阶上，身后是蔚蓝海岸与白色瓦房，地中海金灿灿的侧逆光穿透发丝。单手按住被风吹动的裙角，笑意盎然看向镜头。真实照片生活抓拍质感，浅景深自然虚化，保留真丝轻盈褶皱与真实皮肤纹理，严禁AI塑料质感与3D建模，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French woman on a sunlit stone staircase overlooking the Mediterranean sea. Low messy ponytail, windswept wisps, sun-kissed cheeks with authentic freckles, peach gloss lips. Wearing a sky-blue polka-dot silk wrap dress with a high slit dancing in the coastal breeze, rope sandals. Warm Mediterranean backlight creating a golden rim around her hair. Smiling naturally while holding down her fluttering hem. Pure film photography aesthetic, 3:4
@@ -82,7 +82,7 @@ Commercial knolling flat-lay still life photography, sunny softbox lighting. Pas
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，立体清爽的面庞，微卷深棕发被一根嫩黄丝带松松扎起，法式空气刘海随风拂动，自然微瑕纯净裸妆，鼻梁两颗可爱的小雀斑，唇红齿白。身穿鹅黄色方领泡泡袖碎花短裙，优雅方领凸显迷人锁骨与天鹅颈，超短裙摆下露出笔直双腿，脚穿麻底平底鞋。漫步在普罗旺斯乡村金色麦田边，夏日明亮温润的阳光洒在周身，勾勒出金黄光晕。手提一篮刚摘下的新鲜柠檬，回眸嫣然浅笑。真实单反原图直出质感，浅景深自然虚化背景，保留雪纺轻薄褶皱与真实皮肤毛孔呼吸感，严禁3D建模假人与动漫感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，立体清爽的面庞，微卷深棕发被一根嫩黄丝带松松扎起，法式空气刘海随风拂动，自然微瑕纯净裸妆，鼻梁两颗可爱的小雀斑，唇红齿白。身穿鹅黄色方领泡泡袖碎花短裙，优雅方领凸显迷人锁骨与天鹅颈，超短裙摆下露出笔直双腿，脚穿麻底平底鞋。漫步在普罗旺斯乡村金色麦田边，夏日明亮温润的阳光洒在周身，勾勒出金黄光晕。手提一篮刚摘下的新鲜柠檬，回眸嫣然浅笑。真实单反原图直出质感，浅景深自然虚化背景，保留雪纺轻薄褶皱与真实皮肤毛孔呼吸感，严禁3D建模假人与动漫感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle candid snapshot, a 22-year-old French girl walking along a golden wheat field in Provence. Brunette curls tied loosely with a yellow ribbon, curtain bangs, natural freckles, cheerful radiant smile. Wearing a pastel yellow floral square-neck mini dress with puff sleeves, espadrilles, carrying a wicker basket filled with fresh lemons. Golden afternoon French sunlight creating a soft halo. Spontaneous joyful look. Realistic skin pores, natural fabric wrinkles, 3:4
@@ -102,7 +102,7 @@ Commercial knolling flat-lay still life photography, moody soft studio lighting.
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，五官深邃立体，散发着知识分子知性清冷气质。深棕色及肩发微卷略凌乱，法式八字刘海自然垂在额前，清透纯净原生妆容，复古深红豆沙色哑光唇。身穿墨绿色暗纹碎花真丝及膝茶歇裙，优雅系带贴合腰身，走动间裙角微翻，脚踩深红棕色粗跟皮鞋。倚坐在圣日耳曼大道一家老式咖啡馆的绿色大理石圆桌旁，黄昏巴黎特有的蓝调与柔暖灯光交融在身上。一手托腮，眼神悠远地望向街道上的行人，姿态沉静慵懒。真实原相机质感，浅景深自然虚化，保留真丝面料顺滑垂褶与真实皮肤毛孔，杜绝AI塑料感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，五官深邃立体，散发着知识分子知性清冷气质。深棕色及肩发微卷略凌乱，法式八字刘海自然垂在额前，清透纯净原生妆容，复古深红豆沙色哑光唇。身穿墨绿色暗纹碎花真丝及膝茶歇裙，优雅系带贴合腰身，走动间裙角微翻，脚踩深红棕色粗跟皮鞋。倚坐在圣日耳曼大道一家老式咖啡馆的绿色大理石圆桌旁，黄昏巴黎特有的蓝调与柔暖灯光交融在身上。一手托腮，眼神悠远地望向街道上的行人，姿态沉静慵懒。真实原相机质感，浅景深自然虚化，保留真丝面料顺滑垂褶与真实皮肤毛孔，杜绝AI塑料感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle portrait, a 22-year-old French intellectual woman at a green marble café table in Saint-Germain. Tousled clavicle-length brunette hair with curtain bangs, minimalist nude makeup with deep rosewood lips. Wearing a forest-green jacquard floral wrap dress, burgundy block heels. Soft dusk light blending with warm bistro interior glow. Hand gently resting under her chin, daydreaming gaze. Authentic film texture, zero artificial plastic smoothing, 3:4
@@ -122,7 +122,7 @@ Commercial knolling flat-lay still life photography, minimal soft lighting. Wild
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相纤巧灵动。深棕色及腰长发带着刚睡醒般的微卷凌乱质感，法式八字刘海散落眉前，几乎全素颜的脸庞上浮现着浅浅的自然小雀斑，唇红如熟透的草莓。身穿奶油白野草莓真丝吊带裙，肩头松垮搭着燕麦色羊毛针织小开衫，一侧肩带与香肩若隐若现，下身露出白皙修长的双腿，脚穿红色玛丽珍平底鞋。闲坐在孚日广场老橡树下的草地上，初夏午后斑驳微风吹动裙角与发丝。单手拿着一颗新鲜草莓送至唇边，眉眼含笑看向镜头。真实照片原相机抓拍，浅景深自然过渡，呈现真实真丝垂顺感与羊毛毛羽，皮肤毛孔真实可辨，严禁3D建模假人，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相纤巧灵动。深棕色及腰长发带着刚睡醒般的微卷凌乱质感，法式八字刘海散落眉前，几乎全素颜的脸庞上浮现着浅浅的自然小雀斑，唇红如熟透的草莓。身穿奶油白野草莓真丝吊带裙，肩头松垮搭着燕麦色羊毛针织小开衫，一侧肩带与香肩若隐若现，下身露出白皙修长的双腿，脚穿红色玛丽珍平底鞋。闲坐在孚日广场老橡树下的草地上，初夏午后斑驳微风吹动裙角与发丝。单手拿着一颗新鲜草莓送至唇边，眉眼含笑看向镜头。真实照片原相机抓拍，浅景深自然过渡，呈现真实真丝垂顺感与羊毛毛羽，皮肤毛孔真实可辨，严禁3D建模假人，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French girl sitting on the grass in Place des Vosges under shady trees. Tousled wavy brunette hair, effortless bedhead texture, subtle natural freckles, berry-stained lips. Wearing a cream silk slip dress with wild strawberry print, an oatmeal wool cardigan slipping off one shoulder, red patent Mary Jane flats. Dappled sunlight filtering through leaves. Holding a strawberry near her lips with a playful, candid smile. Authentic 35mm film aesthetic, 3:4
@@ -142,7 +142,7 @@ Commercial knolling flat-lay still life photography, sunny airy studio lighting.
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，身材苗条凹凸有致，骨相优越。深棕色波浪卷发高高盘成一个微乱的法式赫本发髻，几缕自然卷曲的碎发垂在耳旁与纤细后颈，原生纯净微瑕裸妆，珊瑚粉色亮泽双唇。身穿经典红白细维希格纹纯棉裹身茶歇裙，高腰系带勒出纤细腰肢，深V领展露迷人锁骨，行走间裙摆荷叶边翻飞，脚踩白色皮质凉鞋。行走在圣特罗佩粉黄色老建筑间被阳光晒热的鹅卵石石阶上，地中海烈日下的柔和光晕照亮面部轮廓。手挽草编篮回头一笑，明艳而随性。真实原相机直出画质，保留纯棉布料真实折痕与皮肤毛孔呼吸感，严格杜绝二次元、动漫与3D打蜡磨皮假面，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，身材苗条凹凸有致，骨相优越。深棕色波浪卷发高高盘成一个微乱的法式赫本发髻，几缕自然卷曲的碎发垂在耳旁与纤细后颈，原生纯净微瑕裸妆，珊瑚粉色亮泽双唇。身穿经典红白细维希格纹纯棉裹身茶歇裙，高腰系带勒出纤细腰肢，深V领展露迷人锁骨，行走间裙摆荷叶边翻飞，脚踩白色皮质凉鞋。行走在圣特罗佩粉黄色老建筑间被阳光晒热的鹅卵石石阶上，地中海烈日下的柔和光晕照亮面部轮廓。手挽草编篮回头一笑，明艳而随性。真实原相机直出画质，保留纯棉布料真实折痕与皮肤毛孔呼吸感，严格杜绝二次元、动漫与3D打蜡磨皮假面，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French woman walking through sunlit cobbled alleys in Saint-Tropez. High messy French chignon with soft tendrils grazing her neck, bare skin with delicate freckles, coral gloss lips. In a classic red-and-white gingham cotton wrap dress with ruffled hem, white leather slide sandals, carrying a traditional wicker basket. Bright Mediterranean golden light. Spontaneous over-the-shoulder radiant look. Authentic 35mm film grain, 3:4
@@ -162,7 +162,7 @@ Commercial knolling flat-lay still life photography, warm softbox lighting. Cara
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，五官深邃立体。深棕色大波浪长发自然披散在后背，法式八字刘海在秋风中微微飘拂，清透伪素颜微瑕底妆，枫叶焦糖红哑光唇色。身穿焦糖底碎花深V长款茶歇裙，大裙摆随着在满地金黄落叶上的步态泛起优雅层叠褶皱，脚穿焦糖色尖头粗跟短靴。走在卢森堡公园两旁林立的金色栗树下，巴黎秋日午后的斜阳穿透树叶，金红色光斑跳跃在裙身与发丝上。单手微挽裙摆，眼神温柔含蓄望向镜头。真实原图照片质感，浅景深自然虚化背景，保留天丝面料真实垂坠褶痕与皮肤毛孔细节，杜绝假人3D感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，五官深邃立体。深棕色大波浪长发自然披散在后背，法式八字刘海在秋风中微微飘拂，清透伪素颜微瑕底妆，枫叶焦糖红哑光唇色。身穿焦糖底碎花深V长款茶歇裙，大裙摆随着在满地金黄落叶上的步态泛起优雅层叠褶皱，脚穿焦糖色尖头粗跟短靴。走在卢森堡公园两旁林立的金色栗树下，巴黎秋日午后的斜阳穿透树叶，金红色光斑跳跃在裙身与发丝上。单手微挽裙摆，眼神温柔含蓄望向镜头。真实原图照片质感，浅景深自然虚化背景，保留天丝面料真实垂坠褶痕与皮肤毛孔细节，杜绝假人3D感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle portrait, a 22-year-old French woman walking through golden fallen leaves in the Luxembourg Gardens. Long tousled brunette waves dancing in the crisp autumn breeze, warm maple-red matte lips, minimal nude makeup. Wearing a flowing caramel floral maxi wrap dress with ruffled hem, cognac pointed leather ankle boots. Dappled golden autumn sunlight casting amber highlights. Gentle, poetic gaze. Real film texture, 3:4
@@ -182,7 +182,7 @@ Commercial knolling flat-lay still life photography, soft daylight studio illumi
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，面容清秀雅致，骨相极佳。深棕色长发挽成一个慵懒的低发髻，几缕自然碎发随风掠过修长的脖颈，原生纯净底妆，裸粉透亮双唇。身穿藏青底粉白玫瑰印花微开领短袖茶歇裙，系带收拢纤细腰部，小A字及膝裙摆端庄又灵动，脚踩裸粉色芭蕾舞鞋。坐在罗丹美术馆玫瑰花园的长椅上，午后柔和漫射日光穿透盛开的花丛照在脸上，手中捧着一本法文诗集。眼神专注从书页抬起，似有所思地望向雕塑，神态温婉从容。真实微单抓拍照片质感，浅景深虚化背景，保留真丝雪纺面料与皮肤自然质地，严禁3D塑料感与过度磨皮假面，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，面容清秀雅致，骨相极佳。深棕色长发挽成一个慵懒的低发髻，几缕自然碎发随风掠过修长的脖颈，原生纯净底妆，裸粉透亮双唇。身穿藏青底粉白玫瑰印花微开领短袖茶歇裙，系带收拢纤细腰部，小A字及膝裙摆端庄又灵动，脚踩裸粉色芭蕾舞鞋。坐在罗丹美术馆玫瑰花园的长椅上，午后柔和漫射日光穿透盛开的花丛照在脸上，手中捧着一本法文诗集。眼神专注从书页抬起，似有所思地望向雕塑，神态温婉从容。真实微单抓拍照片质感，浅景深虚化背景，保留真丝雪纺面料与皮肤自然质地，严禁3D塑料感与过度磨皮假面，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle candid snapshot, a 22-year-old French woman sitting on a park bench in the Musée Rodin rose garden in Paris. Loose low chignon with romantic tendrils, fresh bare-skin glow with nude pink lips. Wearing a navy blue tea dress adorned with delicate pink roses, belted at the waist, nude leather ballet flats, holding a poetry book. Gentle Parisian afternoon ambient light. Looking up from reading with a contemplative, serene gaze. Authentic 35mm film fidelity, 3:4
@@ -202,7 +202,7 @@ Commercial knolling flat-lay still life photography, soft diffuse studio lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，身段修长婀娜，骨相立体清冷。微卷深棕长发自然披拂在单侧肩头，法式八字刘海微遮眼角，原生清透裸妆，鼻梁带着几颗极淡的小雀斑，唇色是天然浅丁香玫瑰色。身穿淡紫罗兰碎花斜裁长款茶歇裙，贴身斜裁勾勒曼妙身形，走动间侧边不对称荷叶边在脚踝边轻盈翻飞，脚踩细绑带凉鞋。漫步在吉维尼莫奈睡莲池畔的日本桥上，黄昏莫奈画卷般的微粉与淡紫余晖倒映在水面与裙身。眼神微带诗意迷离，神态漫不经心。真实照片原图直出质感，浅景深自然虚化背景，保留天丝面料真实垂坠感与毛孔肌理，严禁AI油画建模与塑料感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，身段修长婀娜，骨相立体清冷。微卷深棕长发自然披拂在单侧肩头，法式八字刘海微遮眼角，原生清透裸妆，鼻梁带着几颗极淡的小雀斑，唇色是天然浅丁香玫瑰色。身穿淡紫罗兰碎花斜裁长款茶歇裙，贴身斜裁勾勒曼妙身形，走动间侧边不对称荷叶边在脚踝边轻盈翻飞，脚踩细绑带凉鞋。漫步在吉维尼莫奈睡莲池畔的日本桥上，黄昏莫奈画卷般的微粉与淡紫余晖倒映在水面与裙身。眼神微带诗意迷离，神态漫不经心。真实照片原图直出质感，浅景深自然虚化背景，保留天丝面料真实垂坠感与毛孔肌理，严禁AI油画建模与塑料感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French woman on the Japanese bridge in Monet's garden at Giverny. Brunette waves cascading over one shoulder, iconic curtain bangs, bare skin with delicate freckles, lilac-rose lips. Wearing a bias-cut pale lilac floral maxi wrap dress with an asymmetric flutter hem, strappy flat sandals. Sunset twilight painting soft mauve and golden reflections on the water lilies. Daydreamy, poetic expression. Organic fabric motion, genuine film snapshot, 3:4
@@ -222,7 +222,7 @@ Commercial knolling flat-lay still life photography, minimal softbox lighting. B
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相明艳动人，身材纤细曼妙。深棕色波浪卷发蓬松自然，带着法式刚睡醒的慵懒凌乱感，法式八字刘海轻抚额角，清透夜间微光裸妆，经典樱桃正红哑光双唇。身穿黑色红心提花真丝深V裹身短裙，收腰裹身勾勒出优美曲线，大方展露平直双肩与修长白皙双腿，脚穿黑色漆皮粗跟玛丽珍鞋。站在玛黑区一家昏暗小酒馆的复古红色丝绒门帘旁，暖黄街灯与室内幽微光影交汇在身上。单手轻插腰侧，嘴角扬起一丝狡黠而迷人的轻笑，宛如新浪潮电影里的灵动女主角。真实原相机质感，保留真丝细腻肌理与皮肤毛孔，严禁二次元、动漫与3D打蜡磨皮假人，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相明艳动人，身材纤细曼妙。深棕色波浪卷发蓬松自然，带着法式刚睡醒的慵懒凌乱感，法式八字刘海轻抚额角，清透夜间微光裸妆，经典樱桃正红哑光双唇。身穿黑色红心提花真丝深V裹身短裙，收腰裹身勾勒出优美曲线，大方展露平直双肩与修长白皙双腿，脚穿黑色漆皮粗跟玛丽珍鞋。站在玛黑区一家昏暗小酒馆的复古红色丝绒门帘旁，暖黄街灯与室内幽微光影交汇在身上。单手轻插腰侧，嘴角扬起一丝狡黠而迷人的轻笑，宛如新浪潮电影里的灵动女主角。真实原相机质感，保留真丝细腻肌理与皮肤毛孔，严禁二次元、动漫与3D打蜡磨皮假人，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle portrait, a 22-year-old French woman outside a dimly lit jazz bar in Le Marais. Tousled brunette bedhead waves, curtain bangs, glowing bare skin with bold cherry red lips. Wearing a black silk wrap mini dress with miniature woven red hearts, waist-cinching silhouette showing legs, black patent Mary Janes. Warm streetlamp glow contrasting against deep indoor shadows. Hand on waist with a subtle, mischievous smirk. Cinematic New Wave authenticity, genuine 35mm film grain, 3:4
@@ -242,7 +242,7 @@ Commercial knolling flat-lay still life photography, soft natural studio lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，五官清新甜美，骨相轻盈秀丽。深棕色长卷发被一顶浅草帽扣在脑后，几缕法式刘海与卷发在微风中轻拂面颊，清透原生裸妆，鼻梁上泛着可爱微晒的自然小雀斑，双唇是水润自然的蜜桃粉。身穿象牙白方领抽褶小雏菊纯棉短裙，露出纤细优美的天鹅颈与锁骨，下身高腰短裙展露修长双腿，脚穿麻编凉拖。坐在杜乐丽花园著名的绿色圆形水池边，夏日午后纯净的阳光将水面波光与发丝照亮。手中拿着刚买的面包，微仰着脸迎向清风，神情惬意自在。真实生活抓拍质感，浅景深自然过渡，保留纯棉真实褶皱与真实皮肤质感，严禁3D塑料人偶与假面磨皮，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，五官清新甜美，骨相轻盈秀丽。深棕色长卷发被一顶浅草帽扣在脑后，几缕法式刘海与卷发在微风中轻拂面颊，清透原生裸妆，鼻梁上泛着可爱微晒的自然小雀斑，双唇是水润自然的蜜桃粉。身穿象牙白方领抽褶小雏菊纯棉短裙，露出纤细优美的天鹅颈与锁骨，下身高腰短裙展露修长双腿，脚穿麻编凉拖。坐在杜乐丽花园著名的绿色圆形水池边，夏日午后纯净的阳光将水面波光与发丝照亮。手中拿着刚买的面包，微仰着脸迎向清风，神情惬意自在。真实生活抓拍质感，浅景深自然过渡，保留纯棉真实褶皱与真实皮肤质感，严禁3D塑料人偶与假面磨皮，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle candid snapshot, a 22-year-old French girl sitting by the grand fountain in the Tuileries Garden in Paris. Brunette wavy locks peeking from beneath a straw hat, wispy curtain bangs, sun-kissed freckles, glossy peach lips. Wearing an ecru square-neck smocked daisy mini dress, woven raffia slides, holding a fresh baguette. Sparkling afternoon sunlight reflecting off water ripples. Joyful relaxed breath of fresh air. Pure film realism, 3:4
@@ -262,7 +262,7 @@ Commercial knolling flat-lay still life photography, minimal soft studio lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，身材高挑纤巧，骨相清雅出众。深棕色长发蓬松微乱随意披在背上，法式八字刘海轻覆眼睫，原生微瑕底妆微泛健康光泽，唇色是清浅自然的干枯玫瑰粉。身穿柔粉底淡绿藤蔓长款裹身茶歇裙，步态间轻盈天丝裙摆在脚踝边如水波荡漾，侧开衩处若隐若现露出小腿，脚踩裸色细带凉鞋。走在巴黎植物园巨大的玻璃温室棕榈树下，透过老式铁艺玻璃顶棚的柔和散射绿光笼罩周身。微微回过头，眼神带着一抹似笑非笑的漫不经心，生动鲜活。真实原相机拍摄质感，浅景深自然虚化，保留织物纤维自然重力垂皱与真实毛孔，杜绝AI假面与3D建模感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，身材高挑纤巧，骨相清雅出众。深棕色长发蓬松微乱随意披在背上，法式八字刘海轻覆眼睫，原生微瑕底妆微泛健康光泽，唇色是清浅自然的干枯玫瑰粉。身穿柔粉底淡绿藤蔓长款裹身茶歇裙，步态间轻盈天丝裙摆在脚踝边如水波荡漾，侧开衩处若隐若现露出小腿，脚踩裸色细带凉鞋。走在巴黎植物园巨大的玻璃温室棕榈树下，透过老式铁艺玻璃顶棚的柔和散射绿光笼罩周身。微微回过头，眼神带着一抹似笑非笑的漫不经心，生动鲜活。真实原相机拍摄质感，浅景深自然虚化，保留织物纤维自然重力垂皱与真实毛孔，杜绝AI假面与3D建模感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French woman strolling inside the historic glass greenhouse at Jardin des Plantes in Paris. Tousled brunette bedhead hair, curtain bangs, pure bare skin with natural micro-texture, dusty rose lips. Wearing a flowing powder-pink floral maxi wrap dress with slit hem, minimalist strappy flat sandals. Soft diffused emerald light filtering through antique glass panes. Nonchalant half-smile glance over her shoulder. Genuine 35mm film aesthetics, 3:4
@@ -282,7 +282,7 @@ Commercial knolling flat-lay still life photography, moody luxury studio lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，五官深邃高贵，骨相立体如油画人物。深棕色波浪卷发盘成优雅的法式侧卷发，法式八字刘海自然分在额边，精致纯净夜妆，复古浓郁的法国勃艮第暗夜红唇。身穿勃艮第酒红真丝提花缎面排扣连衣裙，贴身剪裁勾勒出玲珑曼妙的身形，缎面随着呼吸泛起红酒般的微光水色，踩着黑色尖头细高跟鞋。站在加尼叶歌剧院金碧辉煌的旋转大理石楼梯拐角处，华丽水晶吊灯投下暖金光芒，烘托出极具故事感的人文氛围。一手轻扶雕花铜栏杆，眼神高冷而深邃看向前方。真实微单原图直出质感，浅景深自然过渡，保留重磅真丝光泽与真实皮肤毛孔呼吸感，严禁3D塑料感与过度美颜，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，五官深邃高贵，骨相立体如油画人物。深棕色波浪卷发盘成优雅的法式侧卷发，法式八字刘海自然分在额边，精致纯净夜妆，复古浓郁的法国勃艮第暗夜红唇。身穿勃艮第酒红真丝提花缎面排扣连衣裙，贴身剪裁勾勒出玲珑曼妙的身形，缎面随着呼吸泛起红酒般的微光水色，踩着黑色尖头细高跟鞋。站在加尼叶歌剧院金碧辉煌的旋转大理石楼梯拐角处，华丽水晶吊灯投下暖金光芒，烘托出极具故事感的人文氛围。一手轻扶雕花铜栏杆，眼神高冷而深邃看向前方。真实微单原图直出质感，浅景深自然过渡，保留重磅真丝光泽与真实皮肤毛孔呼吸感，严禁3D塑料感与过度美颜，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic evening candid photograph, a 22-year-old French woman on the grand marble staircase of Palais Garnier opera house in Paris. Brunette waves pinned in a loose French twist with curtain bangs, sophisticated nude complexion with rich burgundy matte lips. Wearing a tailored burgundy silk jacquard midi dress, black satin stiletto heels. Warm golden light from grand chandeliers creating amber rim lights. Poised, enigmatic gaze. Authentic medium format film texture, 3:4
@@ -302,7 +302,7 @@ Commercial knolling flat-lay still life photography, soft studio lighting. Olive
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，身材高挑纤细，骨相出众。深棕色及肩发微乱自然披散，法式八字刘海随风拂动，清透微瑕原生裸妆，鼻梁带着微光小雀斑，唇色是天然无花果肉粉色。身穿橄榄绿细波点真丝茶歇裙，深V展露精致锁骨，微风吹拂时开衩裙摆轻扬露出优美双腿，脚穿焦糖色中跟绑带凉鞋。倚在蓬皮杜艺术中心露台透明玻璃栏杆旁，俯瞰整个巴黎屋顶海，午后巴黎微阴的柔和灰蓝天光包裹全身。单手端着一杯白葡萄酒，眼神松弛从容，似看非看地掠过镜头。真实原相机直出质感，浅景深虚化背景，保留真丝面料自然褶皱与真实皮肤纹理，严禁AI塑料感，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，身材高挑纤细，骨相出众。深棕色及肩发微乱自然披散，法式八字刘海随风拂动，清透微瑕原生裸妆，鼻梁带着微光小雀斑，唇色是天然无花果肉粉色。身穿橄榄绿细波点真丝茶歇裙，深V展露精致锁骨，微风吹拂时开衩裙摆轻扬露出优美双腿，脚穿焦糖色中跟绑带凉鞋。倚在蓬皮杜艺术中心露台透明玻璃栏杆旁，俯瞰整个巴黎屋顶海，午后巴黎微阴的柔和灰蓝天光包裹全身。单手端着一杯白葡萄酒，眼神松弛从容，似看非看地掠过镜头。真实原相机直出质感，浅景深虚化背景，保留真丝面料自然褶皱与真实皮肤纹理，严禁AI塑料感，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle portrait, a 22-year-old French woman on the rooftop terrace of Centre Pompidou overlooking Parisian zinc rooftops. Tousled clavicle-length brunette hair, curtain bangs, natural skin with subtle freckles, fig-tinted lips. Wearing an olive green polka-dot silk wrap dress with a slit hem fluttering in the breeze, cognac block-heel sandals, holding a glass of chilled white wine. Soft overcast grey-blue ambient daylight. Nonchalant relaxed gaze. 35mm film authenticity, 3:4
@@ -322,7 +322,7 @@ Commercial knolling flat-lay still life photography, warm studio lighting. Musta
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，五官带有一丝慵懒不羁的文艺感。深棕色长卷发凌乱蓬松自然散在肩上，法式八字刘海轻覆额前，原生轻透妆容，自然砖橘色哑光双唇。身穿芥末黄复古波斯碎花长款裹身裙，宽系带勒出纤细腰身，走动时及踝裙摆翻卷起浓郁色调，脚穿做旧深棕皮短靴。漫步在巴黎圣马丁运河铁拱桥上，秋日午后柔和斜阳在绿水上洒下碎金，水面波光倒映在脸上。单手扶着桥边绿色铸铁栏杆，神情从容自适，沉浸在自我的宁静世界中。真实照片胶片质感，浅景深自然过渡，保留面料真实垂坠褶痕与真实皮肤毛孔，严禁二次元与3D打蜡塑料假人，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，五官带有一丝慵懒不羁的文艺感。深棕色长卷发凌乱蓬松自然散在肩上，法式八字刘海轻覆额前，原生轻透妆容，自然砖橘色哑光双唇。身穿芥末黄复古波斯碎花长款裹身裙，宽系带勒出纤细腰身，走动时及踝裙摆翻卷起浓郁色调，脚穿做旧深棕皮短靴。漫步在巴黎圣马丁运河铁拱桥上，秋日午后柔和斜阳在绿水上洒下碎金，水面波光倒映在脸上。单手扶着桥边绿色铸铁栏杆，神情从容自适，沉浸在自我的宁静世界中。真实照片胶片质感，浅景深自然过渡，保留面料真实垂坠褶痕与真实皮肤毛孔，严禁二次元与3D打蜡塑料假人，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle candid snapshot, a 22-year-old French bohemian girl on an iron footbridge over Canal Saint-Martin in Paris. Untamed brunette waves, curtain bangs, natural bare skin, warm brick-orange matte lips. Wearing a mustard yellow floral wrap maxi dress, weathered brown leather booties. Autumn afternoon sunlight creating golden ripples on the canal water. Relaxed hand resting on the green iron railing. Authentic film grain and depth, 3:4
@@ -342,7 +342,7 @@ Commercial knolling flat-lay still life photography, high-end studio lighting. E
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相冷艳深邃，身形曼妙修长。深棕色长卷发被微乱抓起盘在脑后，几缕法式八字碎发轻垂耳侧，精致微瑕晚宴裸妆，经典正红哑光复古唇色。身穿纯黑金线刺绣真丝裹身小黑裙，半透薄纱袖露出纤细手臂，深V领勾勒迷人锁骨与肩颈线条，裙摆随步伐在膝边微荡，脚踩黑色尖头细高跟鞋。身处旺多姆广场古典石柱拱廊下，巴黎深夜深蓝天空与暖金街灯形成戏剧性冷暖对比。微微侧身回眸，眼神深邃带有一丝神秘玩味。真实微单原相机直出质感，浅景深虚化背景，保留真丝刺绣微肌理与真实皮肤呼吸感，严禁3D塑料感与过度磨皮假面，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相冷艳深邃，身形曼妙修长。深棕色长卷发被微乱抓起盘在脑后，几缕法式八字碎发轻垂耳侧，精致微瑕晚宴裸妆，经典正红哑光复古唇色。身穿纯黑金线刺绣真丝裹身小黑裙，半透薄纱袖露出纤细手臂，深V领勾勒迷人锁骨与肩颈线条，裙摆随步伐在膝边微荡，脚踩黑色尖头细高跟鞋。身处旺多姆广场古典石柱拱廊下，巴黎深夜深蓝天空与暖金街灯形成戏剧性冷暖对比。微微侧身回眸，眼神深邃带有一丝神秘玩味。真实微单原相机直出质感，浅景深虚化背景，保留真丝刺绣微肌理与真实皮肤呼吸感，严禁3D塑料感与过度磨皮假面，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic evening candid photograph, a 22-year-old French woman under the grand classical arcades of Place Vendôme at midnight. Dark brunette hair loosely pinned up, curtain bangs framing cheekbones, refined nude complexion with classic French crimson red lips. In an embroidered sheer black silk wrap dress with subtle gold thread, black pointed stilettos. Deep blue Parisian night contrasting with golden lamplight. Enigmatic alluring glance. Authentic film fidelity, 3:4
@@ -362,7 +362,7 @@ Commercial knolling flat-lay still life photography, bright natural soft lightin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，面容清丽自然，骨相立体。深棕色齐肩发微卷蓬松，法式八字刘海自然分向两侧，清爽纯净微瑕裸妆，鼻梁两颗可爱的夏日小雀斑，淡淡杏粉色润唇。身穿浅杏色钴蓝碎花棉麻及膝裹身裙，面料天然质朴折痕衬托出松弛感，下摆露出匀称双腿，脚穿海军蓝绑带平底渔夫鞋。坐在阿维尼翁古老石头喷泉池边，南法午后灿烂柔和的阳光洒在身上，发丝被照耀出浅金棕光芒。单手轻抚裙摆，眼神清澈而悠闲看向水池里的游鱼。真实生活抓拍质感，浅景深自然虚化，保留棉麻粗织纤维与皮肤细腻毛孔，严禁3D建模与过度磨皮塑料人偶，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，面容清丽自然，骨相立体。深棕色齐肩发微卷蓬松，法式八字刘海自然分向两侧，清爽纯净微瑕裸妆，鼻梁两颗可爱的夏日小雀斑，淡淡杏粉色润唇。身穿浅杏色钴蓝碎花棉麻及膝裹身裙，面料天然质朴折痕衬托出松弛感，下摆露出匀称双腿，脚穿海军蓝绑带平底渔夫鞋。坐在阿维尼翁古老石头喷泉池边，南法午后灿烂柔和的阳光洒在身上，发丝被照耀出浅金棕光芒。单手轻抚裙摆，眼神清澈而悠闲看向水池里的游鱼。真实生活抓拍质感，浅景深自然虚化，保留棉麻粗织纤维与皮肤细腻毛孔，严禁3D建模与过度磨皮塑料人偶，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French woman sitting by an ancient stone fountain in Avignon. Shoulder-length tousled brunette hair, curtain bangs, bare skin with sun-kissed freckles, natural apricot-pink lips. Wearing a beige linen-cotton wrap dress with cobalt floral print, navy lace-up espadrilles. Warm Provence sunshine illuminating golden hair edges. Relaxed posture watching the clear water. Realistic textile fibers, pure 35mm film capture, 3:4
@@ -382,7 +382,7 @@ Commercial knolling flat-lay still life photography, warm studio softbox illumin
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，身材修长曼妙，骨相优越。深棕色大卷发随意披在双肩，法式八字空气刘海轻抚额角，原生微瑕底妆在晚霞下泛着温润蜜光，唇色为自然的暖珊瑚粉橘色。身穿暖珊瑚橘碎花心形领排扣及踝茶歇裙，优雅心形领展露修长天鹅颈与优美锁骨，及踝长裙随着在海边木栈道上的步伐轻盈翻飞，脚踩金色细带高跟凉鞋。走在尼斯天使湾黄昏的海滨大道上，背后是渐渐沉入地中海的壮丽橘红晚霞与泛着粉金微波的海水。单手轻拂被海风吹散的长发，回眸浅笑，风情万种。真实照片画质，浅景深自然虚化背景，保留天丝面料真实飘动褶痕与真实皮肤毛孔，严禁二次元与3D打蜡塑料假人，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，身材修长曼妙，骨相优越。深棕色大卷发随意披在双肩，法式八字空气刘海轻抚额角，原生微瑕底妆在晚霞下泛着温润蜜光，唇色为自然的暖珊瑚粉橘色。身穿暖珊瑚橘碎花心形领排扣及踝茶歇裙，优雅心形领展露修长天鹅颈与优美锁骨，及踝长裙随着在海边木栈道上的步伐轻盈翻飞，脚踩金色细带高跟凉鞋。走在尼斯天使湾黄昏的海滨大道上，背后是渐渐沉入地中海的壮丽橘红晚霞与泛着粉金微波的海水。单手轻拂被海风吹散的长发，回眸浅笑，风情万种。真实照片画质，浅景深自然虚化背景，保留天丝面料真实飘动褶痕与真实皮肤毛孔，严禁二次元与3D打蜡塑料假人，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle photograph, a 22-year-old French woman walking along the Promenade des Anglais in Nice at sunset. Voluminous brunette beach waves, wispy bangs, glowing sun-kissed skin, coral-orange glossy lips. Wearing a coral floral sweetheart maxi dress flowing around her ankles, gold strappy heels. Breathtaking Mediterranean golden hour sky melting into violet sea behind her. Brushing windblown hair from her eyes with a breathtaking radiant smile. Pure 35mm film authenticity, 3:4
@@ -402,7 +402,7 @@ Commercial knolling flat-lay still life photography, modern minimalist lighting.
 ```
 - **【真人上身效果提示词】**：
 ```text
-真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相冷峻立体，身材高挑出众。深棕色及肩短发利落中带着微乱蓬松感，法式八字刘海自然分向额头两侧，清透现代裸妆，冷调灰豆沙色双唇。身穿黑白几何碎花真丝裹身长裙，深V展露平直双肩与优美锁骨，及踝裙摆侧开衩随步态微张露出修长小腿，脚穿黑色方头高跟皮靴。站在巴黎东京宫当代艺术馆清水混凝土连廊外，午后巴黎清冷的高级灰漫射天光照在面部。单手自然插在风琴包带上，眼神清冷而从容，直视镜头带着一股漫不经心的知识分子自信。真实相机原片质感，浅景深自然过渡，保留重磅真丝细腻悬垂折痕与皮肤微瑕质感，严禁3D建模磨皮与AI塑料假面，3:4
+真实日常生活抓拍照片，一位22岁的年轻法国女性，骨相冷峻立体，身材高挑出众。深棕色及肩短发利落中带着微乱蓬松感，法式八字刘海自然分向额头两侧，清透现代裸妆，冷调灰豆沙色双唇。身穿黑白几何碎花真丝裹身长裙，深V展露平直双肩与优美锁骨，及踝裙摆侧开衩随步态微张露出修长小腿，脚穿黑色方头高跟皮靴。站在巴黎东京宫当代艺术馆清水混凝土连廊外，午后巴黎清冷的高级灰漫射天光照在面部。单手自然插在风琴包带上，眼神清冷而从容，直视镜头带着一股漫不经心的知识分子自信。真实相机原片质感，浅景深自然过渡，保留重磅真丝细腻悬垂折痕与皮肤微瑕质感，严禁3D建模磨皮与AI塑料假面，半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Authentic lifestyle candid snapshot, a 22-year-old French woman outside Palais de Tokyo modern art museum in Paris. Sleek tousled brunette bob, curtain bangs, minimalist nude face with cool taupe-rose lips. In a monochrome black-and-white graphic floral silk maxi wrap dress with high slit, black square-toe leather boots. Cool grey ambient diffused daylight against raw concrete architecture. Direct, effortlessly confident intellectual gaze into the lens. Authentic medium format photographic texture, 3:4

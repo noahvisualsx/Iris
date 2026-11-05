@@ -656,6 +656,54 @@
         .trim();
     }
 
+    const FALLBACK_OUTFITS = {
+      '韩国': [
+        '身穿剪裁利落的纯黑一字领修身针织长袖上衣，恰到好处地展露优美天鹅颈与精致锁骨线条，极简清冷高级',
+        '身穿韩系学院风白色挺括尖领长袖衬衫，外搭饰有精致小金扣的深藏青细针织V领背心，知性灵动',
+        '身穿象牙白软糯马海毛宽松V领针织开衫，内搭同色系极简真丝缎面内搭，温柔清透',
+        '身穿浅燕麦色高支纯棉廓形西装外套，内搭纯白修身罗纹针织打底衫，利落干练的汉南洞Clean Fit美学',
+        '身穿冰川蓝薄透天丝亚麻微宽松长袖衬衫，领口自然微敞露出精致锁骨与极细银质锁骨链，清冷氧气感十足',
+        '身穿深炭灰修身高领软糯羊绒针织衫，极简流畅剪裁衬托出修长脖颈与巴掌小脸，高级智性美拉满'
+      ],
+      '日本': [
+        '身穿米白色高支透气亚麻微宽松长袖衬衫，领口自然舒展露出优美锁骨线条，温柔日系透明感',
+        '身穿浅燕麦色软糯小羊绒圆领针织开衫，内搭纯白棉质打底衫，干净清爽的代官山日常美学',
+        '身穿深藏青极简V领羊毛针织马甲叠穿挺括白衬衫，知性清纯的日系画报质感',
+        '身穿淡奶油色垂坠感真丝混纺雪纺长袖衬衫，剪裁轻盈灵动，衬托清透冷白肤色'
+      ],
+      '中国': [
+        '身穿月白色30姆米重磅真丝素绉缎新中式立领衬衫，手工一字盘扣精致典雅，温润垂坠光泽衬托冷白瓷肌',
+        '身穿玄黑色极简修身羊绒高领针织衫，利落剪裁凸显修长天鹅颈与清冷大女主骨相气场',
+        '身穿浅香槟色重磅真丝V领垂坠感衬衫，外搭极简剪裁高级羊绒大衣，清贵从容',
+        '身穿烟粉黛青交织的宋锦暗纹立领修身短衫，丝绸光泽细腻内敛，东方清冷智性美感'
+      ],
+      '美国': [
+        '身穿剪裁利落的象牙白高支罗纹修身方领针织上衣，外搭炭灰色廓形羊毛西装外套，佩戴极简金色小圆环耳圈，曼哈顿老钱极简风',
+        '身穿纯黑修身极简一字肩长袖针织衫，展露紧致优美的肩颈锁骨线条，搭配精致金属锁骨链，高街超模质感',
+        '身穿燕麦色重磅羊绒开衫内搭纯白修身丝棉打底衫，松弛优雅的加州Clean Girl高级穿搭',
+        '身穿复古水洗丹宁修身夹克内搭纯白高支棉修身短T恤，利落阳光的西海岸摩登穿搭'
+      ],
+      '法国': [
+        '身穿经典法式海军蓝白细条纹纯棉海魂衫，一字领微露优美锁骨与修长脖颈，随性优雅的巴黎左岸风情',
+        '身穿炭灰色软糯V领粗棒针羊绒衫，佩戴一串极细复古金色锁骨链，松弛高级的法式质感',
+        '身穿象牙白重磅真丝法式方领茶歇衬衫，剪裁浪漫修身，衬托通透白皙肌肤',
+        '身穿燕麦色经典人字纹羊毛西装外套，内搭纯白丝质V领内搭衫，知性慵懒的圣日耳曼画报感'
+      ]
+    };
+
+    const FALLBACK_SCENES = {
+      '韩国': '干净极简的首尔汉南洞暖调设计感书房窗边，背景柔和浅景深虚化且干净高级无杂物',
+      '日本': '代官山静谧原木买手店落地窗旁，背景柔和浅景深虚化且干净无杂物',
+      '中国': '现代极简东方美学艺术展厅静谧窗前，背景柔和虚化且干净留白',
+      '美国': '曼哈顿SoHo极简挑高艺术公寓落地窗旁，背景柔和浅景深虚化',
+      '法国': '巴黎左岸圣日耳曼大道静谧法式公寓落地窗前，背景柔和浅景深虚化'
+    };
+
+    function getFallbackOutfit(country, num = 1) {
+      const pool = FALLBACK_OUTFITS[country] || FALLBACK_OUTFITS['韩国'];
+      return pool[Math.abs(num) % pool.length];
+    }
+
     function compileCardPrompt(item, engine, mode) {
       if (mode === 'product') {
         const baseProd = (item.product_prompt || item.prompt || '').trim();
@@ -671,65 +719,78 @@
 
       const f = item.fields || {};
       const cat = normalizeCat(item.category_id);
+      const num = parseInt(item.num || '1', 10) || 1;
+      const outfitFallback = getFallbackOutfit(item.country, num);
+      const sceneFallback = FALLBACK_SCENES[item.country] || FALLBACK_SCENES['韩国'];
       const clauses = [
-        '以参考图中的成年女性为唯一人物身份，生成一张3:4竖版、极致写实的真人感摄影照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形与自然肤色，仅提取参考图人物五官骨相，不照搬参考图的服装与背景，人物高度一致，不换脸、不美颜、不网红化',
-        '自然写实7.5～8头身，小头小脸比例，头肩比与四肢协调，身形纤细修长，禁止大头、短腿、超8.5头身与关节变形'
+        '以参考图中的成年女性为唯一人物身份，生成一张3:4竖版、极致写实的高颜值真人感摄影照片。严格保留参考人物的脸型、骨相、五官比例、眼型、鼻型、唇形与自然肤色，仅提取参考图人物五官骨相，不照搬参考图的服装与背景，人物高度一致，不换脸、不网红化',
+        '自然写实7.5～8头身，精致小巧巴掌脸比例，头肩比与四肢协调，身形纤细修长，禁止大头、短腿、超8.5头身与关节变形'
       ];
+      const beautyHairMakeup = '保持参考人物原有发色，丰盈柔顺有光泽的层次长发自然垂落肩头，两侧修长八字刘海沿下颌线柔美垂落修饰脸型，露出干净清晰的精致五官，面部无乱发遮挡；白皙通透的冷白瓷肌，天生饱满水光卧蚕，灵动清澈双眸闪烁天然单点眼神光（Catchlight），清透无瑕的伪素颜水光底妆，两颊淡淡晕染清透玫瑰粉腮红，水光亮泽的珊瑚裸粉玻璃唇';
 
       if (cat === 'filters') {
         const cam = cleanSentence(f['相机/介质'] || item.title);
         const light = cleanSentence((f['色温/光影'] || '').replace(/\|/g, '，'));
-        const env = cleanSentence(f['场景氛围'] || '');
-        clauses.push('保持参考人物原有发色与面部特征，神态松弛自然，眼神不经意看向镜头，姿态随意不僵硬');
-        if (env) clauses.push(`身处${env}`);
-        clauses.push(`核心光学滤镜与成像质感（${item.title}）：模拟${cam}实拍光学质感${light ? '，' + light : ''}`);
+        const env = cleanSentence(f['场景氛围'] || sceneFallback);
+        clauses.push(beautyHairMakeup);
+        clauses.push(outfitFallback);
+        clauses.push(`身处${env}，背景柔和浅景深虚化且干净高级无杂物`);
+        clauses.push(`核心光学滤镜与成像质感（${item.title}）：模拟${cam}实拍光学质感${light ? '，' + light : ''}，全脸明亮柔和均匀受光，眼神灵动温和看向镜头，神态松弛自然`);
       } else if (cat === 'poses') {
         const pose = cleanSentence(f['人体工学细节'] || item.title);
-        const env = cleanSentence(f['场景氛围'] || '');
-        clauses.push('保持参考人物原有发色与清透伪素颜妆感，神态松弛自然');
-        clauses.push(`核心抓拍动态与构图（${item.title}）：${pose}，动作舒展松弛，像被朋友偶然抓拍，毫无死板摆拍感`);
-        if (env) clauses.push(`场景与光影氛围：${env}`);
+        const env = cleanSentence(f['场景氛围'] || sceneFallback);
+        clauses.push(beautyHairMakeup);
+        clauses.push(outfitFallback);
+        clauses.push(`核心抓拍动态与构图（${item.title}）：${pose}，动作舒展松弛，毫无死板摆拍感`);
+        clauses.push(`身处${env}，背景柔和浅景深虚化且干净高级无杂物`);
       } else if (cat === 'outfits') {
         const details = cleanSentence(f['单品构成与面料工艺细节'] || '');
         const match = cleanSentence(f['适用场合与搭配鞋包'] || '');
-        clauses.push('保持参考人物原有发色与清透自然妆感，姿态松弛自然');
+        clauses.push(beautyHairMakeup);
         const outfitBody = [details, match].filter(Boolean).join('；');
-        clauses.push(`全身穿搭完整替换为「${item.title}」${outfitBody ? '：' + outfitBody : ''}。衣料呈现真实重力垂坠褶皱、领口袖口剪裁骨位与高支纱线编织肌理`);
+        clauses.push(`全身穿搭完整替换为「${item.title}」${outfitBody ? '：' + outfitBody : ''}。衣料呈现真实重力垂坠褶皱、领口袖口剪裁骨位与高支纱线编织肌理，背景干净高级且柔和浅景深虚化`);
       } else if (cat === 'hosiery') {
         const craft = cleanSentence(f['视觉特征与材质工艺'] || '');
         const match = cleanSentence(f['穿搭场景与鞋履搭配'] || f['时尚/流行流派'] || '');
-        clauses.push('保持参考人物原有发色与清透自然妆感，修长双腿线条流畅自然');
+        clauses.push(beautyHairMakeup);
         const hosBody = [craft, match].filter(Boolean).join('；');
-        clauses.push(`腿部核心穿搭为「${item.title}」${hosBody ? '：' + hosBody : ''}。丝袜尼龙经纬纱线在光线下呈现真实透肤度过渡、膝窝与踝骨生理微褶皱及细腻光泽`);
+        clauses.push(`身穿剪裁利落的高定修身西装短裙套装配真丝衬衫，腿部核心穿搭为「${item.title}」${hosBody ? '：' + hosBody : ''}。丝袜尼龙经纬纱线在光线下呈现真实透肤度过渡、膝窝与踝骨生理微褶皱及细腻光泽`);
       } else if (cat === 'styles') {
         const spot = cleanSentence(item.title);
         const env = cleanSentence(f['环境与光影细节'] || '');
         const light = cleanSentence(f['色温光影与环境氛围'] || '');
         const mood = cleanSentence((f['场景氛围'] || '').replace(/一位\d+岁[^，,]*[，,]\s*/g, ''));
-        clauses.push('保持参考人物原有发色与自然清透妆容，姿态松弛随性');
+        clauses.push(beautyHairMakeup);
+        clauses.push(outfitFallback);
         const styleBody = [env, light || mood].filter(Boolean).join('，');
-        clauses.push(`核心实景地标与美学氛围（${spot}）${styleBody ? '：' + styleBody : ''}。人物与实景空间透视、环境反射光及空气色温自然融合，无抠图感`);
+        clauses.push(`核心实景地标与美学氛围（${spot}）${styleBody ? '：' + styleBody : ''}。人物与实景空间透视、环境反射光及空气色温自然融合，背景柔和虚化无抠图感`);
       } else if (cat === 'hair_makeup') {
         const hair = cleanSentence(f['剪裁构造与妆容细节'] || item.title);
         const makeup = cleanSentence(f['妆容质感与色彩工程参数'] || '');
         const scene = cleanSentence((f['适用脸型与风格场景'] || '').replace(/^[^。.]*脸[^。.]*[。.]\s*/g, '').replace(/^适合[^。.]*[。.]\s*/g, ''));
         const hmBody = [hair, makeup, scene].filter(Boolean).join('；');
-        clauses.push(`在严格锁定参考人物五官骨相的基础上，将发型与妆容重塑为「${item.title}」${hmBody ? '：' + hmBody : ''}。呈现根根分明的自然发丝光泽、耳侧碎发弧度与清透原生皮肤毛孔肌理`);
+        clauses.push(`在严格锁定参考人物五官骨相的基础上，将发型与妆容重塑为「${item.title}」${hmBody ? '：' + hmBody : ''}。面部干净清晰无乱发遮挡眉眼，天生饱满水光卧蚕，双眸清澈闪烁天然单点眼神光（Catchlight），呈现根根分明的自然发丝光泽与清透水光瓷肌质感`);
+        clauses.push(outfitFallback);
       } else if (cat === 'expressions') {
         const gaze = cleanSentence(f['双眸与视线物理特征'] || item.title);
         const lips = cleanSentence(f['唇角与肌肉微动细节'] || '');
         const expBody = [gaze, lips].filter(Boolean).join('；');
-        clauses.push('保持参考人物原有发色与五官骨相，近景至半身人像特写');
-        clauses.push(`核心神态与微表情（${item.title}）${expBody ? '：' + expBody : ''}。眼神灵动有神采，眼白清澈带真实眼神光，苹果肌与唇角肌肉微动自然真实，无僵硬假笑`);
+        clauses.push(beautyHairMakeup);
+        clauses.push(outfitFallback);
+        clauses.push(`核心神态与微表情（${item.title}）${expBody ? '：' + expBody : ''}。眼神灵动有神采，眼白清澈带真实单点眼神光（Catchlight），苹果肌与唇角肌肉微动自然优美，背景干净高级且柔和浅景深虚化`);
       } else if (cat === 'props') {
         const prop = cleanSentence(f['材质工艺与视觉焦点'] || item.title);
         const hand = cleanSentence(f['互动手势与场景'] || '');
         const propBody = [prop, hand].filter(Boolean).join('；');
-        clauses.push('保持参考人物原有发色与清透自然妆容');
+        clauses.push(beautyHairMakeup);
+        clauses.push(outfitFallback);
         clauses.push(`核心随身道具与美甲手部互动（${item.title}）${propBody ? '：' + propBody : ''}。手部解剖结构准确，十指修长骨节自然，美甲甲面高光与道具材质反光真实细腻`);
       }
 
-      clauses.push('真人感日常随手抓拍写真，手机/CCD原相机视角，画面边缘轻微柔光，轻薄细碎胶片颗粒与自然浅景深虚化，保留原生真实皮肤毛孔肌理、自然血色与真实光影过渡，真实自然不过度精修；禁止大头、短腿、手指畸形、多余肢体、乱码文字、水印、拼图，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，比例 3:4');
+      const framingText = (cat === 'outfits' || cat === 'hosiery')
+        ? '半身至全身竖幅人像构图，50mm～85mm黄金人像定焦镜头无畸变视角'
+        : '胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角';
+      clauses.push(`${framingText}，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，轻薄细碎胶片颗粒与自然浅景深虚化，保留天然细腻皮肤肌理与自然红润气色；严禁广角大鼻子拉伸变形、严禁畸形前伸自拍手臂、严禁乱发遮挡眉眼，禁止大头、短腿、手指畸形、多余肢体、乱码文字、水印、拼图，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，比例 3:4`);
       return clauses.map(c => c.trim().replace(/[。，,；;.\s]+$/, '')).filter(Boolean).join('。') + '。';
     }
 
@@ -1147,11 +1208,11 @@
       } else {
         pushClause(mix.filters ? `超写实日常抓拍照片，模拟${getPureCamera(mix.filters)}光学成像质感` : '超写实日常抓拍照片，真实原相机抓拍质感');
         const pMap = {
-          '韩国': '一位20岁出头的年轻东亚女性，清冷淡颜，冷白皮，头小脸小骨相优越，身形纤细修长',
-          '日本': '一位22岁的年轻日本女性，清透微光冷白皮，骨相柔和立体，头小脸小，身材轻盈纤细',
-          '中国': '一位22岁的年轻中国女性，清冷骨相大女主，冷白瓷肌，面部轮廓利落优越，身形高挑纤细',
-          '美国': '一位22岁的年轻美国女性，立体深邃超模骨相，阳光健康微光肌肤，头身比优越，身形紧致修长',
-          '法国': '一位22岁的年轻法国女性，高颅顶立体清秀骨相，纯净原生微瑕裸肌，身形修长慵懒'
+          '韩国': '一位20岁出头的清冷高颜值年轻东亚女性，精致小巧巴掌脸，立体优越鼻梁与清晰下颌线，白皙通透冷白瓷肌，天生饱满水光卧蚕，灵动清澈双眸闪烁天然单点眼神光（Catchlight），头小脸小骨相优越，身形纤细修长',
+          '日本': '一位22岁的清透高颜值年轻日本女性，小头小巧鹅蛋脸，立体柔和骨相与秀气高鼻梁，清透微光冷白瓷肌，天生饱满卧蚕，澄澈双眸闪烁灵动单点眼神光（Catchlight），身材轻盈纤细',
+          '中国': '一位22岁的年轻中国女性，清冷骨相大女主，精致鹅蛋脸，高挺琼鼻与利落清晰下颌线，白皙通透冷白瓷肌，天生饱满卧蚕，清亮双眸闪烁单点眼神光（Catchlight），身形高挑纤细',
+          '美国': '一位22岁的年轻美国女性，精致立体小巧超模骨相，高挺鼻梁、深邃眼窝与紧致下颌线，阳光健康通透微光瓷白微蜜肌，深邃双眸闪烁清澈单点眼神光（Catchlight），头身比优越，身形紧致修长',
+          '法国': '一位22岁的年轻法国女性，高颅顶立体清秀法式骨相，高挺鼻梁与流畅下颌线，通透白皙原生微光瓷肌，深邃灵动双眸闪烁清澈单点眼神光（Catchlight），身形修长慵懒'
         };
         pushClause(pMap[country] || pMap['韩国']);
       }
@@ -1159,10 +1220,12 @@
       if (mix.hair_makeup) {
         const hair = cleanSentence(mix.hair_makeup.fields['剪裁构造与妆容细节'] || mix.hair_makeup.title);
         const makeup = cleanSentence(mix.hair_makeup.fields['妆容质感与色彩工程参数'] || '');
-        const hm = [hair, makeup].filter(Boolean).join('；');
+        const hm = [hair, makeup, '面部干净清晰无乱发遮挡眉眼，天生饱满水光卧蚕，双眸闪烁清澈单点眼神光（Catchlight）'].filter(Boolean).join('；');
         if (hm) pushClause(currentModel === 'seedream' ? `在严格锁定参考人物五官骨相的基础上，将发型与妆容重塑为「${mix.hair_makeup.title}」：${hm}` : hm);
       } else {
-        pushClause(currentModel === 'seedream' ? '保持参考人物原有发色与面部特征，发丝自然垂落肩头，耳侧几缕碎发轻拂，清透伪素颜底妆与原生水润唇色' : '发丝微乱自然垂落肩头，耳侧几缕胎毛碎发随风轻拂，清透伪素颜底妆与原生水润唇色');
+        pushClause(currentModel === 'seedream'
+          ? '保持参考人物原有发色，丰盈柔顺有光泽的层次长发自然垂落肩头，两侧修长八字刘海沿下颌线柔美垂落修饰脸型，露出干净清晰的精致五官，面部无乱发遮挡；白皙通透冷白瓷肌，天生饱满水光卧蚕，双眸闪烁天然单点眼神光（Catchlight），清透无瑕的伪素颜水光底妆，两颊淡淡晕染清透玫瑰粉腮红，水光亮泽的珊瑚裸粉玻璃唇'
+          : '丰盈柔顺有光泽的深色长层次微卷发自然垂落肩头，两侧修长八字刘海沿下颌线柔美垂落修饰脸型，露出干净清晰的精致五官，面部无乱发遮挡；清透无瑕的冷白瓷肌伪素颜水光底妆，两颊淡淡晕染清透玫瑰粉腮红，浅棕自然眼线与根根分明纤长睫毛，水光亮泽的珊瑚裸粉玻璃唇');
       }
 
       if (mix.expressions) {
@@ -1175,7 +1238,7 @@
         const exp = [gaze, lips].filter(Boolean).join('，');
         if (exp) pushClause('神态松弛自然，' + exp);
       } else {
-        pushClause('神态松弛自然，眼神不经意看向镜头，像被朋友随手抓拍的生活瞬间');
+        pushClause('神态松弛自然，眼神灵动温和看向镜头，像被朋友随手抓拍的生活瞬间');
       }
 
       if (mix.poses) {
@@ -1195,6 +1258,10 @@
         }
         const out = [`身穿${cleanSentence(mix.outfits.title)}`, details, acc].filter(Boolean).join('，');
         pushClause(out);
+      } else if (mix.hosiery) {
+        pushClause('身穿剪裁利落的高定修身西装短裙套装配真丝衬衫，上下身穿搭完整谐调');
+      } else {
+        pushClause(getFallbackOutfit(country, 1));
       }
 
       if (mix.hosiery) {
@@ -1226,11 +1293,13 @@
         const sEnv = cleanSentence(mix.styles.fields['环境与光影细节'] || '');
         const sLight = cleanSentence(mix.styles.fields['色温光影与环境氛围'] || '');
         const sceneBody = [sEnv, sLight].filter(Boolean).join('，');
-        pushClause(sceneBody ? `身处${sTitle}：${sceneBody}` : `身处${sTitle}`);
+        pushClause(sceneBody ? `身处${sTitle}：${sceneBody}，背景柔和浅景深虚化且干净高级` : `身处${sTitle}，背景柔和浅景深虚化且干净高级`);
       } else if (mix.filters?.fields['场景氛围']) {
         pushClause(`身处${cleanSentence(mix.filters.fields['场景氛围'])}`);
       } else if (mix.poses?.fields['场景氛围']) {
         pushClause(`身处${cleanSentence(mix.poses.fields['场景氛围'])}`);
+      } else {
+        pushClause(`身处${FALLBACK_SCENES[country] || FALLBACK_SCENES['韩国']}`);
       }
 
       if (mix.filters?.fields['色温/光影']) {
@@ -1240,13 +1309,13 @@
 
       if (currentModel === 'gemini') {
         const tags = activeItems.map(it => it.fields['时尚/流行流派'] || it.fields['本土/日常叫法'] || '').filter(Boolean).slice(0, 4).join(', ');
-        if (tags) pushClause(`Optical & Aesthetic Anchors: ${tags}, candid 35mm photorealistic street snapshot`);
+        if (tags) pushClause(`Optical & Aesthetic Anchors: ${tags}, 50mm f/1.4 portrait lens, flattering soft bounce lighting on face, natural skin pores`);
       }
 
       if (currentModel === 'seedream') {
-        parts.push('真人感日常随手抓拍写真，手机/CCD原相机视角，画面边缘轻微柔光，轻薄细碎胶片颗粒与自然浅景深虚化，保留原生真实皮肤毛孔肌理、自然血色与真实光影过渡，真实自然不过度精修；禁止大头、短腿、手指畸形、多余肢体、乱码文字、水印、拼图，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，比例 3:4');
+        parts.push('50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，轻薄细碎胶片颗粒与自然浅景深虚化，保留天然细腻皮肤肌理与自然红润气色；严禁广角大鼻子拉伸变形、严禁畸形前伸自拍手臂、严禁乱发遮挡眉眼，禁止大头、短腿、手指畸形、多余肢体、乱码文字、水印、拼图，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，比例 3:4');
       } else {
-        parts.push('画面呈现真实照片质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、真实皮肤毛孔与微小肌理、自然血色与生理微褶皱，暗部带细密真实的感光噪点与边缘轻微色散，无过度磨皮美颜，真实社交网络原图生活感，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，3:4');
+        parts.push('50mm～85mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，画面呈现真实照片质感，浅景深自然虚化，保留真实布料纤维织物纹理、面料垂坠褶皱、天然细腻皮肤肌理与自然红润气色，暗部带细密温润的胶片颗粒感，严禁广角大鼻子拉伸变形、严禁畸形前伸自拍手臂、严禁乱发遮挡眉眼，严格禁止二次元、卡通、手绘、动漫假发感与3D渲染塑料感，3:4');
       }
       return parts.join('');
     }
