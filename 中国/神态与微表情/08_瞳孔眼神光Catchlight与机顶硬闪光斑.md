@@ -13,7 +13,7 @@
 - **美学/神态流派**：`On-Camera Hard Flash Specular Catchlight, Noir Spark`
 - **双眸与视线物理特征**：正对机顶热靴闪光灯直闪，黑白分明的角膜中心倒映出一枚锐利如钻石的单一白色高光点，瞳孔如黑曜石般幽深。
 - **唇角与肌肉微动细节**：双唇端正微抿，下颌线线条锋锐如刀，面部在瞬间强光下毫无眨眼动摇，展现顶级名媛面对闪光灯的极致从容。
-- **场景氛围**：深夜奢华晚宴红毯外侧，闪光灯划破暗夜瞬间
+- **场景氛围**：现代极简东方美学纯色留白艺术空间，光影层次分明，背景干净纯粹无杂物，呈现深夜奢华晚宴红毯外侧，闪光灯划破暗夜瞬间的唯美氛围
 - **【微表情动力学解构标本提示词】**：
 ```text
 专业人脸微表情与眼神动力学解构摄影（Facial Expression & Micro-Gaze Kinetic Anatomy Blueprint），中性冷灰哑光极简展台背景，高端时尚期刊与医学美学画册微距排版。画面解构呈现【机顶硬闪单点白闪·瞳孔如墨耀眼星芒】：主视觉为瞳孔中心单点锐利白闪超微距特写与角膜镜面反射光学矢量分析，标注直径0.4毫米极致白点高光与周围深黑虹膜纤维的极高明暗反差比；局部解构对比微距特写展示强光冲击下毫无瞬目收缩的眼轮匝肌与水平端正的双唇，清晰解析高定模特面对直闪时的眼部稳态动力学；极细微距对焦参考十字线与细微解剖标尺，4500K柔和漫射无影光，真实呈现虹膜微米级放射状纤维纹理、根根分明原生深黑睫毛与真实皮肤毛孔肌理，8k微距超清画册，1:1
@@ -23,7 +23,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级夜间时尚直闪肖像，一位22岁年轻中国女性，清冷骨相大女主，五官雕塑般深邃绝美，冷白瓷肌在硬闪下呈现通透象牙微光，哑光复古深正红唇。黑色秀发紧贴头皮梳理成利落中分低髻。身体正对镜头，机顶外置闪光灯强力直闪划破漆黑夜幕，瞳孔正中央瞬间凝结出一枚璀璨耀眼的单点白闪星芒，眼神冰冷清澈直视镜头，没有任何眨眼退缩，带着君临天下的正宫从容与傲气。身穿黑色重磅纯羊毛垫肩西装大衣，胸前佩戴一枚天然羊脂白玉水滴胸针。暗夜背景与惨白高光形成极具戏剧性的现代时尚反差。神情冷艳端庄，气场全开。保留羊毛大衣细腻毛绒、羊脂玉温润微透与真实皮肤毛孔肌理，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级夜拍神作，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级夜间时尚直闪肖像，一位22岁年轻中国女性，清冷骨相大女主，五官雕塑般深邃绝美，冷白瓷肌在硬闪下呈现通透象牙微光，哑光复古深正红唇。黑色秀发紧贴头皮梳理成利落中分低髻。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。身体正对镜头，机顶外置闪光灯强力直闪划破漆黑夜幕，瞳孔正中央瞬间凝结出一枚璀璨耀眼的单点白闪星芒，眼神冰冷清澈直视镜头，没有任何眨眼退缩，带着君临天下的正宫从容与傲气。身穿黑色重磅纯羊毛垫肩西装大衣，胸前佩戴一枚天然羊脂白玉水滴胸针。暗夜背景与惨白高光形成极具戏剧性的现代时尚反差。神情冷艳端庄，气场全开。保留羊毛大衣细腻毛绒、羊脂玉温润微透与真实皮肤毛孔肌理，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级夜拍神作，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Electrifying night flash portrait of a 22-year-old Chinese woman with razor-sharp statuesque facial bone structure and luminous porcelain skin wearing matte true-red lipstick. Sleek center-parted low chignon. Direct on-camera hot-shoe flash cuts through the dark, igniting a dazzling pinpoint specular catchlight in the dead center of each dark pupil as she stares down the lens without blinking. She wears an architectural black wool blazer coat pinned with a white jade teardrop brooch against pitch-black night. Dramatic chiaroscuro emphasizes her sculpted cheekbones and straight nose bridge. Unflinching, majestic presence. Real wool texture, jade glow, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -46,7 +46,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级商业美妆肖像写真，一位22岁年轻中国女性，骨相古典清秀大女主，面容五官工整精致，冷白瓷肌微透通透水光肌理，哑光山茶花红唇。黑色直发整齐中分梳成贴耳低盘发。专业影棚大型环形柔光灯在双眼中投射出两枚极具美感的清澈光环，瞳孔黑白分明，宛若含着一汪清泉直视镜头，神态温柔端庄而又不失从容大气。身穿象牙白重磅真丝立领衬衫，颈项修长如天鹅。纯净柔和的光线将她细腻无瑕的皮肤毛孔与微小肌理完美呈现。神采明眸善睐，风雅绝伦。保留真丝衬衫精致暗纹、真实皮肤细腻微孔与微小质感，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级美妆大片，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级商业美妆肖像写真，一位22岁年轻中国女性，骨相古典清秀大女主，面容五官工整精致，冷白瓷肌微透通透水光肌理，哑光山茶花红唇。黑色直发整齐中分梳成贴耳低盘发。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。专业影棚大型环形柔光灯在双眼中投射出两枚极具美感的清澈光环，瞳孔黑白分明，宛若含着一汪清泉直视镜头，神态温柔端庄而又不失从容大气。身穿象牙白重磅真丝立领衬衫，颈项修长如天鹅。纯净柔和的光线将她细腻无瑕的皮肤毛孔与微小肌理完美呈现。神采明眸善睐，风雅绝伦。保留真丝衬衫精致暗纹、真实皮肤细腻微孔与微小质感，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级美妆大片，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 High-end beauty editorial portrait of a 22-year-old Chinese woman with statuesque classical bone structure and glowing porcelain skin wearing matte camellia-red lipstick. Sleek center-parted low chignon. A professional studio ring-light creates perfect circular halos around her dark pupils, rendering her gaze luminous, clear, and serene as she looks straight into the lens. She wears an ivory heavy silk standing-collar shirt. Soft wrap-around lighting sculpts her flawless bone structure while maintaining hyper-realistic skin micro-texture. Ethereal, poised beauty. Real silk drape, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -69,7 +69,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级室内自然光人像，一位22岁年轻中国女性，清冷骨相古典美人，轮廓骨骼精致立体，冷白瓷肌沐浴在晨光中散发温润白玉光泽，哑光复古豆沙色唇。乌黑长发松松挽成低发髻。侧身倚立于老洋房挑高落地窗前，清晨明亮的自然天光在双眼中映出一扇清晰工整的矩形亮窗，眼神深邃辽远，带着若有所思的故事感凝视前方虚空。身穿墨绿重磅羊绒针织长裙，身形修长挺拔。侧向窗光在面孔一侧勾勒出优越的高光，在另一侧留下一抹优雅深沉的阴影。神态端庄幽静，耐人寻味。保留羊绒针织细腻毛绒、百叶窗木质纹理与真实皮肤细腻毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代文艺神作，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级室内自然光人像，一位22岁年轻中国女性，清冷骨相古典美人，轮廓骨骼精致立体，冷白瓷肌沐浴在晨光中散发温润白玉光泽，哑光复古豆沙色唇。乌黑长发松松挽成低发髻。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。侧身倚立于老洋房挑高落地窗前，清晨明亮的自然天光在双眼中映出一扇清晰工整的矩形亮窗，眼神深邃辽远，带着若有所思的故事感凝视前方虚空。身穿墨绿重磅羊绒针织长裙，身形修长挺拔。侧向窗光在面孔一侧勾勒出优越的高光，在另一侧留下一抹优雅深沉的阴影。神态端庄幽静，耐人寻味。保留羊绒针织细腻毛绒、百叶窗木质纹理与真实皮肤细腻毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代文艺神作，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Classic natural-light portrait of a 22-year-old Chinese woman with statuesque aristocratic bone structure and translucent porcelain skin wearing matte rosewood lipstick. Soft low bun. Standing by tall French windows in a historic villa, natural morning light reflects a crisp rectangular window pane across her dark irises, gaze quiet and contemplative. She wears an ink-green fine cashmere knit gown. Dramatic side lighting sculpts painterly Rembrandt highlights along her jaw and cheekbones. Poetic, brooding narrative grace. Real cashmere texture, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -92,7 +92,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级暗调电影人像写真，一位22岁年轻中国女性，清冷骨相大女主，五官骨骼立体凌厉，冷白瓷肌在极暗光影中微透幽微冷光，哑光深酒红唇。乌黑长直发如夜色般散落在双肩。身处现代极简东方美学艺术展厅静谧窗前，背景柔和虚化且干净留白，呈现完全暗调的私人书斋中，仅有远处两盏微弱的暖光壁灯，在深黑如墨的瞳孔中点燃两枚细小如星辰的高光，双眸如潜伏在黑暗中的黑豹直视镜头，深沉而危险，充满上位者掌控一切的决断。身穿黑色解构真丝立领长袍。极其微弱的侧向轮廓光勾勒出她优越的下颌缘与高耸鼻梁。神态孤傲冷酷，气魄逼人。保留真丝面料暗调光泽、真实皮肤细腻毛孔与微小质感，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级先锋暗夜神作，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级暗调电影人像写真，一位22岁年轻中国女性，清冷骨相大女主，五官骨骼立体凌厉，冷白瓷肌在极暗光影中微透幽微冷光，哑光深酒红唇。乌黑长直发如夜色般散落在双肩。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。身处现代极简东方美学纯色留白艺术空间，光影层次分明，背景干净纯粹无杂物，呈现完全暗调的私人书斋中，仅有远处两盏微弱的暖光壁灯，在深黑如墨的瞳孔中点燃两枚细小如星辰的高光，双眸如潜伏在黑暗中的黑豹直视镜头，深沉而危险，充满上位者掌控一切的决断。身穿黑色解构真丝立领长袍。极其微弱的侧向轮廓光勾勒出她优越的下颌缘与高耸鼻梁。神态孤傲冷酷，气魄逼人。保留真丝面料暗调光泽、真实皮肤细腻毛孔与微小质感，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级先锋暗夜神作，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Low-key cinematic nocturnal portrait of a 22-year-old Chinese woman with razor-sharp statuesque facial bone structure and porcelain skin wearing matte wine-red lipstick. Dark hair falling like obsidian over her shoulders. Set within a dimly lit private study, faint dual amber sconces in the background ignite two minuscule starlight specular glints within her dilated black pupils, staring forward with predatory, sovereign intelligence. She wears a black architectural silk standing-collar robe. Bare minimum rim light traces her jaw and the bridge of her nose against shadow. Brooding, majestic authority. Real silk texture, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -115,7 +115,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级时尚肖像大片，一位22岁年轻中国女性，清冷骨相古典大女主，五官工整大气，冷白瓷肌微透通透血色，哑光复古正宫红唇。黑色秀发挽成精美华贵的新中式发髻，斜插一枚纯金点翠步摇。端坐于大剧院后台化妆镜前，大型八角柔光箱在清澈的黑色瞳眸中投射出完美的几何高光，双眸眼波流转如秋水凝睇，神态自信端庄，既有大家闺秀的端凝，又有绝代名伶的耀眼光芒。身穿绯红色重磅织金宋锦改良长袍，胸前缀有一排手工珍珠盘扣。摄影棚专业柔光将她的面容轮廓修饰得柔润如美玉。神采照人，风华绝代。保留宋锦织金立体花纹、步摇摇曳金丝与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代国潮殿堂大作，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级时尚肖像大片，一位22岁年轻中国女性，清冷骨相古典大女主，五官工整大气，冷白瓷肌微透通透血色，哑光复古正宫红唇。黑色秀发挽成精美华贵的新中式发髻，斜插一枚纯金点翠步摇。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。端坐于大剧院后台化妆镜前，大型八角柔光箱在清澈的黑色瞳眸中投射出完美的几何高光，双眸眼波流转如秋水凝睇，神态自信端庄，既有大家闺秀的端凝，又有绝代名伶的耀眼光芒。身穿绯红色重磅织金宋锦改良长袍，胸前缀有一排手工珍珠盘扣。摄影棚专业柔光将她的面容轮廓修饰得柔润如美玉。神采照人，风华绝代。保留宋锦织金立体花纹、步摇摇曳金丝与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代国潮殿堂大作，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Luminous theatrical portrait of a 22-year-old Chinese woman with statuesque classical features and radiant porcelain skin wearing matte imperial-red lipstick. Modern chignon pinned with a gold and kingfisher feather hairpin. Seated before backstage vanity mirrors, studio octagonal softboxes cast crisp geometric reflections across her dark irises, gaze alive with fluid grace and aristocratic confidence. She wears a crimson Song brocade robe woven with gold and fastened with pearl frog closures. Studio diffuse light renders her skin like polished warm jade. Magnificent, magnetic poise. Real brocade relief, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -138,7 +138,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级夜景街头抓拍大片，一位22岁年轻中国女性，清冷骨相大女主，五官雕塑般绝美冷艳，冷白瓷肌在狗仔硬闪下如通透白玉发光，哑光深红丝绒唇。黑色长卷发松散披落随风微扬。从豪华轿车后座迈步走下，面对数十台相机直闪毫无畏缩，下颌微微昂起，双眸在强闪下通透如黑色琥珀直视镜头，眼神孤高从容，尽显顶级世家名媛出巡时的从容霸气。身穿黑色重磅纯羊绒无领大衣，内搭香槟色真丝吊带裙，手持一只极简黑色缎面晚宴包。直闪在面部投下干脆利落的硬朗阴影，气场绝杀。神态冷艳从容，不可一世。保留羊绒大衣毛感、真丝吊带裙折痕与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级名媛街拍大片，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级夜景街头抓拍大片，一位22岁年轻中国女性，清冷骨相大女主，五官雕塑般绝美冷艳，冷白瓷肌在狗仔硬闪下如通透白玉发光，哑光深红丝绒唇。黑色长卷发松散披落随风微扬。从豪华轿车后座迈步走下，面对数十台相机直闪毫无畏缩，下颌微微昂起，双眸在强闪下通透如黑色琥珀直视镜头，眼神孤高从容，尽显顶级世家名媛出巡时的从容霸气。身穿黑色重磅纯羊绒无领大衣，内搭香槟色真丝吊带裙，手持一只极简黑色缎面晚宴包。直闪在面部投下干脆利落的硬朗阴影，气场绝杀。神态冷艳从容，不可一世。保留羊绒大衣毛感、真丝吊带裙折痕与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级名媛街拍大片，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 High-glam paparazzi snapshot of a 22-year-old Chinese woman with razor-sharp statuesque facial bone structure and luminous porcelain skin wearing matte deep velvet-red lipstick. Windswept dark waves. Stepping out of a luxury car, facing hard direct flashes without flinching, chin elevated, her dark irises glowing with amber-black depth under the flash as she locks eyes with the lens. She wears an architectural black wool overcoat over a champagne silk slip dress, holding a satin clutch. Direct flash casts sharp high-fashion shadows across her sculpted cheekbones. Regal, unapologetic glamour. Real wool drape, silk highlights, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -151,7 +151,7 @@ High-glam paparazzi snapshot of a 22-year-old Chinese woman with razor-sharp sta
 - **美学/神态流派**：`Candlelight Flame Flicker Catchlight, Ancient Amber Warmth`
 - **双眸与视线物理特征**：角膜表面倒映出一簇微弱跳跃的暖黄色火苗，瞳孔在暖光下显得格外深邃温柔，眼眸含情凝娣。
 - **唇角与肌肉微动细节**：下颌微敛，双唇自然轻合，面庞在摇曳烛光下忽明忽暗，散发出古典闺阁中特有的幽深诗意。
-- **场景氛围**：中式古典雕花木榻旁，夜深红烛摇曳
+- **场景氛围**：现代极简东方美学纯色留白艺术空间，光影层次分明，背景干净纯粹无杂物，呈现中式古典雕花木榻旁，夜深红烛摇曳的唯美氛围
 - **【微表情动力学解构标本提示词】**：
 ```text
 专业人脸微表情与眼神动力学解构摄影（Facial Expression & Micro-Gaze Kinetic Anatomy Blueprint），中性冷灰哑光极简展台背景，高端时尚期刊与医学美学画册微距排版。画面解构呈现【烛光摇曳暖黄光斑·古韵深邃的脉脉含情】：主视觉为角膜表面泪膜倒映暖黄烛光火焰超微距特写与热辐射色温矢量分析，标注2200K暖黄火苗在黑白眼眸上的动态反射形态；局部解构对比微距特写展示温润合拢的双唇与平顺舒展的眉弓，清晰解析夜间古典含蓄神态下的面部微表情温润解剖特征；极细微距对焦参考十字线与细微解剖标尺，4500K柔和漫射无影光，真实呈现虹膜微米级放射状纤维纹理、根根分明原生深黑睫毛与真实皮肤毛孔肌理，8k微距超清画册，1:1
@@ -161,7 +161,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级古韵夜景人像写真，一位22岁年轻中国女性，清冷骨相古典美人，五官清雅温婉，冷白瓷肌在暖黄烛光映照下散发如羊脂白玉般的通透暖光，哑光复古朱红淡唇。黑色秀发松松以一支檀木簪挽在脑后。夜深人静，独坐于红木雕花窗前案几旁，案上一支红烛静静燃烧，微弱摇曳的烛光在双眸中倒映出两簇跳动的金色火苗，眼神深邃含蓄，带着对故人往事的幽幽凝思。身穿月白色天丝宋锦对襟长衫，宽大的袖口搭在案头。烛光在清瘦的面容上拉出长长的温暖影子。神态清雅高洁，脉脉含情。保留宋锦暗花肌理、红木案几古朴包浆与真实皮肤细腻毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国传统古典夜景传世神作，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级古韵夜景人像写真，一位22岁年轻中国女性，清冷骨相古典美人，五官清雅温婉，冷白瓷肌在暖黄烛光映照下散发如羊脂白玉般的通透暖光，哑光复古朱红淡唇。黑色秀发松松以一支檀木簪挽在脑后。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。夜深人静，独坐于红木雕花窗前案几旁，案上一支红烛静静燃烧，微弱摇曳的烛光在双眸中倒映出两簇跳动的金色火苗，眼神深邃含蓄，带着对故人往事的幽幽凝思。身穿月白色天丝宋锦对襟长衫，宽大的袖口搭在案头。烛光在清瘦的面容上拉出长长的温暖影子。神态清雅高洁，脉脉含情。保留宋锦暗花肌理、红木案几古朴包浆与真实皮肤细腻毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国传统古典夜景传世神作，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Atmospheric historical night portrait of a 22-year-old Chinese woman with statuesque classical features and porcelain skin warmed by candlelight, wearing matte soft vermilion lipstick. Loose bun pinned with a sandalwood hairpin. Sitting beside an antique rosewood window at midnight, a single red candle flickers on the desk, casting two dancing golden flame reflections in her deep dark eyes as she gazes softly into the warm light in poetic reverie. She wears an ivory Song brocade crossover robe with wide sleeves resting on the table. Flickering candlelight paints warm chiaroscuro across her profile. Poetic, intimate historical stillness. Real brocade relief, wood patina, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -184,7 +184,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级江南风景人像大片，一位22岁年轻中国女性，清冷骨相古典美人，轮廓骨骼清秀出尘，冷白瓷肌微透雨雾微光，哑光浅豆沙玫瑰唇。长发挽起半扎披发。单手撑着一把深青色纯手工竹骨油纸伞漫步在西湖苏堤细雨中，微风吹拂，双眸在漫天烟雨中没有刺眼的闪光，而是流转着一层烟波浩渺的柔和水光，眼神空灵辽远，神态沉静旷达，与江南水墨山水融为一体。身穿水墨青灰色重磅香云纱长衫，裙摆在微雨中泛着沉稳的丝光。四周灰白色的湖水与远山薄雾为她衬托出如古画般超然的意境。神韵出尘高雅，静若幽兰。保留油纸伞天然竹骨纹理、香云纱过泥质感与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国传世级山水大片，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级江南风景人像大片，一位22岁年轻中国女性，清冷骨相古典美人，轮廓骨骼清秀出尘，冷白瓷肌微透雨雾微光，哑光浅豆沙玫瑰唇。长发挽起半扎披发。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。单手撑着一把深青色纯手工竹骨油纸伞漫步在西湖苏堤细雨中，微风吹拂，双眸在漫天烟雨中没有刺眼的闪光，而是流转着一层烟波浩渺的柔和水光，眼神空灵辽远，神态沉静旷达，与江南水墨山水融为一体。身穿水墨青灰色重磅香云纱长衫，裙摆在微雨中泛着沉稳的丝光。四周灰白色的湖水与远山薄雾为她衬托出如古画般超然的意境。神韵出尘高雅，静若幽兰。保留油纸伞天然竹骨纹理、香云纱过泥质感与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国传世级山水大片，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Misty Jiangnan landscape portrait of a 22-year-old Chinese woman with ethereal classical bone structure and translucent porcelain skin wearing matte soft rosewood lipstick. Half-up hair pinned softly. Holding a dark-green oiled paper umbrella in gentle rain along West Lake, her eyes carry no harsh specular reflections but a broad, soft diffuse gleam of overcast sky and lake water, gazing into the mist with serene detachment. She wears an ink-wash gray Xiangyun silk robe. Distant misty mountains and lake ripples frame her silhouette like a classical Song dynasty painting. Ethereal, transcendent grace. Real bamboo umbrella ribs, Xiangyun silk mud texture, authentic skin micro-pores, fine 35mm grain, 3:4
@@ -207,7 +207,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级王家卫电影感写真，一位22岁年轻中国女性，清冷骨相大女主，五官冷艳明媚，冷白瓷肌在红绿霓虹灯切光下显现出电影胶片般的迷离光彩，哑光复古车厘子红唇。乌黑长卷发蓬松披散在双肩。深夜立于香港街头巨大的老式霓虹灯招牌下，红绿相间的霓虹光管在深黑的双眸中倒映出两条彩色亮条，眼神迷离怅惘却又带着一丝看破红尘的孤绝冷酷，下颌微扬，神态宛若90年代港片中的神秘女杀手。身穿深红色重磅真丝吊带裙，肩头披着黑色男士宽版羊毛大衣。街边积水的沥青路面反射着满地霓虹倒影。神采风情万种，孤寂凄艳。保留真丝裙面光泽、胶片细腻颗粒感与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级港风电影大片，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级王家卫电影感写真，一位22岁年轻中国女性，清冷骨相大女主，五官冷艳明媚，冷白瓷肌在红绿霓虹灯切光下显现出电影胶片般的迷离光彩，哑光复古车厘子红唇。乌黑长卷发蓬松披散在双肩。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。深夜立于香港街头巨大的老式霓虹灯招牌下，红绿相间的霓虹光管在深黑的双眸中倒映出两条彩色亮条，眼神迷离怅惘却又带着一丝看破红尘的孤绝冷酷，下颌微扬，神态宛若90年代港片中的神秘女杀手。身穿深红色重磅真丝吊带裙，肩头披着黑色男士宽版羊毛大衣。街边积水的沥青路面反射着满地霓虹倒影。神采风情万种，孤寂凄艳。保留真丝裙面光泽、胶片细腻颗粒感与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国现代顶级港风电影大片，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Moody cinematic Wong Kar-wai homage portrait of a 22-year-old Chinese woman with razor-sharp statuesque facial bone structure and porcelain skin wearing matte cherry-red lipstick. Voluminous dark retro curls. Standing on a wet Hong Kong street beneath glowing vintage neon signage, paired red and green neon light bars reflect in her dark irises as she gazes into the urban night with melancholic, detached allure. She wears a crimson silk slip gown under an oversized black wool trench. Wet asphalt reflects colorful neon pools beneath her feet. Nostalgic, smoky 1990s noir atmosphere. Real silk texture, authentic skin micro-pores, rich 35mm film grain, 3:4
@@ -230,7 +230,7 @@ Professional facial kinetic expression and gaze anatomy blueprint photography, n
 ```
 - **【真人神态上身效果提示词】**：
 ```text
-真实高级史诗级日落人像写真，一位22岁年轻中国女性，清冷骨相古典大女主，五官工整大气如雕琢，冷白瓷肌沐浴在纯金夕阳中呈现琥珀玉色，哑光复古枫叶红唇。长发随暮风飞扬拂面。立于景山万春亭红柱旁，正迎着西斜的金色落日凝视远方，满天红霞在她的瞳孔深处点燃一片细碎的金色星芒，眼眸被夕阳透射成晶莹剔透的暗金色，神态从容阔达，俯瞰着脚下紫禁城连绵起伏的金黄色琉璃瓦顶。身穿玄色织金暗纹宋锦长风衣，宽腰带勾勒出挺拔纤细的身姿。晚霞余晖在她的侧颊与发丝镀上一层辉煌的神圣金边。气势壮丽端穆，东方大美。保留宋锦织金立体光泽、古建红柱包浆与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国传世级金色日落神作，胸部以上中近景或半身竖幅人像构图，50mm黄金人像定焦镜头无畸变视角，全脸明亮柔和均匀受光，五官清晰立体无死黑阴影，背景干净高级且柔和浅景深虚化，严禁广角大鼻子拉伸变形、严禁畸形前伸手臂、严禁乱发遮挡眉眼，3:4
+真实高级史诗级日落人像写真，一位22岁年轻中国女性，清冷骨相古典大女主，五官工整大气如雕琢，冷白瓷肌沐浴在纯金夕阳中呈现琥珀玉色，哑光复古枫叶红唇。长发随暮风飞扬拂面。天生饱满卧蚕，清亮深邃双眸带灵动单点眼神光（Catchlight），无瑕清透的冷白瓷肌半哑光微水光底妆，两颊淡淡晕染柔美气色腮红，极细内眼线与温润高级的丝绒玫瑰豆沙红唇。立于景山万春亭红柱旁，正迎着西斜的金色落日凝视远方，满天红霞在她的瞳孔深处点燃一片细碎的金色星芒，眼眸被夕阳透射成晶莹剔透的暗金色，神态从容阔达，俯瞰着脚下紫禁城连绵起伏的金黄色琉璃瓦顶。身穿玄色织金暗纹宋锦长风衣，宽腰带勾勒出挺拔纤细的身姿。晚霞余晖在她的侧颊与发丝镀上一层辉煌的神圣金边。气势壮丽端穆，东方大美。保留宋锦织金立体光泽、古建红柱包浆与真实皮肤毛孔，严格禁止二次元、卡通、手绘、动漫与3D渲染塑料感，真实中国传世级金色日落神作，腰部以上半身竖幅人像构图（Medium Shot），50mm黄金人像定焦镜头平视无畸变视角，头小肩平比例优越，严禁广角大鼻子拉伸变形、严禁大头怼脸自拍、严禁乱发遮挡眉眼，3:4
 ```
 ```text
 Majestic golden hour summit portrait of a 22-year-old Chinese woman with statuesque classical features, glowing porcelain skin warmed by amber sunlight, wearing matte maple-red lipstick. Wind-tousled dark hair dancing across her profile. Standing beside the vermilion pillars of Jingshan Park pavilion looking over the Forbidden City, she faces the setting sun directly, golden light igniting a shimmering constellation of amber highlights across her dark irises as she gazes down upon imperial golden roofs. She wears a black Song brocade coat woven with subtle gold threads. Brilliant late sunlight gilds her cheekbones and flying hair strands in a holy rim of fire. Epic, sovereign grandeur. Real brocade relief, authentic skin micro-pores, cinema 35mm grain, 3:4
